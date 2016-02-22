@@ -13,7 +13,7 @@
         android:id="@+id/vehicletoolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#B6B6B6"
+        android:background="@color/toolbar_background2"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -30,10 +30,12 @@
         android:text="back"
         android:id="@+id/backbutton"
         style="?android:attr/borderlessButtonStyle"
-        android:onClick="onBackPressed"
+        android:onClick="backButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:gravity="left|fill_vertical" />
+        android:gravity="left|fill_vertical"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/tab_text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,6 +43,7 @@
             android:textSize="@dimen/text_size"
             android:text="Vehicle"
             android:id="@+id/textView"
+            android:textColor="@color/tab_text"
             android:layout_centerHorizontal="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -54,6 +57,9 @@
             android:text="Add"
             android:id="@+id/addvehicle"
             style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/tab_text"
+            android:onClick="addVehicle"
+            android:textSize="@dimen/text_size"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:gravity="fill_vertical|right"
@@ -61,7 +67,11 @@
 
     </android.support.v7.widget.Toolbar>
 
-
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/vehiclelistview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100sp" />
 
 
 

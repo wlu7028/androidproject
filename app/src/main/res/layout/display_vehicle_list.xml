@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="35sp"
+        android:layout_height="35sp"
+        android:id="@+id/carthumbnail"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:src="@drawable/add_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="car maker and model"
+        android:textColor="@color/tab_text"
+        android:textSize="@dimen/text_size"
+        android:id="@+id/carmakermodel"
+        android:layout_alignTop="@id/carthumbnail"
+        android:layout_toRightOf="@id/carthumbnail"
+        android:layout_toEndOf="@id/carthumbnail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="miles and latest service date"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/tab_text"
+        android:id="@+id/milesandservicedate"
+        android:layout_below="@id/carmakermodel"
+        android:layout_alignLeft="@id/carmakermodel"
+        android:layout_alignStart="@id/carmakermodel" />
+
+
+</RelativeLayout>

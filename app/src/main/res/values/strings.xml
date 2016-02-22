@@ -1,7 +1,37 @@
 <resources>
     <string name="app_name">LogBook</string>
     <string name="action_settings">Settings</string>
-
-
     <string name="title_activity_vehicles">VehiclesActivity</string>
+    <string name="title_activity_add_avehicle">AddAVehicle</string>
+
+    <string-array name="car_maker">
+        <item>Maker</item>
+        <item>Honda</item>
+        <item>Toyota</item>
+        <item>Nissan</item>
+        <item>BMW</item>
+        <item>Mercedes Benz</item>
+        <item>Lexus</item>
+        <item>Acura</item>
+        <item>Audi</item>
+    </string-array>
+
+    <string-array name="car_trim">
+        <item>Trim</item>
+    </string-array>
+
+    <string-array name="car_model">
+        <item>Model</item>
+    </string-array>
+
+    <string-array name="toyota_model">
+        <item>Camry</item>
+        <item>Corolla</item>
+    </string-array>
+
+    <string-array name="honda_model">
+        <item>Accord</item>
+        <item>Civic</item>
+    </string-array>
+
 </resources>

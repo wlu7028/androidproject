@@ -5,5 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="tab_text_selected">#212121</color>
     <color name="tab_text">#607D8B</color>
+    <color name="toolbar_background">#F5F5F5</color>
+    <color name="toolbar_background2">#B6B6B6</color>
 
 </resources>

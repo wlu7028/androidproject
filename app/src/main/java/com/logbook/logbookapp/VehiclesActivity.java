@@ -1,19 +1,29 @@
 package com.logbook.logbookapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.util.Log;
 
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.logbook.logbookapp.R;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class VehiclesActivity extends AppCompatActivity {
 
+    private VehicleListAdapter vehicleListAdapter = null;
+    private List<String> displayValues1;
+    private List<String> displayValues2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +32,66 @@ public class VehiclesActivity extends AppCompatActivity {
         toolbar.setTitle("LogBook");
         setSupportActionBar(toolbar);
 
+        populateListView();
     }
 
+    public void populateListView(){
+        List<String> vehicleDataJsonList = ReadSaveDataUtility.readSharedPreference(this);
+        List<CarObject> vehicleObjects = new ArrayList<>();
+        for(String tempStr : vehicleDataJsonList){
+            CarObject carObj = new CarObject();
+            try {
+                carObj = new ObjectMapper().readValue(tempStr,CarObject.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            vehicleObjects.add(carObj);
+        }
+        getVehicleMakerModel(vehicleObjects,displayValues1);
+        getVehicleMilesAndServiceDate(vehicleObjects,displayValues2);
+
+        ListView vehicleListView = (ListView) findViewById(R.id.vehiclelistview);
+        if(vehicleListAdapter == null){
+            vehicleListAdapter = new VehicleListAdapter(this,displayValues1,displayValues2);
+            vehicleListView.setAdapter(vehicleListAdapter);
+        }else{
+            vehicleListAdapter.notifyDataSetChanged();
+        }
+
+
+        vehicleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3) {
+                String value = (String) adapter.getItemAtPosition(position);
+                // assuming string and if you want to get the value on click of list item
+                // do what you intend to do on click of listview row
+            }
+        });
+    }
+
+    public void getVehicleMakerModel( List<CarObject> carObjList, List<String> displayValues1){
+          displayValues1.clear();
+          for(int i=0; i< carObjList.size();i++){
+              displayValues1.add(carObjList.get(i).getCarMaker() +" "+carObjList.get(i).getCarModel());
+          }
+    }
+
+    public void getVehicleMilesAndServiceDate( List<CarObject> carObjList,List<String> displayValues2){
+        displayValues2.clear();
+        for(int i=0; i< carObjList.size();i++){
+            displayValues2.add(carObjList.get(i).getCarOdometer() +"miles   Last Service Date:");
+        }
+
+    }
+    public void backButton(View view){
+        finish();
+    }
+
+    public void addVehicle(View view){
+        Intent intent = new Intent(this,AddAVehicle.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed(){
         /*
@@ -40,6 +108,13 @@ public class VehiclesActivity extends AppCompatActivity {
          */
         super.onBackPressed();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populateListView();
+    }
+
     /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
