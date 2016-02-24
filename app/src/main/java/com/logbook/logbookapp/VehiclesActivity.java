@@ -22,8 +22,8 @@ import java.util.List;
 public class VehiclesActivity extends AppCompatActivity {
 
     private VehicleListAdapter vehicleListAdapter = null;
-    private List<String> displayValues1;
-    private List<String> displayValues2;
+    private List<String> displayValues1 = new ArrayList<>();
+    private List<String> displayValues2 = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
