@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.logbook.logbookapp.VehicleView"
+    tools:showIn="@layout/activity_vehicle_view">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/vehicleviewtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:background="@color/toolbar_background2"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:elevation="6dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:id="@+id/backToVehicleLists"
+        style="?android:attr/borderlessButtonStyle"
+        android:onClick="backToVehicleLists"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:gravity="left|fill_vertical"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/tab_text" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            android:text="View Vehicle Details"
+            android:id="@+id/textView"
+            android:textColor="@color/tab_text"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="fill_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="25dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:id="@+id/editVehicle"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/tab_text"
+            android:onClick="editVehicle"
+            android:textSize="@dimen/text_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="fill_vertical|right"
+            android:foregroundGravity="right" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageButton
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/vehicleviewtoolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/add_icon"
+        android:contentDescription="Add an Icon"
+        android:layout_marginTop="50dp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Maker"
+        android:id="@+id/makerView"
+        android:layout_alignTop="@+id/imageButton"
+        android:layout_centerHorizontal="true" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/makerView"
+        android:layout_alignStart="@+id/makerView"
+        android:layout_below="@+id/makerView"
+        android:layout_alignRight="@+id/makerView"
+        android:layout_alignEnd="@+id/makerView" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Model"
+        android:id="@+id/modelView"
+        android:layout_below="@id/makerView"
+        android:layout_alignLeft="@id/makerView"
+        android:layout_alignStart="@id/makerView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/modelView"
+        android:layout_alignStart="@+id/modelView"
+        android:layout_below="@+id/modelView"
+        android:layout_alignRight="@+id/modelView"
+        android:layout_alignEnd="@+id/modelView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Trim"
+        android:id="@+id/trimView"
+        android:layout_below="@id/modelView"
+        android:layout_alignLeft="@id/modelView"
+        android:layout_alignStart="@id/modelView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/trimView"
+        android:layout_alignStart="@+id/trimView"
+        android:layout_below="@+id/trimView"
+        android:layout_alignRight="@+id/trimView"
+        android:layout_alignEnd="@+id/trimView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Year"
+        android:id="@+id/yearView"
+        android:layout_below="@id/imageButton"
+        android:layout_alignLeft="@id/trimView"
+        android:layout_alignStart="@id/trimView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/yearView"
+        android:layout_alignStart="@+id/yearView"
+        android:layout_below="@+id/yearView"
+        android:layout_alignRight="@+id/yearView"
+        android:layout_alignEnd="@+id/yearView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="License"
+        android:id="@+id/licenseView"
+        android:layout_below="@id/yearView"
+        android:layout_alignLeft="@id/yearView"
+        android:layout_alignStart="@id/yearView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/licenseView"
+        android:layout_alignStart="@+id/licenseView"
+        android:layout_below="@+id/licenseView"
+        android:layout_alignRight="@+id/licenseView"
+        android:layout_alignEnd="@+id/licenseView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="VIN"
+        android:id="@+id/vinView"
+        android:layout_below="@id/licenseView"
+        android:layout_alignLeft="@id/licenseView"
+        android:layout_alignStart="@id/licenseView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/vinView"
+        android:layout_alignStart="@+id/vinView"
+        android:layout_below="@+id/vinView"
+        android:layout_alignRight="@+id/vinView"
+        android:layout_alignEnd="@+id/vinView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Odometer"
+        android:id="@+id/odometerView"
+        android:layout_below="@id/vinView"
+        android:layout_alignLeft="@id/vinView"
+        android:layout_alignStart="@id/vinView" />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/odometerView"
+        android:layout_alignStart="@+id/odometerView"
+        android:layout_below="@+id/odometerView"
+        android:layout_alignRight="@+id/odometerView"
+        android:layout_alignEnd="@+id/odometerView" />
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/CustomTabLayoutStyle"
+        android:background="@color/toolbar_background"
+        android:id="@+id/viewVehicle_tab"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

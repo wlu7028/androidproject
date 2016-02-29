@@ -6,17 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.logbook.logbookapp.R;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class VehiclesActivity extends AppCompatActivity {
@@ -36,19 +29,9 @@ public class VehiclesActivity extends AppCompatActivity {
     }
 
     public void populateListView(){
-        List<String> vehicleDataJsonList = ReadSaveDataUtility.readSharedPreference(this);
-        List<CarObject> vehicleObjects = new ArrayList<>();
-        for(String tempStr : vehicleDataJsonList){
-            CarObject carObj = new CarObject();
-            try {
-                carObj = new ObjectMapper().readValue(tempStr,CarObject.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            vehicleObjects.add(carObj);
-        }
-        getVehicleMakerModel(vehicleObjects,displayValues1);
-        getVehicleMilesAndServiceDate(vehicleObjects,displayValues2);
+        ReadSaveDataUtility.loadVehicleObjectsFromSharedPreference(this);
+        getVehicleMakerModel(ReadSaveDataUtility.vehicleObjects, displayValues1);
+        getVehicleMilesAndServiceDate(ReadSaveDataUtility.vehicleObjects,displayValues2);
 
         ListView vehicleListView = (ListView) findViewById(R.id.vehiclelistview);
         if(vehicleListAdapter == null){
@@ -63,9 +46,10 @@ public class VehiclesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
-                String value = (String) adapter.getItemAtPosition(position);
-                // assuming string and if you want to get the value on click of list item
-                // do what you intend to do on click of listview row
+                //String value = (String) adapter.getItemAtPosition(position);
+                Intent viewIndividualVehicle = new Intent(VehiclesActivity.this, VehicleView.class);
+                viewIndividualVehicle.putExtra("rowPosition", position);
+                startActivity(viewIndividualVehicle);
             }
         });
     }
@@ -82,7 +66,6 @@ public class VehiclesActivity extends AppCompatActivity {
         for(int i=0; i< carObjList.size();i++){
             displayValues2.add(carObjList.get(i).getCarOdometer() +"miles   Last Service Date:");
         }
-
     }
     public void backButton(View view){
         finish();

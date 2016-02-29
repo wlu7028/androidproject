@@ -83,6 +83,7 @@ public class AddAVehicle extends AppCompatActivity  {
         carObj.setCarLicensePlateNumber(((EditText) findViewById(R.id.licenseplatenumber)).getText().toString());
         carObj.setCarVIN(((EditText) findViewById(R.id.vin)).getText().toString());
         carObj.setCarOdometer(((EditText) findViewById(R.id.odometer)).getText().toString());
+        carObj.setCreatedTimeStamp(System.currentTimeMillis() / 1000L);
         carDataSP.add(carObj.toString());
         SharedPreferences.Editor mEdit1 = sp.edit();
         mEdit1.putInt("CarData_size", carDataSP.size());

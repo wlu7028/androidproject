@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Created on 2/21/2016.
  */
-public class CarObject {
+public class CarObject implements Comparable<CarObject>{
     private String Id;
     private String carName;
     private String carMaker;
@@ -16,6 +16,7 @@ public class CarObject {
     private String carLicensePlateNumber;
     private String carVIN;
     private String carOdometer;
+    private long createdTimeStamp;
 
     public CarObject(){
 
@@ -91,6 +92,20 @@ public class CarObject {
 
     public void setCarModel(String carModel) {
         this.carModel = carModel;
+    }
+
+    public long getCreatedTimeStamp() {
+        return createdTimeStamp;
+    }
+
+    public void setCreatedTimeStamp(long createdTimeStamp) {
+        this.createdTimeStamp = createdTimeStamp;
+    }
+
+    @Override
+    public int compareTo(CarObject compareCarObject){
+        long compareDisplayOrder = compareCarObject.getCreatedTimeStamp();
+        return (int)(this.createdTimeStamp - compareDisplayOrder); // @TODO need a better way to handle future time, int is not large enough
     }
 
     @Override

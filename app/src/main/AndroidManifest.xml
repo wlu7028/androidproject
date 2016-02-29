@@ -4,10 +4,10 @@
 
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:debuggable="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -22,13 +22,12 @@
         <activity
             android:name=".VehiclesActivity"
             android:label="@string/title_activity_vehicles"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.logbook.logbookapp.MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.MainActivity" />
         </activity>
-
         <activity
             android:name=".AddAVehicle"
             android:label="@string/title_activity_add_avehicle"
@@ -37,6 +36,33 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.logbook.logbookapp.VehiclesActivity" />
+        </activity>
+        <activity
+            android:name=".VehicleView"
+            android:label="@string/title_activity_vehicle_view"
+            android:parentActivityName=".VehiclesActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.VehiclesActivity" />
+        </activity>
+        <activity
+            android:name=".ServiceLog"
+            android:label="@string/title_activity_service_log"
+            android:parentActivityName=".VehicleView"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.VehicleView" />
+        </activity>
+        <activity
+            android:name=".GasLog"
+            android:label="@string/title_activity_gas_log"
+            android:parentActivityName=".VehicleView"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.VehicleView" />
         </activity>
     </application>
 

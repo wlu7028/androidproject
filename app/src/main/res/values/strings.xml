@@ -33,5 +33,8 @@
         <item>Accord</item>
         <item>Civic</item>
     </string-array>
+    <string name="title_activity_vehicle_view">VehicleView</string>
+    <string name="title_activity_service_log">ServiceLog</string>
+    <string name="title_activity_gas_log">GasLog</string>
 
 </resources>
