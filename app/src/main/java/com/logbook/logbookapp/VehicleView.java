@@ -77,18 +77,18 @@ public class VehicleView extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void backToVehicleLists(){
+    public void backToVehicleLists(View view){
         finish();
-        super.onBackPressed();
     }
 
-    public void editVehicle(){
+    public void editVehicle(View view){
 
     }
 
+    /*
     @Override
     public void onBackPressed(){
         finish();
         super.onBackPressed();
-    }
+    }*/
 }
