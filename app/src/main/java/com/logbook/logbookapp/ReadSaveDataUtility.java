@@ -43,4 +43,25 @@ public class ReadSaveDataUtility {
         }
         return carDataSP;
     }
+
+    public static void deleteVehicle(Activity thisActivity, int deletePosition){
+        vehicleObjects.remove(deletePosition);
+        saveVehicleListToSharedPreference(thisActivity);
+    }
+
+    public static void saveVehicleListToSharedPreference(Activity thisActivity){
+        SharedPreferences sp = thisActivity.getSharedPreferences("CarDataSharedPref",Context.MODE_PRIVATE);
+        List<String> newCarDataList = new ArrayList<>();
+        for(CarObject carObj : vehicleObjects){
+            newCarDataList.add(carObj.toString());
+        }
+        SharedPreferences.Editor mEdit1 = sp.edit();
+        mEdit1.clear();
+        mEdit1.putInt("CarData_size", newCarDataList.size());
+        for(int i=0;i<newCarDataList.size();i++)
+        {
+            mEdit1.putString("CarData_" + i, newCarDataList.get(i));
+        }
+        mEdit1.commit();
+    }
 }

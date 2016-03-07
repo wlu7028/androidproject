@@ -1,5 +1,6 @@
 package com.logbook.logbookapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,4 +22,12 @@ public class GasLog extends AppCompatActivity {
 
     }
 
+    public void addGasLog(View view){
+        Intent intent = new Intent(this,AddGasLog.class);
+        startActivity(intent);
+    }
+
+    public void backButton(View view){
+        finish();
+    }
 }

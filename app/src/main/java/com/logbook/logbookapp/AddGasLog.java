@@ -1,6 +1,5 @@
 package com.logbook.logbookapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,24 +9,23 @@ import android.view.View;
 
 import com.logbook.logbookapp.R;
 
-public class ServiceLog extends AppCompatActivity {
+public class AddGasLog extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_log);
+        setContentView(R.layout.activity_add_gas_log);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
     }
 
-    public void addServiceLog(View view){
-        Intent intent = new Intent(this,AddServiceLog.class);
-        startActivity(intent);
+    public void saveGasLog(View view){
+
     }
 
-    public void backButton(View view){
+    public void cancelButton(View view){
         finish();
     }
 }

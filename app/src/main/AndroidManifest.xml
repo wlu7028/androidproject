@@ -64,6 +64,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.logbook.logbookapp.VehicleView" />
         </activity>
+        <activity
+            android:name=".EditVehicle"
+            android:label="@string/title_activity_edit_vehicle"
+            android:parentActivityName=".VehicleView"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.VehicleView" />
+        </activity>
+        <activity
+            android:name=".AddServiceLog"
+            android:label="@string/title_activity_add_service_log"
+            android:parentActivityName=".ServiceLog"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.ServiceLog" />
+        </activity>
+        <activity
+            android:name=".AddGasLog"
+            android:label="@string/title_activity_add_gas_log"
+            android:parentActivityName=".GasLog"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.GasLog" />
+        </activity>
     </application>
 
 </manifest>

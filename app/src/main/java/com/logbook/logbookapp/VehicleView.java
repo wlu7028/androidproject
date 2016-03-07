@@ -13,16 +13,16 @@ import android.widget.TextView;
 import com.logbook.logbookapp.R;
 
 public class VehicleView extends AppCompatActivity {
-
+    private int rowPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        int rowPosition = getIntent().getExtras().getInt("rowPosition");
+        rowPosition = getIntent().getExtras().getInt("rowPosition");
         TabLayout tabLayout = (TabLayout) findViewById(R.id.viewVehicle_tab);
-        tabLayout.addTab(tabLayout.newTab().setText("Services Log"),false);
+        tabLayout.addTab(tabLayout.newTab().setText("Services Log"), false);
         tabLayout.addTab(tabLayout.newTab().setText("Gas Log"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -50,20 +50,7 @@ public class VehicleView extends AppCompatActivity {
 
             }
         });
-        ((TextView)findViewById(R.id.makerView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
-        ((TextView)findViewById(R.id.modelView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarModel());
-        ((TextView)findViewById(R.id.trimView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarTrim());
-        ((TextView)findViewById(R.id.yearView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarYear());
-        ((TextView)findViewById(R.id.licenseView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarLicensePlateNumber());
-        ((TextView)findViewById(R.id.vinView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
-        ((TextView)findViewById(R.id.odometerView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
+        populateView();
 
     }
 
@@ -82,7 +69,9 @@ public class VehicleView extends AppCompatActivity {
     }
 
     public void editVehicle(View view){
-
+        Intent intent = new Intent(this,EditVehicle.class);
+        intent.putExtra("rowPosition",rowPosition);
+        startActivity(intent);
     }
 
     /*
@@ -91,4 +80,34 @@ public class VehicleView extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }*/
+    @Override
+    public void onResume() {
+        super.onResume();
+        populateView();
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
+    public void populateView(){
+        ((TextView)findViewById(R.id.makerView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
+        ((TextView)findViewById(R.id.modelView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarModel());
+        ((TextView)findViewById(R.id.trimView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarTrim());
+        ((TextView)findViewById(R.id.yearView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarYear());
+        ((TextView)findViewById(R.id.licenseView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarLicensePlateNumber());
+        ((TextView)findViewById(R.id.vinView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
+        ((TextView)findViewById(R.id.odometerView)).
+                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
+    }
 }

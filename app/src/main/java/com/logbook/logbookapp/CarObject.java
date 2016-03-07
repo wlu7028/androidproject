@@ -3,6 +3,8 @@ package com.logbook.logbookapp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
+
 /**
  * Created on 2/21/2016.
  */
@@ -17,11 +19,12 @@ public class CarObject implements Comparable<CarObject>{
     private String carVIN;
     private String carOdometer;
     private long createdTimeStamp;
+    private long editTimeStamp;
+    private List<ServiceLogObject> serviceLogObjects;
 
     public CarObject(){
 
     }
-
     public String getCarName() {
         return carName;
     }
@@ -100,6 +103,21 @@ public class CarObject implements Comparable<CarObject>{
 
     public void setCreatedTimeStamp(long createdTimeStamp) {
         this.createdTimeStamp = createdTimeStamp;
+    }
+    public long getEditTimeStamp() {
+        return editTimeStamp;
+    }
+
+    public void setEditTimeStamp(long editTimeStamp) {
+        this.editTimeStamp = editTimeStamp;
+    }
+
+    public List<ServiceLogObject> getServiceLogObjects() {
+        return serviceLogObjects;
+    }
+
+    public void setServiceLogObjects(List<ServiceLogObject> serviceLogObjects) {
+        this.serviceLogObjects = serviceLogObjects;
     }
 
     @Override

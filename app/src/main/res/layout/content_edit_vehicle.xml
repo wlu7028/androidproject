@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.logbook.logbookapp.AddAVehicle"
-    tools:showIn="@layout/activity_add_avehicle">
+    tools:context="com.logbook.logbookapp.EditVehicle"
+    tools:showIn="@layout/activity_edit_vehicle">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/vehicletoolbar"
@@ -36,15 +36,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size"
-            android:text="Add a Vehicle"
+            android:text="Edit Vehicle Detail"
             android:id="@+id/textView"
             android:textColor="@color/tab_text"
             android:layout_centerHorizontal="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:gravity="fill_horizontal"
-            android:paddingLeft="46dp"
-            android:paddingRight="46dp" />
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
     <ImageButton
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:id="@+id/imageButton"
+        android:id="@+id/editimageButton"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -76,68 +76,66 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/maker"
-        android:layout_alignTop="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
-        android:layout_toEndOf="@+id/imageButton" />
+        android:id="@+id/editmaker"
+        android:layout_alignTop="@+id/editimageButton"
+        android:layout_toRightOf="@+id/editimageButton"
+        android:layout_toEndOf="@+id/editimageButton" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/model"
-        android:layout_below="@id/maker"
-        android:layout_toRightOf="@id/maker"
-        android:layout_toEndOf="@+id/imageButton" />
+        android:id="@+id/editmodel"
+        android:layout_below="@id/editmaker"
+        android:layout_toRightOf="@id/editmaker"
+        android:layout_toEndOf="@+id/editimageButton" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/trim"
-        android:layout_below="@id/model"
-        android:layout_alignLeft="@id/model"
-        android:layout_alignStart="@id/model" />
+        android:id="@+id/edittrim"
+        android:layout_below="@id/editmodel"
+        android:layout_alignLeft="@id/editmodel"
+        android:layout_alignStart="@id/editmodel" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edityear"
         android:hint="Year"
         android:background="@drawable/edittextstyle"
-        android:layout_below="@id/trim"
-        android:layout_alignLeft="@id/trim"
-        android:layout_alignStart="@id/trim" />
+        android:layout_below="@id/edittrim"
+        android:layout_alignLeft="@id/edittrim"
+        android:layout_alignStart="@id/edittrim" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/licenseplatenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editlicenseplatenumber"
         android:hint="License Plate Number"
         android:background="@drawable/edittextstyle"
-        android:layout_below="@id/year"
-        android:layout_alignLeft="@id/year"
-        android:layout_alignStart="@id/year"
-         />
+        android:layout_below="@id/edityear"
+        android:layout_alignLeft="@id/edityear"
+        android:layout_alignStart="@id/edityear"
+        />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/vin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editvin"
         android:hint="VIN"
         android:background="@drawable/edittextstyle"
-        android:layout_below="@id/licenseplatenumber"
-        android:layout_alignLeft="@id/licenseplatenumber"
-        android:layout_alignStart="@id/licenseplatenumber" />
+        android:layout_below="@id/editlicenseplatenumber"
+        android:layout_alignLeft="@id/editlicenseplatenumber"
+        android:layout_alignStart="@id/editlicenseplatenumber" />
 
     <EditText
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:id="@+id/odometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editodometer"
         android:hint="Odometer Reading"
         android:background="@drawable/edittextstyle"
-        android:layout_below="@id/vin"
-        android:layout_alignLeft="@id/vin"
-        android:layout_alignStart="@id/vin" />
-
-
+        android:layout_below="@id/editvin"
+        android:layout_alignLeft="@id/editvin"
+        android:layout_alignStart="@id/editvin" />
 
 </RelativeLayout>

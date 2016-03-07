@@ -1,12 +1,18 @@
 package com.logbook.logbookapp;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import java.util.List;
 
@@ -36,8 +42,44 @@ public class VehicleListAdapter extends ArrayAdapter<String> {
         TextView carMakerAndModel = (TextView) rowView.findViewById(R.id.carmakermodel);
         TextView milesAndServiceDate = (TextView) rowView.findViewById(R.id.milesandservicedate);
         ImageView carThumbnail = (ImageView) rowView.findViewById(R.id.carthumbnail);
+        ImageButton deleteVehicleButton = (ImageButton) rowView.findViewById(R.id.deletevehicle);
+        deleteVehicleButton.setFocusable(false);
+        deleteVehicleButton.setTag(position);
         carMakerAndModel.setText(values.get(position));
         milesAndServiceDate.setText(values2.get(position));
+        deleteVehicleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final int deletePosition = (Integer)view.getTag();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage("Warning: delete this vehicle permanently");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton(
+                        "Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ReadSaveDataUtility.deleteVehicle((Activity) context, deletePosition);
+                                values.remove(deletePosition);
+                                values2.remove(deletePosition);
+                                VehicleListAdapter.this.notifyDataSetChanged();
+                            }
+                        });
+
+                builder.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert1 = builder.create();
+                alert1.show();
+            }
+        });
         return rowView;
     }
+
+
 }
