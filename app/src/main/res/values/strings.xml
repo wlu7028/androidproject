@@ -39,5 +39,7 @@
     <string name="title_activity_edit_vehicle">EditVehicle</string>
     <string name="title_activity_add_service_log">AddServiceLog</string>
     <string name="title_activity_add_gas_log">AddGasLog</string>
+    <string name="title_activity_gas_log_view">GasLogView</string>
+    <string name="title_activity_service_log_view">ServiceLogView</string>
 
 </resources>

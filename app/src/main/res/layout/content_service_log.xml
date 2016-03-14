@@ -65,7 +65,7 @@
     </android.support.v7.widget.Toolbar>
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/servicelogview"
+        android:id="@+id/serviceloglistview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100sp" />

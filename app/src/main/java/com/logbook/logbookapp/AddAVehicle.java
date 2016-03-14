@@ -25,6 +25,7 @@ public class AddAVehicle extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_avehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("LogBook");
         setSupportActionBar(toolbar);
 
         spinner1 = (Spinner) findViewById(R.id.maker);

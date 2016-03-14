@@ -11,8 +11,18 @@ public class ServiceLogObject {
     private String vehicle;
     private String tag;
     private String serviceOdometer;
-    private long userEntryDate;
-    private long serviceDate;
+    private long userEntryDateTime;  // system auto-insert timestamp when user save this entry
+    private String serviceDate;
+    private String serviceCategories;
+
+
+    public String getServiceCategories() {
+        return serviceCategories;
+    }
+
+    public void setServiceCategories(String serviceCategories) {
+        this.serviceCategories = serviceCategories;
+    }
 
     public String getCost() {
         return cost;
@@ -46,19 +56,19 @@ public class ServiceLogObject {
         this.serviceOdometer = serviceOdometer;
     }
 
-    public long getUserEntryDate() {
-        return userEntryDate;
+    public long getUserEntryDateTime() {
+        return userEntryDateTime;
     }
 
-    public void setUserEntryDate(long userEntryDate) {
-        this.userEntryDate = userEntryDate;
+    public void setUserEntryDateTime(long userEntryDateTime) {
+        this.userEntryDateTime = userEntryDateTime;
     }
 
-    public long getServiceDate() {
+    public String getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(long serviceDate) {
+    public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
     }
 

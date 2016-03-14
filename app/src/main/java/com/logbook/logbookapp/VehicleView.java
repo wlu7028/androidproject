@@ -19,6 +19,7 @@ public class VehicleView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("LogBook");
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         TabLayout tabLayout = (TabLayout) findViewById(R.id.viewVehicle_tab);
@@ -56,11 +57,13 @@ public class VehicleView extends AppCompatActivity {
 
     public void startServiceLogActivity(){
         Intent intent = new Intent(this,ServiceLog.class);
+        intent.putExtra("rowPosition",rowPosition);
         startActivity(intent);
     }
 
     public void startGasLogActivity(){
         Intent intent = new Intent(this,GasLog.class);
+        intent.putExtra("rowPosition",rowPosition);
         startActivity(intent);
     }
 

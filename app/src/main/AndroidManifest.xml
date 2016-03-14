@@ -91,6 +91,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.logbook.logbookapp.GasLog" />
         </activity>
+        <activity
+            android:name=".GasLogView"
+            android:label="@string/title_activity_gas_log_view"
+            android:parentActivityName=".GasLog"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.GasLog" />
+        </activity>
+        <activity
+            android:name=".ServiceLogView"
+            android:label="@string/title_activity_service_log_view"
+            android:parentActivityName=".ServiceLog"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.ServiceLog" />
+        </activity>
     </application>
 
 </manifest>

@@ -49,6 +49,16 @@ public class ReadSaveDataUtility {
         saveVehicleListToSharedPreference(thisActivity);
     }
 
+    public static void deleteServiceLog(Activity thisActivity, int deletePosition,int rowPosition){
+        vehicleObjects.get(rowPosition).getServiceLogObjects().remove(deletePosition);
+        saveVehicleListToSharedPreference(thisActivity);
+    }
+
+    public static void deleteGasLog(Activity thisActivity, int deletePosition,int rowPosition){
+        vehicleObjects.get(rowPosition).getGasLogObjects().remove(deletePosition);
+        saveVehicleListToSharedPreference(thisActivity);
+    }
+
     public static void saveVehicleListToSharedPreference(Activity thisActivity){
         SharedPreferences sp = thisActivity.getSharedPreferences("CarDataSharedPref",Context.MODE_PRIVATE);
         List<String> newCarDataList = new ArrayList<>();
