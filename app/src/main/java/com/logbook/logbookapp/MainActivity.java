@@ -12,7 +12,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String VEHICLE_TAB = "Vehicles";
+    private static final String SERVICE_SHOP_TAB = "Service Shop";
+    private static final String OTHER_TAB = "Other";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,21 +23,21 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("LogBook");
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Vehicles Tab"),false);
-        tabLayout.addTab(tabLayout.newTab().setText("Service Shop Tab"));
-        tabLayout.addTab(tabLayout.newTab().setText("Other Tab"));
+        tabLayout.addTab(tabLayout.newTab().setText(VEHICLE_TAB),false);
+        tabLayout.addTab(tabLayout.newTab().setText(SERVICE_SHOP_TAB));
+        tabLayout.addTab(tabLayout.newTab().setText(OTHER_TAB));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //viewPager.setCurrentItem(tab.getPosition());
                 switch(tab.getText().toString()) {
-                    case "Vehicles Tab":
+                    case VEHICLE_TAB:
                         startVehiclesActivity();
                         break;
-                    case "Service Shop Tab":
+                    case SERVICE_SHOP_TAB:
                         break;
-                    case "Other Tab":
+                    case OTHER_TAB:
                         break;
                     default:
                         break;
