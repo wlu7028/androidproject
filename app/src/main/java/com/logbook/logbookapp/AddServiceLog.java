@@ -1,6 +1,7 @@
 package com.logbook.logbookapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,9 +22,10 @@ import java.util.Calendar;
 public class AddServiceLog extends AppCompatActivity {
 
     private SimpleDateFormat dateFormatter;
-    private EditText    datePicker;
+    private EditText    datePicker,serviceCategories;
     private DatePickerDialog datePickerDialog;
     private int rowPosition;
+    private String setCheckBox = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,9 @@ public class AddServiceLog extends AppCompatActivity {
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.requestFocus();
         setDateTimeField();
+        serviceCategories = (EditText) findViewById(R.id.saveServiceCategories);
+        serviceCategories.setInputType(InputType.TYPE_NULL);
+        serviceCategories.requestFocus();
         TextView vehicleName = (TextView) findViewById(R.id.saveServiceVehicleName);
         StringBuilder strBuilder = new StringBuilder(100);
         strBuilder.append(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
@@ -85,5 +90,23 @@ public class AddServiceLog extends AppCompatActivity {
 
     public void showDatePickerDialog(View view){
         datePickerDialog.show();
+    }
+
+    public void showServiceCategoriesSelection(View view){
+        Intent startServiceCategoriesSelection = new Intent(this,ServiceCategories.class);
+        startServiceCategoriesSelection.putExtra("setcheckbox", setCheckBox);
+        startActivityForResult(startServiceCategoriesSelection, 101);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 101) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+               setCheckBox = data.getExtras().getString("setcheckbox");
+                serviceCategories.setText(setCheckBox);
+            }
+        }
     }
 }

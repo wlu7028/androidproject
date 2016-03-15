@@ -109,6 +109,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.logbook.logbookapp.ServiceLog" />
         </activity>
+        <activity
+            android:name=".ServiceCategories"
+            android:label="@string/title_activity_service_categories"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

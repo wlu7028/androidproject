@@ -124,6 +124,7 @@
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/saveServiceCost"
         android:layout_alignStart="@+id/saveServiceCost"
+        android:onClick="showServiceCategoriesSelection"
         android:background="#00000000"
         android:textColorHint="#778BB0"
         android:textStyle="bold"
