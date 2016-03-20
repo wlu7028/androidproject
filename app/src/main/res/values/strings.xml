@@ -42,5 +42,7 @@
     <string name="title_activity_gas_log_view">GasLogView</string>
     <string name="title_activity_service_log_view">ServiceLogView</string>
     <string name="title_activity_service_categories">ServiceCategories</string>
+    <string name="title_activity_edit_service_log">EditServiceLog</string>
+    <string name="title_activity_edit_gas_log">EditGasLog</string>
 
 </resources>

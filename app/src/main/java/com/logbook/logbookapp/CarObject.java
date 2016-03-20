@@ -19,6 +19,7 @@ public class CarObject implements Comparable<CarObject>{
     private String carLicensePlateNumber;
     private String carVIN;
     private String carOdometer;
+    private String carPicFileLocation;
     private long createdTimeStamp;
     private long editTimeStamp;
     private List<ServiceLogObject> serviceLogObjects = new ArrayList<>();
@@ -26,6 +27,14 @@ public class CarObject implements Comparable<CarObject>{
 
     public CarObject(){
 
+    }
+
+    public String getCarPicFileLocation() {
+        return carPicFileLocation;
+    }
+
+    public void setCarPicFileLocation(String carPicFileLocation) {
+        this.carPicFileLocation = carPicFileLocation;
     }
 
     public List<GasLogObject> getGasLogObjects() {

@@ -3,9 +3,14 @@ package com.logbook.logbookapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,5 +78,41 @@ public class ReadSaveDataUtility {
             mEdit1.putString("CarData_" + i, newCarDataList.get(i));
         }
         mEdit1.commit();
+    }
+
+
+    public static void saveBitmapToInternalStorage(Context context, Bitmap b, String picName){
+        FileOutputStream fos;
+        try {
+            fos = context.openFileOutput(picName, Context.MODE_PRIVATE);
+            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public static Bitmap loadBitmapFromInternalStorage(Context context, String picName){
+        Bitmap b = null;
+        FileInputStream fis;
+        try {
+            fis = context.openFileInput(picName);
+            b = BitmapFactory.decodeStream(fis);
+            fis.close();
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return b;
     }
 }

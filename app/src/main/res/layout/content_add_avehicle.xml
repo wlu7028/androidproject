@@ -65,11 +65,12 @@
     <ImageButton
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:id="@+id/imageButton"
+        android:id="@+id/vehiclePicButton"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/add_icon"
+        android:onClick="takePhoto"
         android:contentDescription="Add an Icon"
         android:layout_marginTop="50dp" />
 
@@ -77,9 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/maker"
-        android:layout_alignTop="@+id/imageButton"
-        android:layout_toRightOf="@+id/imageButton"
-        android:layout_toEndOf="@+id/imageButton" />
+        android:layout_alignTop="@+id/vehiclePicButton"
+        android:layout_toRightOf="@+id/vehiclePicButton"
+        android:layout_toEndOf="@+id/vehiclePicButton" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
         android:id="@+id/model"
         android:layout_below="@id/maker"
         android:layout_toRightOf="@id/maker"
-        android:layout_toEndOf="@+id/imageButton" />
+        android:layout_toEndOf="@+id/vehiclePicButton" />
 
     <Spinner
         android:layout_width="wrap_content"

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.logbook.logbookapp.EditGasLog"
+    tools:showIn="@layout/activity_edit_gas_log">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/vehicletoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:background="@color/toolbar_background2"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cancel"
+            android:id="@+id/cancelSaveGasLog"
+            style="?android:attr/borderlessButtonStyle"
+            android:onClick="cancelButton"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="left|fill_vertical"
+            android:textSize="@dimen/text_size"
+            android:textColor="@color/tab_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            android:text="Edit Gas Log"
+            android:id="@+id/textView"
+            android:textColor="@color/tab_text"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="fill_horizontal"
+            android:paddingLeft="46dp"
+            android:paddingRight="46dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:id="@+id/saveGasLog"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/tab_text"
+            android:onClick="saveGasLog"
+            android:textSize="@dimen/text_size"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="fill_vertical|right"
+            android:foregroundGravity="right" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Vehicle"
+        android:id="@+id/editgaslogvehiclename"
+        android:layout_below="@+id/vehicletoolbar"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittextstyle"
+        android:gravity="center_vertical"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/editgaslogdatepicker"
+        android:hint="datepicker"
+        android:onClick="showDatePickerDialog"
+        android:layout_below="@id/editgaslogvehiclename"
+        android:layout_alignLeft="@id/editgaslogvehiclename"
+        android:layout_alignStart="@id/editgaslogvehiclename"
+        android:gravity="center_vertical"
+        android:background="@drawable/edittextstyle"/>
+
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/editgasloggallon"
+        android:hint="Gallon"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/editgaslogdatepicker"
+        android:layout_alignLeft="@id/editgaslogdatepicker"
+        android:layout_alignStart="@id/editgaslogdatepicker"
+        android:background="@drawable/edittextstyle"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/editgaslogtotalcost"
+        android:hint="Total cost"
+        android:inputType="numberDecimal"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@id/editgasloggallon"
+        android:layout_alignStart="@id/editgasloggallon"
+        android:background="@drawable/edittextstyle"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editgaslogodometersTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editgaslogtotalcost"
+        android:layout_alignLeft="@+id/editgaslogtotalcost"
+        android:layout_alignStart="@+id/editgaslogtotalcost">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editgaslogodometers"
+            android:hint="Odometer reading"
+            android:inputType="numberDecimal"
+
+            android:background="@drawable/edittextstyle"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:id="@+id/editgasloglocation"
+        android:hint="location"
+        android:layout_below="@+id/editgaslogodometersTextInputLayout"
+        android:layout_alignLeft="@+id/editgaslogodometersTextInputLayout"
+        android:layout_alignStart="@+id/editgaslogodometersTextInputLayout"
+        android:background="@drawable/edittextstyle"/>
+
+</RelativeLayout>

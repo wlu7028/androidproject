@@ -1,5 +1,6 @@
 package com.logbook.logbookapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,7 +32,10 @@ public class GasLogView extends AppCompatActivity {
     }
 
     public void editGasLog(View view){
-
+        Intent startEditGasLog = new Intent(this,EditGasLog.class);
+        startEditGasLog.putExtra("rowPosition",rowPosition);
+        startEditGasLog.putExtra("gasLogPosition",gasLogPosition);
+        startActivity(startEditGasLog);
     }
 
     @Override

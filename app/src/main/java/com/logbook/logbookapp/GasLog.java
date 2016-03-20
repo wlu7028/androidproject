@@ -71,8 +71,9 @@ public class GasLog extends AppCompatActivity {
     private void getGallonsOdometersPrice(List<GasLogObject> gasLogObjList, List<String> displayValues2) {
         displayValues2.clear();
         for (int i = 0; i < gasLogObjList.size(); i++) {
+            float costPerGallon = (float) (Float.parseFloat(gasLogObjList.get(i).getTotalCost()) / Float.parseFloat(gasLogObjList.get(i).getGallon()));
             displayValues2.add(gasLogObjList.get(i).getGallon() + " Gallon   " + gasLogObjList.get(i).getGasOdometer()
-                    + " miles   $" + String.valueOf((float)(Float.parseFloat(gasLogObjList.get(i).getTotalCost()) / Float.parseFloat(gasLogObjList.get(i).getGallon()))));
+                    + " miles   $" + String.format("%.2f", costPerGallon));
         }
     }
 

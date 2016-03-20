@@ -3,6 +3,8 @@ package com.logbook.logbookapp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
+
 /**
  * Created on 3/5/2016.
  */
@@ -12,9 +14,31 @@ public class ServiceLogObject {
     private String tag;
     private String serviceOdometer;
     private long userEntryDateTime;  // system auto-insert timestamp when user save this entry
+    private long modifiedDateTime;  // system auto-insert timestamp when user save this entry
     private String serviceDate;
     private String serviceCategories;
+    private List<String> attachmentLocation;
 
+    public ServiceLogObject(){
+
+    }
+
+    public List<String> getAttachmentLocation() {
+        return attachmentLocation;
+    }
+
+    public void setAttachmentLocation(List<String> attachmentLocation) {
+        this.attachmentLocation = attachmentLocation;
+    }
+
+
+    public long getModifiedDateTime() {
+        return modifiedDateTime;
+    }
+
+    public void setModifiedDateTime(long modifiedDateTime) {
+        this.modifiedDateTime = modifiedDateTime;
+    }
 
     public String getServiceCategories() {
         return serviceCategories;

@@ -1,5 +1,6 @@
 package com.logbook.logbookapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,7 +33,10 @@ public class ServiceLogView extends AppCompatActivity {
     }
 
     public void editServiceLog(View view){
-
+        Intent startEditServiceLog = new Intent(this,EditServiceLog.class);
+        startEditServiceLog.putExtra("rowPosition",rowPosition);
+        startEditServiceLog.putExtra("serviceLogPosition",serviceLogPosition);
+        startActivity(startEditServiceLog);
     }
 
     @Override

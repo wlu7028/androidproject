@@ -13,11 +13,23 @@ public class GasLogObject {
     private String gasOdometer;
     private String location;
     private long userEntryDateTime; // system auto-insert timestamp when user save this entry
+    private long modifiedDateTime; // system auto-insert timestamp when user save this entry
     private String addGasDate;
 
 
+    public GasLogObject(){
+
+    }
     public String getAddGasDate() {
         return addGasDate;
+    }
+
+    public long getModifiedDateTime() {
+        return modifiedDateTime;
+    }
+
+    public void setModifiedDateTime(long modifiedDateTime) {
+        this.modifiedDateTime = modifiedDateTime;
     }
 
     public void setAddGasDate(String addGasDate) {

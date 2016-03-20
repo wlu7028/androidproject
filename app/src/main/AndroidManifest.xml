@@ -112,7 +112,25 @@
         <activity
             android:name=".ServiceCategories"
             android:label="@string/title_activity_service_categories"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EditServiceLog"
+            android:label="@string/title_activity_edit_service_log"
+            android:parentActivityName=".ServiceLogView"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.ServiceLogView" />
+        </activity>
+        <activity
+            android:name=".EditGasLog"
+            android:label="@string/title_activity_edit_gas_log"
+            android:parentActivityName=".GasLogView"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.logbook.logbookapp.GasLogView" />
+        </activity>
     </application>
 
 </manifest>

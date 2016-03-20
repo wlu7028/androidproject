@@ -65,11 +65,12 @@
     <ImageButton
         android:layout_width="80sp"
         android:layout_height="80sp"
-        android:id="@+id/editimageButton"
+        android:id="@+id/editVehicleIconButton"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/add_icon"
+        android:onClick="changePhoto"
         android:contentDescription="Add an Icon"
         android:layout_marginTop="50dp" />
 
@@ -77,9 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editmaker"
-        android:layout_alignTop="@+id/editimageButton"
-        android:layout_toRightOf="@+id/editimageButton"
-        android:layout_toEndOf="@+id/editimageButton" />
+        android:layout_alignTop="@id/editVehicleIconButton"
+        android:layout_toRightOf="@id/editVehicleIconButton"
+        android:layout_toEndOf="@id/editVehicleIconButton" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
         android:id="@+id/editmodel"
         android:layout_below="@id/editmaker"
         android:layout_toRightOf="@id/editmaker"
-        android:layout_toEndOf="@+id/editimageButton" />
+        android:layout_toEndOf="@id/editVehicleIconButton" />
 
     <Spinner
         android:layout_width="wrap_content"

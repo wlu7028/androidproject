@@ -1,19 +1,28 @@
 package com.logbook.logbookapp;
 
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class EditVehicle extends AppCompatActivity {
     Spinner spinner1,spinner2,spinner3;
+    ImageButton carPicButton;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
     int rowPosition;
     @Override
@@ -25,6 +34,7 @@ public class EditVehicle extends AppCompatActivity {
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
+        carPicButton = (ImageButton) findViewById(R.id.editVehicleIconButton);
         spinner1 = (Spinner) findViewById(R.id.editmaker);
         adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.car_maker, android.R.layout.simple_spinner_item);
@@ -108,5 +118,32 @@ public class EditVehicle extends AppCompatActivity {
             }
         }
         return index;
+    }
+
+    public void changePhoto(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = CameraControl.createImageFile(this);
+            } catch (IOException ex) {
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, CameraControl.REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CameraControl.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            carPicButton.setImageBitmap(imageBitmap);
+        }
     }
 }
