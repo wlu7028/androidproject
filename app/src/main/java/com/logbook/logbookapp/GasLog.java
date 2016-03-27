@@ -26,7 +26,7 @@ public class GasLog extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_log);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("LogBook");
+        toolbar.setTitle(AppConstant.APPTITLE.getText());
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 

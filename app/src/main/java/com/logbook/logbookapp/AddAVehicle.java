@@ -26,6 +26,7 @@ import java.util.List;
 public class AddAVehicle extends AppCompatActivity  {
 
     Spinner spinner1,spinner2,spinner3;
+    String carPicFileName = "";
     ImageButton carPicButton;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
     @Override
@@ -33,7 +34,7 @@ public class AddAVehicle extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_avehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("LogBook");
+        toolbar.setTitle(AppConstant.APPTITLE.getText());
         setSupportActionBar(toolbar);
 
         carPicButton = (ImageButton) findViewById(R.id.vehiclePicButton);
@@ -83,8 +84,8 @@ public class AddAVehicle extends AppCompatActivity  {
     }
 
     public void saveVehicle(View view){
-        SharedPreferences sp = this.getSharedPreferences("CarDataSharedPref",Context.MODE_PRIVATE);
-        List<String> carDataSP = ReadSaveDataUtility.readSharedPreference(this);
+        //SharedPreferences sp = this.getSharedPreferences("CarDataSharedPref",Context.MODE_PRIVATE);
+       // List<String> carDataSP = ReadSaveDataUtility.readSharedPreference(this);
         CarObject carObj = new CarObject();
         carObj.setCarMaker(((Spinner) findViewById(R.id.maker)).getSelectedItem().toString());
         carObj.setCarModel(((Spinner) findViewById(R.id.model)).getSelectedItem().toString());
@@ -93,17 +94,21 @@ public class AddAVehicle extends AppCompatActivity  {
         carObj.setCarLicensePlateNumber(((EditText) findViewById(R.id.licenseplatenumber)).getText().toString());
         carObj.setCarVIN(((EditText) findViewById(R.id.vin)).getText().toString());
         carObj.setCarOdometer(((EditText) findViewById(R.id.odometer)).getText().toString());
+        carObj.setCarPicFileLocation(carPicFileName);
         carObj.setCreatedTimeStamp(System.currentTimeMillis() / 1000L);
-        carDataSP.add(carObj.toString());
+        ReadSaveDataUtility.vehicleObjects.add(carObj);
+
+        /*
         SharedPreferences.Editor mEdit1 = sp.edit();
         mEdit1.putInt("CarData_size", carDataSP.size());
-
         for(int i=0;i<carDataSP.size();i++)
         {
             mEdit1.remove("CarData_" + i);
             mEdit1.putString("CarData_" + i, carDataSP.get(i));
         }
         mEdit1.commit();
+        */
+        ReadSaveDataUtility.saveVehicleListToSharedPreference(this);
         finish();
     }
 
@@ -130,8 +135,8 @@ public class AddAVehicle extends AppCompatActivity  {
             File photoFile = null;
             try {
                 photoFile = CameraControl.createImageFile(this);
+                carPicFileName = photoFile.getName();
             } catch (IOException ex) {
-
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -147,7 +152,9 @@ public class AddAVehicle extends AppCompatActivity  {
         if (requestCode == CameraControl.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), imageBitmap, carPicFileName);
             carPicButton.setImageBitmap(imageBitmap);
+            carPicButton.invalidate();
         }
     }
 }

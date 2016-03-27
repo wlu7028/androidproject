@@ -30,7 +30,7 @@ public class EditVehicle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_vehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("LogBook");
+        toolbar.setTitle(AppConstant.APPTITLE.getText());
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
@@ -144,6 +144,7 @@ public class EditVehicle extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             carPicButton.setImageBitmap(imageBitmap);
+            carPicButton.invalidate();
         }
     }
 }

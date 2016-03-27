@@ -7,7 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.logbook.logbookapp.R;
@@ -19,18 +21,27 @@ public class VehicleView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("LogBook");
+        toolbar.setTitle(AppConstant.APPTITLE.getText());
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
+
+        if(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() == null ||
+                ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation().isEmpty()){
+            //default image view for now, reserve for future feature
+        }else{
+            ImageView  viewVehicleIcon = (ImageView) findViewById(R.id.viewVehicleIcon);
+            viewVehicleIcon.setImageBitmap(ReadSaveDataUtility.loadBitmapFromInternalStorage(getBaseContext(),
+                    ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() ));
+        }
         TabLayout tabLayout = (TabLayout) findViewById(R.id.viewVehicle_tab);
-        tabLayout.addTab(tabLayout.newTab().setText("Services Log"), false);
-        tabLayout.addTab(tabLayout.newTab().setText("Gas Log"));
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_LOG_TAB.getText()), false);
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.GAS_LOG_TAB.getText()),false);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getText().toString()) {
-                    case "Services Log":
+                    case "Service Log":
                         startServiceLogActivity();
                         break;
                     case "Gas Log":

@@ -17,12 +17,13 @@ public class VehiclesActivity extends AppCompatActivity {
     private VehicleListAdapter vehicleListAdapter = null;
     private List<String> displayValues1 = new ArrayList<>();
     private List<String> displayValues2 = new ArrayList<>();
+    private List<String> vehicleIcons = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicles);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("LogBook");
+        toolbar.setTitle(AppConstant.APPTITLE.getText());
         setSupportActionBar(toolbar);
 
         populateListView();
@@ -31,11 +32,11 @@ public class VehiclesActivity extends AppCompatActivity {
     public void populateListView(){
         ReadSaveDataUtility.loadVehicleObjectsFromSharedPreference(this);
         getVehicleMakerModel(ReadSaveDataUtility.vehicleObjects, displayValues1);
-        getVehicleMilesAndServiceDate(ReadSaveDataUtility.vehicleObjects,displayValues2);
-
+        getVehicleMilesAndServiceDate(ReadSaveDataUtility.vehicleObjects, displayValues2);
+        getVehicleIcon(ReadSaveDataUtility.vehicleObjects,vehicleIcons);
         ListView vehicleListView = (ListView) findViewById(R.id.vehiclelistview);
         if(vehicleListAdapter == null){
-            vehicleListAdapter = new VehicleListAdapter(this,displayValues1,displayValues2);
+            vehicleListAdapter = new VehicleListAdapter(this,displayValues1,displayValues2,vehicleIcons);
             vehicleListView.setAdapter(vehicleListAdapter);
         }else{
             vehicleListAdapter.notifyDataSetChanged();
@@ -53,15 +54,24 @@ public class VehiclesActivity extends AppCompatActivity {
             }
         });
     }
+    private void getVehicleIcon(List<CarObject> carObjList, List<String> vehicleIcons){
+        vehicleIcons.clear();
+        for(int i=0; i< carObjList.size();i++){
+            if(carObjList.get(i).getCarPicFileLocation() == null || carObjList.get(i).getCarPicFileLocation().isEmpty())
+                vehicleIcons.add("");
+            else
+                vehicleIcons.add(carObjList.get(i).getCarPicFileLocation());
+        }
+    }
 
-    public void getVehicleMakerModel( List<CarObject> carObjList, List<String> displayValues1){
+    private void getVehicleMakerModel( List<CarObject> carObjList, List<String> displayValues1){
           displayValues1.clear();
           for(int i=0; i< carObjList.size();i++){
               displayValues1.add(carObjList.get(i).getCarMaker() +" "+carObjList.get(i).getCarModel());
           }
     }
 
-    public void getVehicleMilesAndServiceDate( List<CarObject> carObjList,List<String> displayValues2){
+    private void getVehicleMilesAndServiceDate( List<CarObject> carObjList,List<String> displayValues2){
         displayValues2.clear();
         for(int i=0; i< carObjList.size();i++){
             displayValues2.add(carObjList.get(i).getCarOdometer() +"miles   Last Service Date:");

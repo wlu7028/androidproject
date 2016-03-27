@@ -68,14 +68,7 @@
         android:id="@+id/viewServiceVehicleName"
         android:layout_below="@+id/servicelogviewtoolbar"
         android:layout_centerHorizontal="true"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical" />
+        style="@style/CustomEditTextStyle" />
 
     <TextView
         android:layout_width="300dp"
@@ -86,14 +79,7 @@
         android:layout_below="@id/viewServiceVehicleName"
         android:layout_alignLeft="@id/viewServiceVehicleName"
         android:layout_alignStart="@id/viewServiceVehicleName"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical"/>
+        style="@style/CustomEditTextStyle"/>
 
 
 
@@ -106,14 +92,7 @@
         android:layout_below="@id/viewServiceDatePicker"
         android:layout_alignLeft="@id/viewServiceDatePicker"
         android:layout_alignStart="@id/viewServiceDatePicker"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical"/>
+        style="@style/CustomEditTextStyle"/>
 
     <TextView
         android:layout_width="300dp"
@@ -123,13 +102,7 @@
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/viewServiceCost"
         android:layout_alignStart="@+id/viewServiceCost"
-        android:background="#00000000"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical"/>
+        style="@style/CustomEditTextStyle"/>
 
 
         <TextView
@@ -141,14 +114,7 @@
             android:layout_below="@id/viewServiceCategories"
             android:layout_alignLeft="@id/viewServiceCategories"
             android:layout_alignStart="@id/viewServiceCategories"
-            android:background="#00000000"
-            android:layout_centerVertical="true"
-            android:textColorHint="#778BB0"
-            android:textStyle="bold"
-            android:textColor="#778BB0"
-            android:singleLine="true"
-            android:textSize="20sp"
-            android:gravity="center_vertical"/>
+            style="@style/CustomEditTextStyle"/>
 
 
     <TextView
@@ -159,12 +125,5 @@
         android:layout_below="@id/viewServiceOdometer"
         android:layout_alignLeft="@id/viewServiceOdometer"
         android:layout_alignStart="@id/viewServiceOdometer"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical"/>
+        style="@style/CustomEditTextStyle"/>
 </RelativeLayout>

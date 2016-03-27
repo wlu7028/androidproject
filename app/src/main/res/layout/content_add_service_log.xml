@@ -70,14 +70,7 @@
         android:id="@+id/saveServiceVehicleName"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_centerHorizontal="true"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical" />
+        style="@style/CustomEditTextStyle" />
 
     <EditText
         android:layout_width="300dp"
@@ -89,13 +82,7 @@
         android:layout_below="@id/saveServiceVehicleName"
         android:layout_alignLeft="@id/saveServiceVehicleName"
         android:layout_alignStart="@id/saveServiceVehicleName"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"/>
+        style="@style/CustomEditTextStyle"/>
 
 
 
@@ -108,13 +95,7 @@
         android:layout_below="@id/saveServiceDatePicker"
         android:layout_alignLeft="@id/saveServiceDatePicker"
         android:layout_alignStart="@id/saveServiceDatePicker"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"/>
+        style="@style/CustomEditTextStyle"/>
 
     <EditText
         android:layout_width="300dp"
@@ -125,12 +106,7 @@
         android:layout_alignLeft="@+id/saveServiceCost"
         android:layout_alignStart="@+id/saveServiceCost"
         android:onClick="showServiceCategoriesSelection"
-        android:background="#00000000"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"/>
+        style="@style/CustomEditTextStyle"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/saveServiceOdometerTextInputLayout"
@@ -150,13 +126,7 @@
         android:layout_below="@id/saveServiceCategories"
         android:layout_alignLeft="@id/saveServiceCategories"
         android:layout_alignStart="@id/saveServiceCategories"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"/>
+        style="@style/CustomEditTextStyle"/>
     </android.support.design.widget.TextInputLayout>
 
     <EditText
@@ -167,13 +137,7 @@
         android:layout_below="@id/saveServiceOdometerTextInputLayout"
         android:layout_alignLeft="@id/saveServiceOdometerTextInputLayout"
         android:layout_alignStart="@id/saveServiceOdometerTextInputLayout"
-        android:background="#00000000"
-        android:layout_centerVertical="true"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"/>
+        style="@style/CustomEditTextStyle"/>
 
 
 

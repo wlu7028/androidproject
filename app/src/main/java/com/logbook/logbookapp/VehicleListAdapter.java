@@ -24,14 +24,16 @@ public class VehicleListAdapter extends ArrayAdapter<String> {
     private final Context context;
     private final List<String> values;
     private final List<String> values2;
+    private final List<String> vehicleIcons;
 
 
 
-    public VehicleListAdapter(Context context, List<String> values,List<String> values2) {
+    public VehicleListAdapter(Context context, List<String> values,List<String> values2,List<String> vehicleIcons) {
         super(context, R.layout.display_vehicle_list, values);
         this.context = context;
         this.values = values;
         this.values2 = values2;
+        this.vehicleIcons = vehicleIcons;
     }
 
     @Override
@@ -47,6 +49,8 @@ public class VehicleListAdapter extends ArrayAdapter<String> {
         deleteVehicleButton.setTag(position);
         carMakerAndModel.setText(values.get(position));
         milesAndServiceDate.setText(values2.get(position));
+        if(!vehicleIcons.get(position).isEmpty())
+            carThumbnail.setImageBitmap(ReadSaveDataUtility.loadBitmapFromInternalStorage(getContext(),vehicleIcons.get(position)));
         deleteVehicleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
