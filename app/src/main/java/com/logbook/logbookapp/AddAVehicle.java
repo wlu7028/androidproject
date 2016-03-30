@@ -1,8 +1,7 @@
 package com.logbook.logbookapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +19,7 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 
 
 public class AddAVehicle extends AppCompatActivity  {
@@ -135,7 +134,7 @@ public class AddAVehicle extends AppCompatActivity  {
             File photoFile = null;
             try {
                 photoFile = CameraControl.createImageFile(this);
-                carPicFileName = photoFile.getName();
+                carPicFileName = "Real_"+photoFile.getName();
             } catch (IOException ex) {
             }
             // Continue only if the File was successfully created

@@ -143,6 +143,8 @@ public class EditVehicle extends AppCompatActivity {
         if (requestCode == CameraControl.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), imageBitmap,
+                    ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
             carPicButton.setImageBitmap(imageBitmap);
             carPicButton.invalidate();
         }
