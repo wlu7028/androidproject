@@ -25,7 +25,7 @@ public class ServiceCategories extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
         setCheckBox = getIntent().getExtras().getString("setcheckbox");
         populateListView();

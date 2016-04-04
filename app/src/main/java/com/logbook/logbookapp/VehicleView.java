@@ -21,7 +21,7 @@ public class VehicleView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
@@ -34,17 +34,17 @@ public class VehicleView extends AppCompatActivity {
                     ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() ));
         }
         TabLayout tabLayout = (TabLayout) findViewById(R.id.viewVehicle_tab);
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_LOG_TAB.getText()), false);
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.GAS_LOG_TAB.getText()),false);
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_LOG_TAB), false);
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.GAS_LOG_TAB),false);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getText().toString()) {
-                    case "Service Log":
+                    case AppConstant.SERVICE_LOG_TAB:
                         startServiceLogActivity();
                         break;
-                    case "Gas Log":
+                    case AppConstant.GAS_LOG_TAB:
                         startGasLogActivity();
                         break;
                     default:

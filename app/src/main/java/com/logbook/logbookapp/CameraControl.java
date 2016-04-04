@@ -42,6 +42,17 @@ public class CameraControl extends AppCompatActivity {
         return image;
     }
 
+    public static File createTempOCRFile(Context context) throws IOException {
+        String imageFileName = "TempOCR";
+        File storageDir = context.getFilesDir();
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+        image.deleteOnExit();
+        return image;
+    }
 
 
     private void selectImage() {

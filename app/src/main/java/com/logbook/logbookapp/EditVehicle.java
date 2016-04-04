@@ -1,9 +1,11 @@
 package com.logbook.logbookapp;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.provider.MediaStore;
@@ -12,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -23,14 +26,19 @@ import java.io.IOException;
 public class EditVehicle extends AppCompatActivity {
     Spinner spinner1,spinner2,spinner3;
     ImageButton carPicButton;
+    Bitmap changeVehicleIcon= null;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
     int rowPosition;
+    private ProgressDialog pd;
+    private  Button getOCRButton;
+    private String ocrResult,ocrTempFileLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_vehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
@@ -88,6 +96,49 @@ public class EditVehicle extends AppCompatActivity {
         editVin.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
         EditText editOdometer = (EditText) findViewById(R.id.editodometer);
         editOdometer.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
+        getOCRButton = (Button) findViewById(R.id.getOCREditV);
+        getOCRButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setEnabled(false);
+                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected void onPreExecute() {
+                        pd = new ProgressDialog(EditVehicle.this);
+                        pd.setTitle("Processing OCR...");
+                        pd.setMessage("Please wait.");
+                        pd.setCancelable(false);
+                        pd.setIndeterminate(true);
+                        pd.show();
+                    }
+
+                    @Override
+                    protected Void doInBackground(Void... arg0) {
+                        try {
+                            getOCRPhoto();
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        if (pd!=null) {
+                            pd.dismiss();
+                            getOCRButton.setEnabled(true);
+                        }
+                    }
+
+                };
+                task.execute((Void[])null);
+
+            };
+        });
+
 
     }
 
@@ -104,6 +155,10 @@ public class EditVehicle extends AppCompatActivity {
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarVIN(((EditText) findViewById(R.id.editvin)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarOdometer(((EditText) findViewById(R.id.editodometer)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition) .setEditTimeStamp(System.currentTimeMillis() / 1000L);
+        if(changeVehicleIcon != null){
+            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
+                    ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
+        }
         ReadSaveDataUtility.saveVehicleListToSharedPreference(this);
         finish();
     }
@@ -133,20 +188,48 @@ public class EditVehicle extends AppCompatActivity {
             if (photoFile != null) {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
-                startActivityForResult(takePictureIntent, CameraControl.REQUEST_IMAGE_CAPTURE);
+                startActivityForResult(takePictureIntent, AppConstant.REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    public void getOCRPhoto(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = CameraControl.createTempOCRFile(this);
+                ocrTempFileLocation = photoFile.getAbsolutePath();
+            } catch (IOException ex) {
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, AppConstant.GET_OCR_File);
             }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CameraControl.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), imageBitmap,
-                    ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
-            carPicButton.setImageBitmap(imageBitmap);
-            carPicButton.invalidate();
+        if (resultCode == RESULT_OK) {
+            switch(requestCode){
+                case AppConstant.REQUEST_IMAGE_CAPTURE:
+                    Bundle extras = data.getExtras();
+                    changeVehicleIcon = (Bitmap) extras.get("data");
+                    carPicButton.setImageBitmap(changeVehicleIcon);
+                    carPicButton.invalidate();
+                    break;
+                case AppConstant.GET_OCR_File:
+                   ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            // result is not ok
         }
     }
 }

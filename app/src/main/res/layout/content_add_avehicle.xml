@@ -139,6 +139,15 @@
         android:layout_alignLeft="@id/vin"
         android:layout_alignStart="@id/vin" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DO OCR"
+        android:id="@+id/getOCRAddV"
+        android:layout_below="@+id/licenseplatenumber"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_toRightOf="@+id/licenseplatenumber"
+        android:layout_above="@+id/odometer" />
 
 
 </RelativeLayout>

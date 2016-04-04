@@ -31,7 +31,7 @@ public class EditGasLog extends AppCompatActivity {
         setContentView(R.layout.activity_edit_gas_log);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         gasLogPosition = getIntent().getExtras().getInt("gasLogPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");

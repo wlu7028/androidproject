@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -33,7 +33,7 @@ public class AddAVehicle extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_avehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
 
         carPicButton = (ImageButton) findViewById(R.id.vehiclePicButton);
@@ -154,6 +154,8 @@ public class AddAVehicle extends AppCompatActivity  {
             ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), imageBitmap, carPicFileName);
             carPicButton.setImageBitmap(imageBitmap);
             carPicButton.invalidate();
+        }else{
+            carPicFileName = "";
         }
     }
 }

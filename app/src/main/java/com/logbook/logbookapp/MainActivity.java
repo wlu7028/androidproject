@@ -19,24 +19,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(AppConstant.APPTITLE.getText());
+        toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.VEHICLE_TAB.getText()),false);
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_SHOP_TAB.getText()));
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.OTHER_TAB.getText()));
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.VEHICLE_TAB),false);
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_SHOP_TAB));
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.OTHER_TAB));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 //viewPager.setCurrentItem(tab.getPosition());
                 switch(tab.getText().toString()) {
-                    case "Vehicles":
+                    case AppConstant.VEHICLE_TAB:
                         startVehiclesActivity();
                         break;
-                    case "Service Shop":
+                    case AppConstant.SERVICE_SHOP_TAB:
                         break;
-                    case "Other":
+                    case AppConstant.OTHER_TAB:
                         break;
                     default:
                         break;
