@@ -144,10 +144,10 @@
         android:layout_height="wrap_content"
         android:text="DO OCR"
         android:id="@+id/getOCRAddV"
-        android:layout_below="@+id/licenseplatenumber"
         style="?android:attr/borderlessButtonStyle"
+        android:layout_below="@+id/licenseplatenumber"
         android:layout_toRightOf="@+id/licenseplatenumber"
-        android:layout_above="@+id/odometer" />
+        android:layout_toEndOf="@+id/licenseplatenumber" />
 
 
 </RelativeLayout>

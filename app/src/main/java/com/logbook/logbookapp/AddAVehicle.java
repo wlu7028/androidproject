@@ -27,6 +27,7 @@ public class AddAVehicle extends AppCompatActivity  {
     Spinner spinner1,spinner2,spinner3;
     String carPicFileName = "";
     ImageButton carPicButton;
+    Bitmap changeVehicleIcon= null;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,8 @@ public class AddAVehicle extends AppCompatActivity  {
         carObj.setCarOdometer(((EditText) findViewById(R.id.odometer)).getText().toString());
         carObj.setCarPicFileLocation(carPicFileName);
         carObj.setCreatedTimeStamp(System.currentTimeMillis() / 1000L);
+        if(changeVehicleIcon != null && !carPicFileName.isEmpty())
+            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon, carPicFileName);
         ReadSaveDataUtility.vehicleObjects.add(carObj);
 
         /*
@@ -139,8 +142,8 @@ public class AddAVehicle extends AppCompatActivity  {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
+                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                //        Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, CameraControl.REQUEST_IMAGE_CAPTURE);
             }
         }
@@ -150,10 +153,8 @@ public class AddAVehicle extends AppCompatActivity  {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CameraControl.REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), imageBitmap, carPicFileName);
-            carPicButton.setImageBitmap(imageBitmap);
-            carPicButton.invalidate();
+            changeVehicleIcon = (Bitmap) extras.get("data");
+            carPicButton.setImageBitmap(changeVehicleIcon);
         }else{
             carPicFileName = "";
         }

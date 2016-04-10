@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -117,7 +118,7 @@ public class EditVehicle extends AppCompatActivity {
                     protected Void doInBackground(Void... arg0) {
                         try {
                             getOCRPhoto();
-                            Thread.sleep(5000);
+                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -155,9 +156,21 @@ public class EditVehicle extends AppCompatActivity {
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarVIN(((EditText) findViewById(R.id.editvin)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarOdometer(((EditText) findViewById(R.id.editodometer)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition) .setEditTimeStamp(System.currentTimeMillis() / 1000L);
-        if(changeVehicleIcon != null){
+        if(changeVehicleIcon != null && !ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation().isEmpty()){
             ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
                     ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
+        }else if (changeVehicleIcon != null){
+            File photoFile = null;
+            String carPicFileName = "";
+            try {
+                photoFile = CameraControl.createImageFile(this);
+                carPicFileName = "Real_"+photoFile.getName();
+                ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarPicFileLocation(carPicFileName);
+                ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
+                        carPicFileName);
+            } catch (IOException ex) {
+            }
+
         }
         ReadSaveDataUtility.saveVehicleListToSharedPreference(this);
         finish();
@@ -178,18 +191,7 @@ public class EditVehicle extends AppCompatActivity {
     public void changePhoto(View view){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = CameraControl.createImageFile(this);
-            } catch (IOException ex) {
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
-                startActivityForResult(takePictureIntent, AppConstant.REQUEST_IMAGE_CAPTURE);
-            }
+            startActivityForResult(takePictureIntent, AppConstant.REQUEST_IMAGE_CAPTURE);
         }
     }
 
@@ -220,7 +222,7 @@ public class EditVehicle extends AppCompatActivity {
                     Bundle extras = data.getExtras();
                     changeVehicleIcon = (Bitmap) extras.get("data");
                     carPicButton.setImageBitmap(changeVehicleIcon);
-                    carPicButton.invalidate();
+                    //carPicButton.invalidate();
                     break;
                 case AppConstant.GET_OCR_File:
                    ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
@@ -230,6 +232,7 @@ public class EditVehicle extends AppCompatActivity {
             }
         }else{
             // result is not ok
+            Log.d("cancel", "return code is not ok");
         }
     }
 }

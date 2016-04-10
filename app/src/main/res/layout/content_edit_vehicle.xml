@@ -144,9 +144,9 @@
         android:layout_height="wrap_content"
         android:text="DO OCR"
         android:id="@+id/getOCREditV"
-        android:layout_above="@+id/editodometer"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_toRightOf="@+id/editlicenseplatenumber"
-        android:layout_below="@+id/editlicenseplatenumber" />
+        android:layout_alignBottom="@+id/editodometer"
+        android:layout_toRightOf="@+id/editvin"
+        android:layout_toEndOf="@+id/editodometer" />
 
 </RelativeLayout>
