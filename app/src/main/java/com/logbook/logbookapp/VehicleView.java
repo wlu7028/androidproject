@@ -123,5 +123,10 @@ public class VehicleView extends AppCompatActivity {
                 setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
         ((TextView)findViewById(R.id.odometerView)).
                 setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
+        if(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() != null && !ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation().isEmpty()){
+            ((ImageView)findViewById(R.id.viewVehicleIcon))
+                    .setImageBitmap(ReadSaveDataUtility.loadBitmapFromInternalStorage(getBaseContext()
+                            , ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation()));
+        }
     }
 }

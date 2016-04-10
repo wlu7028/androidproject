@@ -87,11 +87,7 @@ public class ReadSaveDataUtility {
             fos = context.openFileOutput(picName, Context.MODE_PRIVATE);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -106,11 +102,7 @@ public class ReadSaveDataUtility {
             b = BitmapFactory.decodeStream(fis);
             fis.close();
 
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return b;

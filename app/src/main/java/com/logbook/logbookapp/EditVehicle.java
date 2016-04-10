@@ -4,7 +4,7 @@ package com.logbook.logbookapp;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -27,6 +27,7 @@ import java.io.IOException;
 public class EditVehicle extends AppCompatActivity {
     Spinner spinner1,spinner2,spinner3;
     ImageButton carPicButton;
+    EditText editVin;
     Bitmap changeVehicleIcon= null;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
     int rowPosition;
@@ -93,7 +94,7 @@ public class EditVehicle extends AppCompatActivity {
         editYear.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarYear());
         EditText editLicenseplateNumber = (EditText) findViewById(R.id.editlicenseplatenumber);
         editLicenseplateNumber.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarLicensePlateNumber());
-        EditText editVin = (EditText) findViewById(R.id.editvin);
+        editVin = (EditText) findViewById(R.id.editvin);
         editVin.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
         EditText editOdometer = (EditText) findViewById(R.id.editodometer);
         editOdometer.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
@@ -137,7 +138,7 @@ public class EditVehicle extends AppCompatActivity {
                 };
                 task.execute((Void[])null);
 
-            };
+            }
         });
 
 
@@ -160,11 +161,9 @@ public class EditVehicle extends AppCompatActivity {
             ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
                     ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
         }else if (changeVehicleIcon != null){
-            File photoFile = null;
-            String carPicFileName = "";
             try {
-                photoFile = CameraControl.createImageFile(this);
-                carPicFileName = "Real_"+photoFile.getName();
+                File photoFile = CameraControl.createImageFile(this);
+                String carPicFileName = "Real_"+photoFile.getName();
                 ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarPicFileLocation(carPicFileName);
                 ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
                         carPicFileName);
@@ -198,34 +197,30 @@ public class EditVehicle extends AppCompatActivity {
     public void getOCRPhoto(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = CameraControl.createTempOCRFile(this);
-                ocrTempFileLocation = photoFile.getAbsolutePath();
-            } catch (IOException ex) {
-
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, AppConstant.GET_OCR_File);
-            }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
             switch(requestCode){
                 case AppConstant.REQUEST_IMAGE_CAPTURE:
-                    Bundle extras = data.getExtras();
                     changeVehicleIcon = (Bitmap) extras.get("data");
                     carPicButton.setImageBitmap(changeVehicleIcon);
                     //carPicButton.invalidate();
                     break;
                 case AppConstant.GET_OCR_File:
-                   ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
+                    try {
+                        File photoFile = CameraControl.createTempOCRFile(this);
+                        ocrTempFileLocation = photoFile.getAbsolutePath();
+                        ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
+                        ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
+                        editVin.setText(ocrResult);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     break;
