@@ -12,6 +12,7 @@ public interface  AppConstant{
     public static final String GAS_LOG_TAB = "Gas Log";
     public static final int REQUEST_IMAGE_CAPTURE = 101;
     public static final int GET_OCR_File = 103;
+    public static final int SWITCH_SERVICE_CATELOG = 102;
 
 
     public enum AppEnum {

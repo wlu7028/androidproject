@@ -2,12 +2,17 @@ package com.logbook.logbookapp;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,8 +20,12 @@ import android.widget.TextView;
 
 import com.logbook.logbookapp.R;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class EditServiceLog extends AppCompatActivity {
 
@@ -27,7 +36,13 @@ public class EditServiceLog extends AppCompatActivity {
     private int rowPosition,serviceLogPosition;
     private String setCheckBox = "";
     private ServiceLogObject tempServiceLogObj;
-
+    List<String> receiptFileLocations = new ArrayList<>();
+    private List<Bitmap> screenShotsToSave = new ArrayList<>();
+    private List<Bitmap> imagesToShow = new ArrayList<>();
+    private List<Bitmap> previousImages = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +62,29 @@ public class EditServiceLog extends AppCompatActivity {
         serviceCategories.requestFocus();
         setValuesToFields();
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.editServiceLogRcyList);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        populateImagesToShow();
+        mAdapter = new ServiceLogImagesAdapter(getBaseContext(),imagesToShow);
+        mRecyclerView.setAdapter(mAdapter);
+
+    }
+
+    private void populateImagesToShow(){
+        imagesToShow.clear();
+        if(tempServiceLogObj == null && previousImages.isEmpty()){
+            tempServiceLogObj = ReadSaveDataUtility.vehicleObjects.get(rowPosition).getServiceLogObjects().get(serviceLogPosition);
+        }else if(previousImages.isEmpty()){
+            for(String tempFile : tempServiceLogObj.getAttachmentLocation()){
+                previousImages.add(ReadSaveDataUtility.loadBitmapFromInternalStorage(getBaseContext(),tempFile));
+            }
+        }else{
+            imagesToShow.addAll(previousImages);
+        }
+        imagesToShow.addAll(screenShotsToSave);
     }
 
     private void setValuesToFields(){
@@ -72,12 +110,21 @@ public class EditServiceLog extends AppCompatActivity {
         tempServiceLogObj.setTag(serviceTag.getText().toString());
         tempServiceLogObj.setServiceCategories(serviceCategories.getText().toString());
         tempServiceLogObj.setModifiedDateTime((System.currentTimeMillis() / 1000L));
+        saveAllScreenShots(receiptFileLocations);
         ReadSaveDataUtility.saveVehicleListToSharedPreference(this);
         finish();
     }
 
     public void cancelButton(View view){
         finish();
+    }
+
+    private void saveAllScreenShots(List<String> fileNames){
+        //if(fileNames.size() == screenShotsToSave.size())
+        for(int i=0;i< screenShotsToSave.size();i++){
+            tempServiceLogObj.getAttachmentLocation().add(fileNames.get(i));
+            ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(),screenShotsToSave.get(i),fileNames.get(i));
+        }
     }
 
     private void setDatePickerDialog() {
@@ -102,18 +149,50 @@ public class EditServiceLog extends AppCompatActivity {
     public void showServiceCategoriesSelection(View view){
         Intent startServiceCategoriesSelection = new Intent(this,ServiceCategories.class);
         startServiceCategoriesSelection.putExtra("setcheckbox", setCheckBox);
-        startActivityForResult(startServiceCategoriesSelection, 101);
+        startActivityForResult(startServiceCategoriesSelection, AppConstant.SWITCH_SERVICE_CATELOG);
+    }
+
+    public void TakeScreenShotReceipt(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            File photoFile = null;
+            try {
+                photoFile = CameraControl.createImageFile(this);
+                receiptFileLocations.add(photoFile.getName());
+            } catch (IOException ex) {
+            }
+            if (photoFile != null) {
+                startActivityForResult(takePictureIntent, AppConstant.REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        populateImagesToShow();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Check which request we're responding to
-        if (requestCode == 101) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                setCheckBox = data.getExtras().getString("setcheckbox");
-                serviceCategories.setText(setCheckBox);
+        if (resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            switch (requestCode) {
+                case AppConstant.REQUEST_IMAGE_CAPTURE:
+                    screenShotsToSave.add((Bitmap) extras.get("data"));
+                    break;
+                case AppConstant.SWITCH_SERVICE_CATELOG:
+                    setCheckBox = data.getExtras().getString("setcheckbox");
+                    serviceCategories.setText(setCheckBox);
+                    break;
+                default:
+                    break;
             }
+        } else {
+            // result is not ok
+            receiptFileLocations.remove(receiptFileLocations.size() - 1);
+            Log.d("cancel", "return code is not ok");
         }
     }
 

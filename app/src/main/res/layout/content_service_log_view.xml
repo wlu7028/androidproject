@@ -126,4 +126,15 @@
         android:layout_alignLeft="@id/viewServiceOdometer"
         android:layout_alignStart="@id/viewServiceOdometer"
         style="@style/CustomEditTextStyle"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcyList"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:scrollbars="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/viewServiceTag"
+        android:layout_alignStart="@+id/viewServiceTag" />
+
 </RelativeLayout>

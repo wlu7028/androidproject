@@ -140,4 +140,27 @@
         android:layout_alignStart="@id/editServiceOdometerTextInputLayout"
         style="@style/CustomEditTextStyle"/>
 
+    <ImageButton
+        android:layout_width="90dp"
+        android:layout_height="70dp"
+        android:text="Take Screenshot of Service Receipt"
+        android:src="@drawable/camera_icon"
+        android:adjustViewBounds="true"
+        android:id="@+id/EditScreenShotReceipt"
+        android:onClick="TakeScreenShotReceipt"
+        android:layout_below="@+id/editServiceTag"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/editServiceLogRcyList"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:scrollbars="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/editServiceTag"
+        android:layout_alignStart="@+id/editServiceTag" />
+
+
+
 </RelativeLayout>
