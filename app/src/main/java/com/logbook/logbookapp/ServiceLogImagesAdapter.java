@@ -29,7 +29,7 @@ public class ServiceLogImagesAdapter extends RecyclerView.Adapter<ServiceLogImag
 
     @Override
     public ServiceLogImagesAdapter.CustomViewHolder onCreateViewHolder(ViewGroup viewGroup,  int i) {
-        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.display_images_adapter, viewGroup);
+        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.display_images_adapter, viewGroup,false);
 
 
         CustomViewHolder viewHolder = new CustomViewHolder(view);

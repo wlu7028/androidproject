@@ -66,6 +66,7 @@ public class VehicleListAdapter extends ArrayAdapter<String> {
                                 ReadSaveDataUtility.deleteVehicle((Activity) context, deletePosition);
                                 values.remove(deletePosition);
                                 values2.remove(deletePosition);
+                                vehicleIcons.remove(deletePosition);
                                 VehicleListAdapter.this.notifyDataSetChanged();
                             }
                         });

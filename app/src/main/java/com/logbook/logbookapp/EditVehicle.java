@@ -33,6 +33,7 @@ public class EditVehicle extends AppCompatActivity {
     int rowPosition;
     private ProgressDialog pd;
     private  Button getOCRButton;
+    private boolean ocrPhotoCompleted = false;
     private String ocrResult,ocrTempFileLocation;
 
     @Override
@@ -45,6 +46,12 @@ public class EditVehicle extends AppCompatActivity {
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
         carPicButton = (ImageButton) findViewById(R.id.editVehicleIconButton);
+        editVin = (EditText) findViewById(R.id.editvin);
+
+        if(!ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation().isEmpty()){
+            carPicButton.setImageBitmap(ReadSaveDataUtility.loadBitmapFromInternalStorage(getBaseContext(),
+                    ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() ));
+        }
         spinner1 = (Spinner) findViewById(R.id.editmaker);
         adapter1 = ArrayAdapter.createFromResource(this,
                 R.array.car_maker, android.R.layout.simple_spinner_item);
@@ -94,7 +101,6 @@ public class EditVehicle extends AppCompatActivity {
         editYear.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarYear());
         EditText editLicenseplateNumber = (EditText) findViewById(R.id.editlicenseplatenumber);
         editLicenseplateNumber.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarLicensePlateNumber());
-        editVin = (EditText) findViewById(R.id.editvin);
         editVin.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
         EditText editOdometer = (EditText) findViewById(R.id.editodometer);
         editOdometer.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
@@ -113,12 +119,16 @@ public class EditVehicle extends AppCompatActivity {
                         pd.setCancelable(false);
                         pd.setIndeterminate(true);
                         pd.show();
+                        getOCRPhoto();
                     }
 
                     @Override
                     protected Void doInBackground(Void... arg0) {
                         try {
-                            getOCRPhoto();
+                            while (!ocrPhotoCompleted) {
+                                Thread.sleep(2000);
+                            }
+                            ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
@@ -129,16 +139,17 @@ public class EditVehicle extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Void result) {
-                        if (pd!=null) {
+                        if (pd != null) {
                             pd.dismiss();
                             getOCRButton.setEnabled(true);
                         }
                     }
 
                 };
-                task.execute((Void[])null);
-
+                task.execute((Void[]) null);
+                editVin.setText(ocrResult);
             }
+
         });
 
 
@@ -216,8 +227,7 @@ public class EditVehicle extends AppCompatActivity {
                         File photoFile = CameraControl.createTempOCRFile(this);
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
-                        ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
-                        editVin.setText(ocrResult);
+                        ocrPhotoCompleted = true;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
