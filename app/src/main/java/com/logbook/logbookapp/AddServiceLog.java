@@ -1,5 +1,6 @@
 package com.logbook.logbookapp;
 
+import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -125,7 +126,7 @@ public class AddServiceLog extends AppCompatActivity {
     public void showServiceCategoriesSelection(View view){
         Intent startServiceCategoriesSelection = new Intent(this,ServiceCategories.class);
         startServiceCategoriesSelection.putExtra("setcheckbox", setCheckBox);
-        startActivityForResult(startServiceCategoriesSelection, AppConstant.SWITCH_SERVICE_CATELOG);
+        startActivityForResult(startServiceCategoriesSelection, AppConstant.SWITCH_SERVICE_CATELOG, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
     public void TakeScreenShotReceipt(View view){
