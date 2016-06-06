@@ -37,4 +37,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.1'
+    // http://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.12'
+
 }
