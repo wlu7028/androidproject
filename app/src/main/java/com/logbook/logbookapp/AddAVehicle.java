@@ -23,7 +23,13 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 
 public class AddAVehicle extends AppCompatActivity  {
@@ -221,6 +227,8 @@ public class AddAVehicle extends AppCompatActivity  {
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
                         ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
                         ((EditText) findViewById(R.id.vin)).setText(ocrResult);
+                        Map<String,String> vinqueryInfo = processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                        //update UI
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -234,11 +242,19 @@ public class AddAVehicle extends AppCompatActivity  {
             carPicFileName = "";
             Log.d("cancel", "return code is not ok");
         }
+    }
 
-
-
-
-
-
+    private Map<String, String> processXmlResult(String xmlStr){
+        JAXBContext jc = null;
+        Map<String,String> vinqueryInfo = new HashMap<>();
+        try {
+            jc = JAXBContext.newInstance(VINquery.class);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            VINquery vinQueryTests = (VINquery) unmarshaller.unmarshal(new StringReader(xmlStr));
+            vinqueryInfo = vinQueryTests.getInfo();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return vinqueryInfo;
     }
 }

@@ -74,7 +74,7 @@ public class RestServiceUtility {
         return response;
     }
 
-    public String processVIN(String vinNumber){
+    public static String processVIN(String vinNumber){
         StringBuilder response = new StringBuilder();
         URL obj = null;
         HttpURLConnection con = null;

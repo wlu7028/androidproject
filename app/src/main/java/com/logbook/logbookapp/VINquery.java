@@ -1,5 +1,10 @@
 package com.logbook.logbookapp;
 
+import android.util.Log;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -25,9 +30,20 @@ public class VINquery {
     }
 
 
-    public void getInfo(){
+    public Map<String, String> getInfo(){
+        Map<String,String> vinqueryInfo = new HashMap<>();
         vin.getVehicle().get(0).processItem();
-
+        if(vin.getStatus().equalsIgnoreCase("FAILED")){
+            //look up failed, we may prompt something
+            Log.d("vinquery", "status is failed");
+        }else{
+            //update field on UI
+            vinqueryInfo.put("Make", vin.getVehicle().get(0).getMake());
+            vinqueryInfo.put("Model", vin.getVehicle().get(0).getModel());
+            vinqueryInfo.put("Year", vin.getVehicle().get(0).getManufacturedIn());
+            vinqueryInfo.put("Trim", vin.getVehicle().get(0).getTrimLevel());
+        }
+        return vinqueryInfo;
         /*
         System.out.println("VIN number:"+vin.getNumber());
         System.out.println("VIN Status:"+vin.getStatus());
