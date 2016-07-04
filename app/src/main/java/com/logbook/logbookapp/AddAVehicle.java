@@ -229,6 +229,11 @@ public class AddAVehicle extends AppCompatActivity  {
                         ((EditText) findViewById(R.id.vin)).setText(ocrResult);
                         Map<String,String> vinqueryInfo = processXmlResult(RestServiceUtility.processVIN(ocrResult));
                         //update UI
+                        if(!vinqueryInfo.isEmpty()){
+                            spinner1.setSelection(getIndex(spinner1,vinqueryInfo.get("Make")));
+                            spinner2.setSelection(getIndex(spinner2,vinqueryInfo.get("Model")));
+                            ((EditText) findViewById(R.id.year)).setText(vinqueryInfo.get("Year"));
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -256,5 +261,18 @@ public class AddAVehicle extends AppCompatActivity  {
             e.printStackTrace();
         }
         return vinqueryInfo;
+    }
+
+    private int getIndex(Spinner spinner, String myString)
+    {
+        int index = 0;
+
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }
