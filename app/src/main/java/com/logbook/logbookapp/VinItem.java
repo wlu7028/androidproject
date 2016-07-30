@@ -1,5 +1,7 @@
 package com.logbook.logbookapp;
-import javax.xml.bind.annotation.XmlAttribute;
+
+import org.simpleframework.xml.Attribute;
+
 /**
  * Created on 6/5/2016.
  */
@@ -13,7 +15,7 @@ public class VinItem {
         this.value = value;
     }
 
-    @XmlAttribute(name = "Value")
+    @Attribute(name = "Value")
     public String getValue() {
         return value;
     }
@@ -23,7 +25,7 @@ public class VinItem {
     }
 
 
-    @XmlAttribute(name = "Key")
+    @Attribute(name = "Key")
     public String getKey() {
         return key;
     }

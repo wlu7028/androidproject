@@ -21,15 +21,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 
 public class AddAVehicle extends AppCompatActivity  {
@@ -250,14 +250,14 @@ public class AddAVehicle extends AppCompatActivity  {
     }
 
     private Map<String, String> processXmlResult(String xmlStr){
-        JAXBContext jc = null;
+        Serializer serializer = new Persister();
         Map<String,String> vinqueryInfo = new HashMap<>();
         try {
-            jc = JAXBContext.newInstance(VINquery.class);
-            Unmarshaller unmarshaller = jc.createUnmarshaller();
-            VINquery vinQueryTests = (VINquery) unmarshaller.unmarshal(new StringReader(xmlStr));
+
+            VINquery vinQueryTests = serializer.read(VINquery.class, xmlStr);
+            //VINquery vinQueryTests = (VINquery) unmarshaller.unmarshal(new StringReader(xmlStr));
             vinqueryInfo = vinQueryTests.getInfo();
-        } catch (JAXBException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return vinqueryInfo;

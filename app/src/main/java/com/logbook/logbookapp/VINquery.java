@@ -2,17 +2,19 @@ package com.logbook.logbookapp;
 
 import android.util.Log;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  * Created on 6/5/2016.
  */
 
-@XmlRootElement(name = "VINquery")
+@Root(name = "VINquery")
 public class VINquery {
     private VINInfo vin;
     public VINquery(){}
@@ -20,7 +22,7 @@ public class VINquery {
         this.vin = vin;
     }
 
-    @XmlElement(name = "VIN")
+    @Element(name = "VIN")
     public VINInfo getVin() {
         return vin;
     }

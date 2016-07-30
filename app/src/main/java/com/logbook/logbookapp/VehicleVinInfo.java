@@ -1,7 +1,9 @@
 package com.logbook.logbookapp;
 
 
-import javax.xml.bind.annotation.XmlElement;
+
+import org.simpleframework.xml.Element;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +33,7 @@ public class VehicleVinInfo {
         this.engineType=engineType;
     }
 
-    @XmlElement(name = "Item")
+    @Element(name = "Item")
     public List<VinItem> getItem() {
         return item;
     }

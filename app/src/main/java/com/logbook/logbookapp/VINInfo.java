@@ -1,7 +1,9 @@
 package com.logbook.logbookapp;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public class VINInfo {
         this.vehicle=vehicle;
     }
 
-    @XmlElement(name = "Vehicle")
+    @Element(name = "Vehicle")
     public List<VehicleVinInfo> getVehicle() {
         return vehicle;
     }
@@ -26,7 +28,7 @@ public class VINInfo {
         this.vehicle = vehicle;
     }
 
-    @XmlAttribute(name = "Number")
+    @Attribute(name = "Number")
     public String getNumber() {
         return Number;
     }
@@ -35,7 +37,7 @@ public class VINInfo {
         Number = number;
     }
 
-    @XmlAttribute(name = "Status")
+    @Attribute(name = "Status")
     public String getStatus() {
         return Status;
     }
