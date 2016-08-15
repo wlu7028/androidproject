@@ -21,13 +21,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
+
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.HashMap;
+
 import java.util.Map;
 
 
@@ -38,6 +36,7 @@ public class AddAVehicle extends AppCompatActivity  {
     String carPicFileName = "";
     ImageButton carPicButton;
     Bitmap changeVehicleIcon= null;
+    private boolean ocrPhotoCompleted = false;
     private ProgressDialog pd;
     private Button getOCRButton;
     private String ocrResult,ocrTempFileLocation;
@@ -110,12 +109,17 @@ public class AddAVehicle extends AppCompatActivity  {
                         pd.setCancelable(false);
                         pd.setIndeterminate(true);
                         pd.show();
+                        getOCRPhoto();
                     }
 
                     @Override
                     protected Void doInBackground(Void... arg0) {
+                        int tried = 0;
                         try {
-                            getOCRPhoto();
+                            while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
+                                Log.d("ocradd", "in while, tried=" + tried);
+                                Thread.sleep(2000);
+                            }
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -125,14 +129,15 @@ public class AddAVehicle extends AppCompatActivity  {
 
                     @Override
                     protected void onPostExecute(Void result) {
-                        if (pd!=null) {
+                        if (pd != null) {
                             pd.dismiss();
                             getOCRButton.setEnabled(true);
                         }
                     }
 
                 };
-                task.execute((Void[])null);
+                task.execute((Void[]) null);
+
             }
         });
 
@@ -155,32 +160,11 @@ public class AddAVehicle extends AppCompatActivity  {
             ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon, carPicFileName);
         ReadSaveDataUtility.vehicleObjects.add(carObj);
 
-        /*
-        SharedPreferences.Editor mEdit1 = sp.edit();
-        mEdit1.putInt("CarData_size", carDataSP.size());
-        for(int i=0;i<carDataSP.size();i++)
-        {
-            mEdit1.remove("CarData_" + i);
-            mEdit1.putString("CarData_" + i, carDataSP.get(i));
-        }
-        mEdit1.commit();
-        */
         ReadSaveDataUtility.saveVehicleListToSharedPreference(this);
         finish();
     }
 
-    /*
-    private List<String> readSharedPreference(){
-        SharedPreferences sp = this.getPreferences(Context.MODE_PRIVATE);
-        List<String> carDataSP = new ArrayList<>();
-        int size = sp.getInt("CarData_size", 0);
-        for(int i=0;i<size;i++)
-        {
-            if(sp.getString("CarData_" + i,null) != null)
-                carDataSP.add(sp.getString("CarData_" + i, null));
-        }
-        return carDataSP;
-    }*/
+
 
     public void cancelButton(View view){
         finish();
@@ -191,7 +175,7 @@ public class AddAVehicle extends AppCompatActivity  {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
-                photoFile = CameraControl.createImageFile(this);
+                photoFile = Utilities.createImageFile(this);
                 carPicFileName = "Real_"+photoFile.getName();
             } catch (IOException ex) {
             }
@@ -222,18 +206,19 @@ public class AddAVehicle extends AppCompatActivity  {
                     break;
                 case AppConstant.GET_OCR_File:
                     try {
-                        File photoFile = CameraControl.createTempOCRFile(this);
+                        File photoFile = Utilities.createTempOCRFile(this);
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
                         ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
                         ((EditText) findViewById(R.id.vin)).setText(ocrResult);
-                        Map<String,String> vinqueryInfo = processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                        Map<String,String> vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
                         //update UI
                         if(!vinqueryInfo.isEmpty()){
-                            spinner1.setSelection(getIndex(spinner1,vinqueryInfo.get("Make")));
-                            spinner2.setSelection(getIndex(spinner2,vinqueryInfo.get("Model")));
+                            spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
+                            spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
                             ((EditText) findViewById(R.id.year)).setText(vinqueryInfo.get("Year"));
                         }
+                        ocrPhotoCompleted = true;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -249,30 +234,7 @@ public class AddAVehicle extends AppCompatActivity  {
         }
     }
 
-    private Map<String, String> processXmlResult(String xmlStr){
-        Serializer serializer = new Persister();
-        Map<String,String> vinqueryInfo = new HashMap<>();
-        try {
 
-            VINquery vinQueryTests = serializer.read(VINquery.class, xmlStr);
-            //VINquery vinQueryTests = (VINquery) unmarshaller.unmarshal(new StringReader(xmlStr));
-            vinqueryInfo = vinQueryTests.getInfo();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return vinqueryInfo;
-    }
 
-    private int getIndex(Spinner spinner, String myString)
-    {
-        int index = 0;
 
-        for (int i=0;i<spinner.getCount();i++){
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
 }

@@ -98,7 +98,7 @@
         android:layout_alignLeft="@id/model"
         android:layout_alignStart="@id/model" />
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"
         android:layout_height="@dimen/text_box_height"
         android:id="@+id/year"
@@ -108,7 +108,7 @@
         android:layout_alignLeft="@id/trim"
         android:layout_alignStart="@id/trim" />
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"
         android:layout_height="@dimen/text_box_height"
         android:id="@+id/licenseplatenumber"
@@ -119,7 +119,7 @@
         android:layout_alignStart="@id/year"
          />
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"
         android:layout_height="@dimen/text_box_height"
         android:id="@+id/vin"
@@ -129,7 +129,7 @@
         android:layout_alignLeft="@id/licenseplatenumber"
         android:layout_alignStart="@id/licenseplatenumber" />
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"
         android:layout_height="@dimen/text_box_height"
         android:id="@+id/odometer"

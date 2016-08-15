@@ -1,6 +1,8 @@
 package com.logbook.logbookapp;
 
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,19 +24,17 @@ public class MultipartUtility {
     private String charset;
     private OutputStream outputStream;
     private PrintWriter writer;
-
     /**
      * This constructor initializes a new HTTP POST request with content type
      * is set to multipart/form-data
      *
      * @param requestURL
      * @param charset
-     * @throws IOException
+     * @throws Exception
      */
     public MultipartUtility(String requestURL, String charset)
-            throws IOException {
+            throws Exception {
         this.charset = charset;
-
         // creates a unique boundary based on time stamp
         boundary = "===" + System.currentTimeMillis() + "===";
 
@@ -43,6 +43,8 @@ public class MultipartUtility {
         httpConn.setUseCaches(false);
         httpConn.setDoOutput(true); // indicates POST method
         httpConn.setDoInput(true);
+        httpConn.setConnectTimeout(AppConstant.CONNECTION_TIME_OUT);
+        httpConn.setReadTimeout(AppConstant.CONNECTION_TIME_OUT);
         httpConn.setRequestMethod("POST");
         httpConn.setRequestProperty("Content-Type",
                 "multipart/form-data; boundary=" + boundary);
@@ -123,12 +125,11 @@ public class MultipartUtility {
      * @throws IOException
      */
     public String finish() throws IOException {
-        StringBuilder response = new StringBuilder();
 
+        StringBuilder response = new StringBuilder();
         writer.append(LINE_FEED).flush();
         writer.append("--" + boundary + "--").append(LINE_FEED);
         writer.close();
-
         // checks server's status code first
         int status = httpConn.getResponseCode();
         if (status == HttpURLConnection.HTTP_OK) {

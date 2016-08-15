@@ -119,6 +119,7 @@
         <activity
             android:name=".EditServiceLog"
             android:label="@string/title_activity_edit_service_log"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:parentActivityName=".ServiceLogView"
             android:theme="@style/AppTheme">
             <meta-data

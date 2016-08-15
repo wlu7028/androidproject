@@ -70,24 +70,23 @@
         android:id="@+id/editgaslogvehiclename"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/edittextstyle"
         android:gravity="center_vertical"/>
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/editgaslogdatepicker"
-        android:hint="datepicker"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@id/editgaslogvehiclename"
-        android:layout_alignLeft="@id/editgaslogvehiclename"
-        android:layout_alignStart="@id/editgaslogvehiclename"
-        android:gravity="center_vertical"
-        android:background="@drawable/edittextstyle"/>
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editgaslogdatepicker"
+            android:hint="datepicker"
+            android:onClick="showDatePickerDialog"
+            android:layout_below="@id/editgaslogvehiclename"
+            android:layout_alignLeft="@id/editgaslogvehiclename"
+            android:layout_alignStart="@id/editgaslogvehiclename"
+            android:gravity="center_vertical"
+            android:background="@drawable/edittextstyle"/>
 
 
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/editgasloggallon"
@@ -98,7 +97,7 @@
         android:layout_alignStart="@id/editgaslogdatepicker"
         android:background="@drawable/edittextstyle"/>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/editgaslogtotalcost"
@@ -116,7 +115,7 @@
         android:layout_below="@+id/editgaslogtotalcost"
         android:layout_alignLeft="@+id/editgaslogtotalcost"
         android:layout_alignStart="@+id/editgaslogtotalcost">
-        <EditText
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:id="@+id/editgaslogodometers"
@@ -126,7 +125,7 @@
             android:background="@drawable/edittextstyle"/>
     </android.support.design.widget.TextInputLayout>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/editgasloglocation"

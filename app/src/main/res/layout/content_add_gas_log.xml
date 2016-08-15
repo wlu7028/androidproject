@@ -75,7 +75,7 @@
         android:background="@drawable/edittextstyle"
         android:gravity="center_vertical"/>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/addgaslogdatepicker"
@@ -89,7 +89,7 @@
 
 
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/addgasloggallon"
@@ -100,7 +100,7 @@
         android:layout_alignStart="@id/addgaslogdatepicker"
         android:background="@drawable/edittextstyle"/>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/addgaslogtotalcost"
@@ -118,7 +118,7 @@
         android:layout_below="@+id/addgaslogtotalcost"
         android:layout_alignLeft="@+id/addgaslogtotalcost"
         android:layout_alignStart="@+id/addgaslogtotalcost">
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/addgaslogodometers"
@@ -128,7 +128,7 @@
         android:background="@drawable/edittextstyle"/>
     </android.support.design.widget.TextInputLayout>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/addgasloglocation"

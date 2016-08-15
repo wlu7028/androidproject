@@ -124,8 +124,10 @@ public class EditVehicle extends AppCompatActivity {
 
                     @Override
                     protected Void doInBackground(Void... arg0) {
+                        int tried = 0;
                         try {
-                            while (!ocrPhotoCompleted) {
+                            while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
+                                Log.d("ocredit","in while, tried="+tried);
                                 Thread.sleep(2000);
                             }
                             ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
@@ -173,7 +175,7 @@ public class EditVehicle extends AppCompatActivity {
                     ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation());
         }else if (changeVehicleIcon != null){
             try {
-                File photoFile = CameraControl.createImageFile(this);
+                File photoFile = Utilities.createImageFile(this);
                 String carPicFileName = "Real_"+photoFile.getName();
                 ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarPicFileLocation(carPicFileName);
                 ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), changeVehicleIcon,
@@ -224,7 +226,7 @@ public class EditVehicle extends AppCompatActivity {
                     break;
                 case AppConstant.GET_OCR_File:
                     try {
-                        File photoFile = CameraControl.createTempOCRFile(this);
+                        File photoFile = Utilities.createTempOCRFile(this);
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
                         ocrPhotoCompleted = true;

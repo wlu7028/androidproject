@@ -32,7 +32,8 @@ import java.util.List;
 public class AddServiceLog extends AppCompatActivity {
 
     private SimpleDateFormat dateFormatter;
-    private EditText    datePicker,serviceCategories;
+    private EditText    serviceCategories;
+    private TextView datePicker;
     private DatePickerDialog datePickerDialog;
     private int rowPosition;
     private String setCheckBox = "";
@@ -50,7 +51,7 @@ public class AddServiceLog extends AppCompatActivity {
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
-        datePicker = (EditText) findViewById(R.id.saveServiceDatePicker);
+        datePicker = (TextView) findViewById(R.id.saveServiceDatePicker);
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.requestFocus();
         setDateTimeField();
@@ -80,7 +81,7 @@ public class AddServiceLog extends AppCompatActivity {
     public void saveServiceLog(View view){
         ServiceLogObject tempServiceLogObject = new ServiceLogObject();
         tempServiceLogObject.setVehicle(((TextView) findViewById(R.id.saveServiceVehicleName)).getText().toString());
-        tempServiceLogObject.setServiceDate(((EditText) findViewById(R.id.saveServiceDatePicker)).getText().toString());
+        tempServiceLogObject.setServiceDate(((TextView) findViewById(R.id.saveServiceDatePicker)).getText().toString());
         tempServiceLogObject.setCost(((EditText) findViewById(R.id.saveServiceCost)).getText().toString());
         tempServiceLogObject.setServiceOdometer(((EditText) findViewById(R.id.saveServiceOdometer)).getText().toString());
         tempServiceLogObject.setTag(((EditText) findViewById(R.id.saveServiceTag)).getText().toString());
@@ -134,7 +135,7 @@ public class AddServiceLog extends AppCompatActivity {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
-                photoFile = CameraControl.createImageFile(this);
+                photoFile = Utilities.createImageFile(this);
                 receiptFileLocations.add(photoFile.getName());
             } catch (IOException ex) {
             }

@@ -72,7 +72,7 @@
         android:layout_centerHorizontal="true"
         style="@style/CustomEditTextStyle" />
 
-    <EditText
+    <TextView
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceDatePicker"
@@ -86,7 +86,7 @@
 
 
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceCost"
@@ -97,7 +97,7 @@
         android:layout_alignStart="@id/saveServiceDatePicker"
         style="@style/CustomEditTextStyle"/>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceCategories"
@@ -117,7 +117,7 @@
         android:textColorHint="#778BB0"
         android:textColor="#778BB0"
         >
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceOdometer"
@@ -129,7 +129,7 @@
         style="@style/CustomEditTextStyle"/>
     </android.support.design.widget.TextInputLayout>
 
-    <EditText
+    <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceTag"

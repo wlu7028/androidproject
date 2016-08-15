@@ -5,17 +5,19 @@ package com.logbook.logbookapp;
  */
 public interface  AppConstant{
 
-    public static final String VEHICLE_TAB = "Vehicles";
-    public static final String SERVICE_SHOP_TAB = "Service Shop";
-    public static final String OTHER_TAB = "Other";
-    public static final String SERVICE_LOG_TAB = "Service Log";
-    public static final String GAS_LOG_TAB = "Gas Log";
-    public static final int REQUEST_IMAGE_CAPTURE = 101;
-    public static final int GET_OCR_File = 103;
-    public static final int SWITCH_SERVICE_CATELOG = 102;
+    String VEHICLE_TAB = "Vehicles";
+    String SERVICE_SHOP_TAB = "Service Shop";
+    String OTHER_TAB = "Other";
+    String SERVICE_LOG_TAB = "Service Log";
+    String GAS_LOG_TAB = "Gas Log";
+    int REQUEST_IMAGE_CAPTURE = 101;
+    int GET_OCR_File = 103;
+    int SWITCH_SERVICE_CATELOG = 102;
+    int OCR_TIMEOUT = 15;
+    int CONNECTION_TIME_OUT = 10000;
 
 
-    public enum AppEnum {
+    enum AppEnum {
         APPTITLE("EVSDB");
 
         private String actualText;

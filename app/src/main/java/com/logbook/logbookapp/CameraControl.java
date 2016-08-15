@@ -28,31 +28,10 @@ import java.util.Date;
 public class CameraControl extends AppCompatActivity {
     private static final int REQUEST_CAMERA = 102;
     private static final int SELECT_FILE = 103;
-    public static final int REQUEST_IMAGE_CAPTURE = 101;
 
-    public static File createImageFile(Context context) throws IOException{
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "VehicleIcon";
-        File storageDir = context.getFilesDir();
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        return image;
-    }
 
-    public static File createTempOCRFile(Context context) throws IOException {
-        String imageFileName = "TempOCR";
-        File storageDir = context.getFilesDir();
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-        image.deleteOnExit();
-        return image;
-    }
+
+
 
 
     private void selectImage() {

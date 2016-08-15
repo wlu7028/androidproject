@@ -1,5 +1,6 @@
 package com.logbook.logbookapp;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -14,7 +15,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,8 +35,8 @@ import java.util.List;
 public class EditServiceLog extends AppCompatActivity {
 
     private SimpleDateFormat dateFormatter;
-    private EditText    datePicker,serviceCategories,serviceOdometer,serviceCost,serviceTag;
-    private TextView vehicleName;
+    private EditText    serviceCategories,serviceOdometer,serviceCost,serviceTag;
+    private TextView vehicleName,datePicker;
     private DatePickerDialog datePickerDialog;
     private int rowPosition,serviceLogPosition;
     private String setCheckBox = "";
@@ -54,7 +58,7 @@ public class EditServiceLog extends AppCompatActivity {
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         serviceLogPosition = getIntent().getExtras().getInt("serviceLogPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
-        datePicker = (EditText) findViewById(R.id.editServiceDatePicker);
+        datePicker = (TextView) findViewById(R.id.editServiceDatePicker);
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.requestFocus();
         setDatePickerDialog();
@@ -62,7 +66,6 @@ public class EditServiceLog extends AppCompatActivity {
         serviceCategories.setInputType(InputType.TYPE_NULL);
         serviceCategories.requestFocus();
         setValuesToFields();
-
         mRecyclerView = (RecyclerView) findViewById(R.id.editServiceLogRcyList);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -158,7 +161,7 @@ public class EditServiceLog extends AppCompatActivity {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             File photoFile = null;
             try {
-                photoFile = CameraControl.createImageFile(this);
+                photoFile = Utilities.createImageFile(this);
                 receiptFileLocations.add(photoFile.getName());
             } catch (IOException ex) {
             }
@@ -196,5 +199,7 @@ public class EditServiceLog extends AppCompatActivity {
             Log.d("cancel", "return code is not ok");
         }
     }
+
+
 
 }

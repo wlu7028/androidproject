@@ -21,8 +21,8 @@ public class EditGasLog extends AppCompatActivity {
     private int rowPosition;
     private int gasLogPosition;
     private SimpleDateFormat dateFormatter;
-    private EditText datePicker,gasLocation,gasOdometer,gasGallons,gasCost;
-    private TextView vehicleName;
+    private EditText gasLocation,gasOdometer,gasGallons,gasCost;
+    private TextView vehicleName,datePicker;
     private DatePickerDialog datePickerDialog;
     private GasLogObject tempGasLogObject;
     @Override
@@ -35,7 +35,7 @@ public class EditGasLog extends AppCompatActivity {
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         gasLogPosition = getIntent().getExtras().getInt("gasLogPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
-        datePicker = (EditText) findViewById(R.id.editgaslogdatepicker);
+        datePicker = (TextView) findViewById(R.id.editgaslogdatepicker);
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.requestFocus();
         setDatePickerDialog();
