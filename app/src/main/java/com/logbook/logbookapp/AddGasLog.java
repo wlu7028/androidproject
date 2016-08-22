@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class AddGasLog extends AppCompatActivity {
     private SimpleDateFormat dateFormatter;
-    private EditText datePicker;
+    private TextView datePicker, vehicleName;
     private DatePickerDialog datePickerDialog;
     private int rowPosition;
 
@@ -30,11 +30,11 @@ public class AddGasLog extends AppCompatActivity {
         setSupportActionBar(toolbar);
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
-        datePicker = (EditText) findViewById(R.id.addgaslogdatepicker);
+        datePicker = (TextView) findViewById(R.id.addgaslogdatepicker);
         datePicker.setInputType(InputType.TYPE_NULL);
         datePicker.requestFocus();
         setDateTimeField();
-        TextView vehicleName = (TextView) findViewById(R.id.addgaslogvehiclename);
+        vehicleName = (TextView) findViewById(R.id.addgaslogvehiclename);
         StringBuilder strBuilder = new StringBuilder(100);
         strBuilder.append(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
         strBuilder.append(" ");
@@ -48,8 +48,8 @@ public class AddGasLog extends AppCompatActivity {
 
     public void saveGasLog(View view){
         GasLogObject tempGasLogObject = new GasLogObject();
-        tempGasLogObject.setVehicle(((TextView) findViewById(R.id.addgaslogvehiclename)).getText().toString());
-        tempGasLogObject.setAddGasDate(((EditText) findViewById(R.id.addgaslogdatepicker)).getText().toString());
+        tempGasLogObject.setVehicle(vehicleName.getText().toString());
+        tempGasLogObject.setAddGasDate(datePicker.getText().toString());
         tempGasLogObject.setGallon(((EditText) findViewById(R.id.addgasloggallon)).getText().toString());
         tempGasLogObject.setGasOdometer(((EditText) findViewById(R.id.addgaslogodometers)).getText().toString());
         tempGasLogObject.setTotalCost(((EditText) findViewById(R.id.addgaslogtotalcost)).getText().toString());

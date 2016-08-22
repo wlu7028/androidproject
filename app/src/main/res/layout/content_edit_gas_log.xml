@@ -67,6 +67,7 @@
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Vehicle"
+        android:textColor="@color/defaultHintColor"
         android:id="@+id/editgaslogvehiclename"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_centerHorizontal="true"
@@ -75,7 +76,10 @@
         <TextView
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:textColorHint="@color/defaultHintColor"
+            android:textColor="@color/defaultHintColor"
             android:id="@+id/editgaslogdatepicker"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:hint="datepicker"
             android:onClick="showDatePickerDialog"
             android:layout_below="@id/editgaslogvehiclename"
@@ -84,37 +88,57 @@
             android:gravity="center_vertical"
             android:background="@drawable/edittextstyle"/>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editgasloggallonTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@+id/editgaslogdatepicker"
+        android:layout_alignLeft="@+id/editgaslogdatepicker"
+        android:layout_alignStart="@+id/editgaslogdatepicker">
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editgasloggallon"
+            android:hint="Gallon"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edittextstyle"/>
+
+    </android.support.design.widget.TextInputLayout>
 
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/editgasloggallon"
-        android:hint="Gallon"
-        android:inputType="numberDecimal"
-        android:layout_below="@id/editgaslogdatepicker"
-        android:layout_alignLeft="@id/editgaslogdatepicker"
-        android:layout_alignStart="@id/editgaslogdatepicker"
-        android:background="@drawable/edittextstyle"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editgaslogtotalcostTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@+id/editgasloggallonTextInputLayout"
+        android:layout_alignLeft="@+id/editgasloggallonTextInputLayout"
+        android:layout_alignStart="@+id/editgasloggallonTextInputLayout">
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/editgaslogtotalcost"
-        android:hint="Total cost"
-        android:inputType="numberDecimal"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@id/editgasloggallon"
-        android:layout_alignStart="@id/editgasloggallon"
-        android:background="@drawable/edittextstyle"/>
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editgaslogtotalcost"
+            android:hint="Total cost"
+            android:inputType="numberDecimal"
+            android:layout_centerVertical="true"
+            android:background="@drawable/edittextstyle"/>
+
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/editgaslogodometersTextInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editgaslogtotalcost"
-        android:layout_alignLeft="@+id/editgaslogtotalcost"
-        android:layout_alignStart="@+id/editgaslogtotalcost">
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@+id/editgaslogtotalcostTextInputLayout"
+        android:layout_alignLeft="@+id/editgaslogtotalcostTextInputLayout"
+        android:layout_alignStart="@+id/editgaslogtotalcostTextInputLayout">
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"
             android:layout_height="50dp"
@@ -125,14 +149,25 @@
             android:background="@drawable/edittextstyle"/>
     </android.support.design.widget.TextInputLayout>
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/editgasloglocation"
-        android:hint="location"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editgasloglocationTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
         android:layout_below="@+id/editgaslogodometersTextInputLayout"
         android:layout_alignLeft="@+id/editgaslogodometersTextInputLayout"
-        android:layout_alignStart="@+id/editgaslogodometersTextInputLayout"
-        android:background="@drawable/edittextstyle"/>
+        android:layout_alignStart="@+id/editgaslogodometersTextInputLayout">
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/editgasloglocation"
+            android:hint="location"
+            android:background="@drawable/edittextstyle"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
 
 </RelativeLayout>

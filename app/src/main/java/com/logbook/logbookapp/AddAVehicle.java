@@ -1,6 +1,9 @@
 package com.logbook.logbookapp;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -38,6 +41,7 @@ public class AddAVehicle extends AppCompatActivity  {
     Bitmap changeVehicleIcon= null;
     private boolean ocrPhotoCompleted = false;
     private ProgressDialog pd;
+    private EditText Vin;
     private Button getOCRButton;
     private String ocrResult,ocrTempFileLocation;
     ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
@@ -93,7 +97,70 @@ public class AddAVehicle extends AppCompatActivity  {
             public void onNothingSelected(AdapterView<?> arg0) {// do nothing
             }
         });
+        Vin = (EditText) findViewById(R.id.vin);
+        Vin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                builder.setMessage("Choose way of data entry: take a photo or enter manually");
+                builder.setCancelable(true);
 
+                builder.setPositiveButton(
+                        "Take a photo of VIN",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+
+                                    @Override
+                                    protected void onPreExecute() {
+                                        pd = new ProgressDialog(AddAVehicle.this);
+                                        pd.setTitle("Processing OCR...");
+                                        pd.setMessage("Please wait.");
+                                        pd.setCancelable(false);
+                                        pd.setIndeterminate(true);
+                                        pd.show();
+                                        getOCRPhoto();
+                                    }
+
+                                    @Override
+                                    protected Void doInBackground(Void... arg0) {
+                                        int tried = 0;
+                                        try {
+                                            while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
+                                                Thread.sleep(2000);
+                                            }
+                                            Thread.sleep(2000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        return null;
+                                    }
+
+                                    @Override
+                                    protected void onPostExecute(Void result) {
+                                        if (pd != null) {
+                                            pd.dismiss();
+                                            getOCRButton.setEnabled(true);
+                                        }
+                                    }
+
+                                };
+                                task.execute((Void[]) null);
+                            }
+                        });
+
+                builder.setNegativeButton(
+                        "Enter manually",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert1 = builder.create();
+                alert1.show();
+            }
+        });
         getOCRButton = (Button) findViewById(R.id.getOCRAddV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override

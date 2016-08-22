@@ -67,77 +67,107 @@
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Vehicle"
+        android:textColor="@color/defaultHintColor"
         android:id="@+id/saveServiceVehicleName"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_centerHorizontal="true"
-        style="@style/CustomEditTextStyle" />
+        android:gravity="center_vertical"/>
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:id="@+id/saveServiceDatePicker"
         android:hint="datepicker"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
         android:layout_centerHorizontal="true"
         android:onClick="showDatePickerDialog"
         android:layout_below="@id/saveServiceVehicleName"
         android:layout_alignLeft="@id/saveServiceVehicleName"
         android:layout_alignStart="@id/saveServiceVehicleName"
-        style="@style/CustomEditTextStyle"/>
+        android:gravity="center_vertical"
+        android:background="@drawable/edittextstyle"/>
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/saveServiceservicecostTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveServiceDatePicker"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
 
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/saveServiceCost"
+            android:hint="Service cost"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edittextstyle"/>
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/saveServiceCost"
-        android:hint="Service cost"
-        android:inputType="numberDecimal"
-        android:layout_below="@id/saveServiceDatePicker"
-        android:layout_alignLeft="@id/saveServiceDatePicker"
-        android:layout_alignStart="@id/saveServiceDatePicker"
-        style="@style/CustomEditTextStyle"/>
+    </android.support.design.widget.TextInputLayout>
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/saveServiceCategories"
-        android:hint="Categories"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/saveServiceCost"
-        android:layout_alignStart="@+id/saveServiceCost"
-        android:onClick="showServiceCategoriesSelection"
-        style="@style/CustomEditTextStyle"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/saveServicecategoriesTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveServiceservicecostTextInputLayout"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/saveServiceCategories"
+            android:hint="Categories"
+            android:layout_centerVertical="true"
+            android:onClick="showServiceCategoriesSelection"
+            android:background="@drawable/edittextstyle"/>
+
+    </android.support.design.widget.TextInputLayout>
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/saveServiceOdometerTextInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/saveServiceCategories"
+        android:layout_below="@+id/saveServicecategoriesTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0"
-        >
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/saveServiceOdometer"
-        android:hint="Odometer reading"
-        android:inputType="numberDecimal"
-        android:layout_below="@id/saveServiceCategories"
-        android:layout_alignLeft="@id/saveServiceCategories"
-        android:layout_alignStart="@id/saveServiceCategories"
-        style="@style/CustomEditTextStyle"/>
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/saveServiceOdometer"
+            android:hint="Odometer reading"
+            android:inputType="numberDecimal"
+            android:layout_below="@id/saveServiceCategories"
+            android:layout_alignLeft="@id/saveServiceCategories"
+            android:layout_alignStart="@id/saveServiceCategories"
+            android:background="@drawable/edittextstyle"/>
+
     </android.support.design.widget.TextInputLayout>
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/saveServiceTag"
-        android:hint="Tag"
-        android:layout_below="@id/saveServiceOdometerTextInputLayout"
-        android:layout_alignLeft="@id/saveServiceOdometerTextInputLayout"
-        android:layout_alignStart="@id/saveServiceOdometerTextInputLayout"
-        style="@style/CustomEditTextStyle"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/saveServicetagTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveServiceOdometerTextInputLayout"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:id="@+id/saveServiceTag"
+            android:hint="Tag"
+            android:background="@drawable/edittextstyle"/>
+    </android.support.design.widget.TextInputLayout>
+
 
     <ImageButton
         android:layout_width="80dp"
@@ -147,7 +177,7 @@
         android:adjustViewBounds="true"
         android:id="@+id/AddScreenShotReceipt"
         android:onClick="TakeScreenShotReceipt"
-        android:layout_below="@+id/saveServiceTag"
+        android:layout_below="@+id/saveServicetagTextInputLayout"
         android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.RecyclerView
@@ -157,8 +187,8 @@
         android:layout_gravity="bottom"
         android:scrollbars="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/saveServiceTag"
-        android:layout_alignStart="@+id/saveServiceTag" />
+        android:layout_alignLeft="@+id/saveServicetagTextInputLayout"
+        android:layout_alignStart="@+id/saveServicetagTextInputLayout" />
 
 
 </RelativeLayout>

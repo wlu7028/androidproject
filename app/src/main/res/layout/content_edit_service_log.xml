@@ -75,38 +75,36 @@
         android:layout_height="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Vehicle"
+        android:textColor="@color/defaultHintColor"
         android:id="@+id/editServiceVehicleName"
         android:layout_below="@+id/vehicletoolbar"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/editServiceDatePickerTextInputLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editServiceVehicleName"
-        android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0" >
+
         <TextView
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:textColorHint="@color/defaultHintColor"
+            android:textColor="@color/defaultHintColor"
             android:id="@+id/editServiceDatePicker"
             android:hint="datepicker"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_below="@id/editServiceVehicleName"
             android:layout_centerHorizontal="true"
             android:onClick="showDatePickerDialog"
             android:background="@drawable/edittextstyle"
             android:gravity="center_vertical"/>
-    </android.support.design.widget.TextInputLayout>
+
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/editServiceServiceCostTextInputLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editServiceDatePickerTextInputLayout"
+        android:layout_below="@id/editServiceDatePicker"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0" >
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"
             android:layout_height="50dp"
@@ -123,8 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editServiceServiceCostTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0" >
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
 
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"
@@ -145,8 +143,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editServiceCategoriesTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
         >
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"
@@ -168,8 +166,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editServiceOdometerTextInputLayout"
         android:layout_centerHorizontal="true"
-        android:textColorHint="#778BB0"
-        android:textColor="#778BB0" >
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor" >
 
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="300dp"

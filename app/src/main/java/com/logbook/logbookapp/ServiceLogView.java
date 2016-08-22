@@ -47,7 +47,6 @@ public class ServiceLogView extends AppCompatActivity {
         }
         mAdapter = new ServiceLogImagesAdapter(getBaseContext(),imagesToShow);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     public void backToServiceLogLists(View view){
