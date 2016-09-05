@@ -113,8 +113,6 @@ public class VehicleView extends AppCompatActivity {
                 setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
         ((TextView)findViewById(R.id.modelView)).
                 setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarModel());
-        ((TextView)findViewById(R.id.trimView)).
-                setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarTrim());
         ((TextView)findViewById(R.id.yearView)).
                 setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarYear());
         ((TextView)findViewById(R.id.licenseView)).

@@ -73,10 +73,19 @@
         android:contentDescription="Add an Icon"
         android:layout_marginTop="50dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Maker:"
+        android:id="@+id/makerViewLabel"
+        android:layout_alignStart="@+id/makerView"
+        android:layout_above="@+id/makerView"
+        />
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Maker"
         android:id="@+id/makerView"
@@ -93,6 +102,7 @@
 
     <View android:layout_width="wrap_content"
         android:layout_height="1px"
+        android:id="@+id/makerDivider"
         android:background="@color/tab_text"
         android:layout_alignLeft="@+id/makerView"
         android:layout_alignStart="@+id/makerView"
@@ -102,12 +112,22 @@
 
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Model:"
+        android:id="@+id/modelViewLabel"
+        android:layout_alignStart="@id/makerView"
+        android:layout_below="@id/makerDivider"
+        />
+
+    <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Model"
         android:id="@+id/modelView"
-        android:layout_below="@id/makerView"
+        android:layout_below="@id/modelViewLabel"
         android:layout_alignLeft="@id/makerView"
         android:layout_alignStart="@id/makerView"
         android:background="#00000000"
@@ -127,11 +147,21 @@
         android:layout_below="@+id/modelView"
         android:layout_alignRight="@+id/modelView"
         android:layout_alignEnd="@+id/modelView"
-        android:id="@+id/view5" />
+        android:id="@+id/modelDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Year:"
+        android:id="@+id/yearViewLabel"
+        android:layout_alignStart="@id/makerView"
+        android:layout_below="@id/modelDivider"
+        />
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Year"
         android:id="@+id/yearView"
@@ -142,9 +172,9 @@
         android:singleLine="true"
         android:textSize="20sp"
         android:gravity="center_vertical"
-        android:layout_below="@+id/view5"
-        android:layout_alignLeft="@+id/view5"
-        android:layout_alignStart="@+id/view5" />
+        android:layout_below="@+id/yearViewLabel"
+        android:layout_alignLeft="@+id/modelDivider"
+        android:layout_alignStart="@+id/modelDivider" />
 
     <View android:layout_width="wrap_content"
         android:layout_height="1px"
@@ -154,39 +184,21 @@
         android:layout_below="@+id/yearView"
         android:layout_alignRight="@+id/yearView"
         android:layout_alignEnd="@+id/yearView"
-        android:id="@+id/view4" />
+        android:id="@+id/yearDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="License:"
+        android:id="@+id/licenseViewLabel"
+        android:layout_alignStart="@id/makerView"
+        android:layout_below="@id/yearDivider"
+        />
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Trim"
-        android:id="@+id/trimView"
-        android:background="#00000000"
-        android:textColorHint="#778BB0"
-        android:textStyle="bold"
-        android:textColor="#778BB0"
-        android:singleLine="true"
-        android:textSize="20sp"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/view4"
-        android:layout_centerHorizontal="true" />
-
-    <View android:layout_width="wrap_content"
-        android:layout_height="1px"
-        android:background="@color/tab_text"
-        android:layout_alignLeft="@+id/trimView"
-        android:layout_alignStart="@+id/trimView"
-        android:layout_below="@+id/trimView"
-        android:layout_alignRight="@+id/trimView"
-        android:layout_alignEnd="@+id/trimView"
-        android:id="@+id/view3" />
-
-
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="License"
         android:id="@+id/licenseView"
@@ -197,9 +209,9 @@
         android:singleLine="true"
         android:textSize="20sp"
         android:gravity="center_vertical"
-        android:layout_below="@+id/view3"
-        android:layout_alignLeft="@+id/view3"
-        android:layout_alignStart="@+id/view3" />
+        android:layout_below="@+id/licenseViewLabel"
+        android:layout_alignLeft="@+id/yearDivider"
+        android:layout_alignStart="@+id/yearDivider" />
 
     <View android:layout_width="wrap_content"
         android:layout_height="1px"
@@ -209,11 +221,21 @@
         android:layout_below="@+id/licenseView"
         android:layout_alignRight="@+id/licenseView"
         android:layout_alignEnd="@+id/licenseView"
-        android:id="@+id/view2" />
+        android:id="@+id/licenseDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="VIN:"
+        android:id="@+id/vinViewLabel"
+        android:layout_alignStart="@id/makerView"
+        android:layout_below="@id/licenseDivider"
+        />
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="VIN"
         android:id="@+id/vinView"
@@ -224,9 +246,9 @@
         android:singleLine="true"
         android:textSize="20sp"
         android:gravity="center_vertical"
-        android:layout_below="@+id/view2"
-        android:layout_alignLeft="@+id/view2"
-        android:layout_alignStart="@+id/view2" />
+        android:layout_below="@+id/vinViewLabel"
+        android:layout_alignLeft="@+id/licenseDivider"
+        android:layout_alignStart="@+id/licenseDivider" />
 
     <View android:layout_width="wrap_content"
         android:layout_height="1px"
@@ -236,11 +258,21 @@
         android:layout_below="@+id/vinView"
         android:layout_alignRight="@+id/vinView"
         android:layout_alignEnd="@+id/vinView"
-        android:id="@+id/view" />
+        android:id="@+id/vinDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Odometer:"
+        android:id="@+id/odometerViewLabel"
+        android:layout_alignStart="@id/makerView"
+        android:layout_below="@id/vinDivider"
+        />
 
     <TextView
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Odometer"
         android:id="@+id/odometerView"
@@ -251,11 +283,12 @@
         android:singleLine="true"
         android:textSize="20sp"
         android:gravity="center_vertical"
-        android:layout_below="@+id/view"
-        android:layout_alignLeft="@+id/view"
-        android:layout_alignStart="@+id/view" />
+        android:layout_below="@+id/odometerViewLabel"
+        android:layout_alignLeft="@+id/vinDivider"
+        android:layout_alignStart="@+id/vinDivider" />
 
     <View android:layout_width="wrap_content"
+        android:id="@+id/odometerDivider"
         android:layout_height="1px"
         android:background="@color/tab_text"
         android:layout_alignLeft="@+id/odometerView"
@@ -263,6 +296,13 @@
         android:layout_below="@+id/odometerView"
         android:layout_alignRight="@+id/odometerView"
         android:layout_alignEnd="@+id/odometerView" />
+
+
+
+
+
+
+
 
     <android.support.design.widget.TabLayout
         android:layout_width="wrap_content"
@@ -275,6 +315,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+
+
+
 
 
 </RelativeLayout>

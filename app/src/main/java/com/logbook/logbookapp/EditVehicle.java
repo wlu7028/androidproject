@@ -28,11 +28,11 @@ import java.util.Map;
 
 
 public class EditVehicle extends AppCompatActivity {
-    Spinner spinner1,spinner2,spinner3;
+    Spinner spinner1,spinner2;
     ImageButton carPicButton;
     EditText editVin;
     Bitmap changeVehicleIcon= null;
-    ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
+    ArrayAdapter<CharSequence> adapter1,adapter2;
     int rowPosition;
     private ProgressDialog pd;
     private  Button getOCRButton;
@@ -68,12 +68,6 @@ public class EditVehicle extends AppCompatActivity {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
         spinner2.setSelection(getIndex(spinner2, ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarModel()));
-
-        spinner3 = (Spinner) findViewById(R.id.edittrim);
-        adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.car_trim, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parentView,

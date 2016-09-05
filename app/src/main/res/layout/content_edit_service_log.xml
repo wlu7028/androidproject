@@ -197,7 +197,6 @@
         android:id="@+id/editServiceLogRcyList"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_gravity="bottom"
         android:scrollbars="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/EditScreenShotReceipt"

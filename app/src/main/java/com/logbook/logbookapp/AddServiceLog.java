@@ -52,12 +52,9 @@ public class AddServiceLog extends AppCompatActivity {
         rowPosition = getIntent().getExtras().getInt("rowPosition");
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
         datePicker = (TextView) findViewById(R.id.saveServiceDatePicker);
-        datePicker.setInputType(InputType.TYPE_NULL);
-        datePicker.requestFocus();
         setDateTimeField();
         serviceCategories = (EditText) findViewById(R.id.saveServiceCategories);
         serviceCategories.setInputType(InputType.TYPE_NULL);
-        serviceCategories.requestFocus();
         TextView vehicleName = (TextView) findViewById(R.id.saveServiceVehicleName);
         StringBuilder strBuilder = new StringBuilder(100);
         strBuilder.append(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());

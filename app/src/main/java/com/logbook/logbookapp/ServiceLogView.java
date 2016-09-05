@@ -39,6 +39,7 @@ public class ServiceLogView extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(AppConstant.VERTICAL_ITEM_SPACE));
         List<String> imagePaths = ReadSaveDataUtility.vehicleObjects.get(rowPosition).
                 getServiceLogObjects().get(serviceLogPosition).getAttachmentLocation();
         List<Bitmap> imagesToShow = new ArrayList<>();

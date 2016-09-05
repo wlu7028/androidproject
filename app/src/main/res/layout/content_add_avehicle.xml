@@ -90,13 +90,7 @@
         android:layout_toRightOf="@id/maker"
         android:layout_toEndOf="@+id/vehiclePicButton" />
 
-    <Spinner
-        android:layout_width="@dimen/text_box_width"
-        android:layout_height="@dimen/text_box_height"
-        android:id="@+id/trim"
-        android:layout_below="@id/model"
-        android:layout_alignLeft="@id/model"
-        android:layout_alignStart="@id/model" />
+
 
     <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"
@@ -104,9 +98,9 @@
         android:id="@+id/year"
         android:hint="Year"
         android:background="@drawable/edittextstyle"
-        android:layout_below="@id/trim"
-        android:layout_alignLeft="@id/trim"
-        android:layout_alignStart="@id/trim" />
+        android:layout_below="@id/model"
+        android:layout_alignLeft="@id/model"
+        android:layout_alignStart="@id/model" />
 
     <com.logbook.logbookapp.AutoHideKeyboardEditText
         android:layout_width="@dimen/text_box_width"

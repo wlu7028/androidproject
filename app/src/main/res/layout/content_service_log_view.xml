@@ -131,7 +131,6 @@
         android:id="@+id/rcyList"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_gravity="bottom"
         android:scrollbars="horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/viewServiceTag"
@@ -139,17 +138,6 @@
 
 
 
-    <!-- This initially-hidden ImageView will hold the expanded/zoomed version of
-         the images above. Without transformations applied, it takes up the entire
-         screen. To achieve the "zoom" animation, this view's bounds are animated
-         from the bounds of the thumbnail button above, to its final laid-out
-         bounds.
-         -->
-    <ImageView
-        android:id="@+id/expanded_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:contentDescription="zoom view of picture" />
+
 
 </RelativeLayout>

@@ -122,6 +122,7 @@
             android:layout_height="50dp"
             android:id="@+id/saveServiceCategories"
             android:hint="Categories"
+            android:inputType="none"
             android:layout_centerVertical="true"
             android:onClick="showServiceCategoriesSelection"
             android:background="@drawable/edittextstyle"/>

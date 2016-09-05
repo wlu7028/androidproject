@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class AddAVehicle extends AppCompatActivity  {
 
-    Spinner spinner1,spinner2,spinner3;
+    Spinner spinner1,spinner2;
     String carPicFileName = "";
     ImageButton carPicButton;
     Bitmap changeVehicleIcon= null;
@@ -44,7 +44,7 @@ public class AddAVehicle extends AppCompatActivity  {
     private EditText Vin;
     private Button getOCRButton;
     private String ocrResult,ocrTempFileLocation;
-    ArrayAdapter<CharSequence> adapter1,adapter2,adapter3;
+    ArrayAdapter<CharSequence> adapter1,adapter2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +66,6 @@ public class AddAVehicle extends AppCompatActivity  {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
-        spinner3 = (Spinner) findViewById(R.id.trim);
-        adapter3 = ArrayAdapter.createFromResource(this,
-                R.array.car_trim, android.R.layout.simple_spinner_item);
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner3.setAdapter(adapter3);
 
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parentView,

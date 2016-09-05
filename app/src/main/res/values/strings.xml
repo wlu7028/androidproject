@@ -14,11 +14,9 @@
         <item>Lexus</item>
         <item>Acura</item>
         <item>Audi</item>
+        <item>Volvo</item>
     </string-array>
 
-    <string-array name="car_trim">
-        <item>Trim</item>
-    </string-array>
 
     <string-array name="car_model">
         <item>Model</item>

@@ -15,6 +15,7 @@ public interface  AppConstant{
     int SWITCH_SERVICE_CATELOG = 102;
     int OCR_TIMEOUT = 15;
     int CONNECTION_TIME_OUT = 10000;
+    int VERTICAL_ITEM_SPACE = 5;
 
 
     enum AppEnum {
