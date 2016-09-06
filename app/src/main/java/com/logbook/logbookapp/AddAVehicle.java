@@ -93,10 +93,11 @@ public class AddAVehicle extends AppCompatActivity  {
             }
         });
         Vin = (EditText) findViewById(R.id.vin);
+
         Vin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setMessage("Choose way of data entry: take a photo or enter manually");
                 builder.setCancelable(true);
 
@@ -211,7 +212,6 @@ public class AddAVehicle extends AppCompatActivity  {
         CarObject carObj = new CarObject();
         carObj.setCarMaker(((Spinner) findViewById(R.id.maker)).getSelectedItem().toString());
         carObj.setCarModel(((Spinner) findViewById(R.id.model)).getSelectedItem().toString());
-        carObj.setCarTrim(((Spinner) findViewById(R.id.trim)).getSelectedItem().toString());
         carObj.setCarYear(((EditText) findViewById(R.id.year)).getText().toString());
         carObj.setCarLicensePlateNumber(((EditText) findViewById(R.id.licenseplatenumber)).getText().toString());
         carObj.setCarVIN(((EditText) findViewById(R.id.vin)).getText().toString());

@@ -104,7 +104,7 @@ public class EditVehicle extends AppCompatActivity {
         editVin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setMessage("Choose way of data entry: take a photo or enter manually");
                 builder.setCancelable(true);
 
@@ -224,7 +224,6 @@ public class EditVehicle extends AppCompatActivity {
     public void saveVehicle(View view){
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarMaker(((Spinner) findViewById(R.id.editmaker)).getSelectedItem().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarModel(((Spinner) findViewById(R.id.editmodel)).getSelectedItem().toString());
-        ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarTrim(((Spinner) findViewById(R.id.edittrim)).getSelectedItem().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarYear(((EditText) findViewById(R.id.edityear)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarLicensePlateNumber(((EditText) findViewById(R.id.editlicenseplatenumber)).getText().toString());
         ReadSaveDataUtility.vehicleObjects.get(rowPosition).setCarVIN(((EditText) findViewById(R.id.editvin)).getText().toString());
