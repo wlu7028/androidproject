@@ -100,7 +100,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
         }
 
         // Load the high-resolution "zoomed-in" image.
-        final ImageView expandedImageView = (ImageView) thumbView.findViewById(
+        final ImageView expandedImageView = (ImageView) ((View)thumbView.getParent()).findViewById(
                 R.id.service_log_expanded_attachment);
         expandedImageView.setImageBitmap(image);
 

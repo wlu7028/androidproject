@@ -193,7 +193,8 @@ public class EditServiceLog extends AppCompatActivity {
             }
         } else {
             // result is not ok
-            receiptFileLocations.remove(receiptFileLocations.size() - 1);
+            if(!receiptFileLocations.isEmpty())
+                receiptFileLocations.remove(receiptFileLocations.size() - 1);
             Log.d("cancel", "return code is not ok");
         }
     }
