@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -55,6 +56,14 @@ public class AddServiceLog extends AppCompatActivity {
         setDateTimeField();
         serviceCategories = (EditText) findViewById(R.id.saveServiceCategories);
         serviceCategories.setInputType(InputType.TYPE_NULL);
+        serviceCategories.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(MotionEvent.ACTION_UP == event.getAction())
+                    showServiceCategoriesSelection();
+                return true;
+            }
+        });
         TextView vehicleName = (TextView) findViewById(R.id.saveServiceVehicleName);
         StringBuilder strBuilder = new StringBuilder(100);
         strBuilder.append(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker());
@@ -122,7 +131,7 @@ public class AddServiceLog extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void showServiceCategoriesSelection(View view){
+    private void showServiceCategoriesSelection(){
         Intent startServiceCategoriesSelection = new Intent(this,ServiceCategories.class);
         startServiceCategoriesSelection.putExtra("setcheckbox", setCheckBox);
         startActivityForResult(startServiceCategoriesSelection, AppConstant.SWITCH_SERVICE_CATELOG, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());

@@ -6,12 +6,20 @@ import android.widget.Spinner;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by me on 8/12/2016.
@@ -68,4 +76,33 @@ public class Utilities {
         );
         return image;
     }
+
+    public static Map<String, List<String>> parseVehicleMakersModels(InputStream is) {
+        Map<String,List<String>> vehicleMakerModelMap = new TreeMap<>();
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            List<String> models = new LinkedList<>();
+            while ((line = reader.readLine()) != null) {
+                if(line.length() > 0 )
+                    models.add(line);
+                else{
+                    vehicleMakerModelMap.put(models.remove(0),models) ;
+                    models = new LinkedList<>();
+                }
+            }
+            vehicleMakerModelMap.put(models.remove(0),models) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return vehicleMakerModelMap;
+    }
+
+
 }

@@ -1,6 +1,5 @@
 package com.logbook.logbookapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -29,6 +28,7 @@ import android.widget.Spinner;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -41,10 +41,9 @@ public class AddAVehicle extends AppCompatActivity  {
     Bitmap changeVehicleIcon= null;
     private boolean ocrPhotoCompleted = false;
     private ProgressDialog pd;
-    private EditText Vin;
     private Button getOCRButton;
     private String ocrResult,ocrTempFileLocation;
-    ArrayAdapter<CharSequence> adapter1,adapter2;
+    ArrayAdapter<String> adapter1,adapter2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +52,18 @@ public class AddAVehicle extends AppCompatActivity  {
         toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
 
+        final Map<String, List<String>> vehicleMakerModelMap = Utilities.parseVehicleMakersModels(getResources().openRawResource(R.raw.vehicle_makers_models));
+
         carPicButton = (ImageButton) findViewById(R.id.vehiclePicButton);
         spinner1 = (Spinner) findViewById(R.id.maker);
-        adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.car_maker, android.R.layout.simple_spinner_item);
+        adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                vehicleMakerModelMap.keySet().toArray(new String[vehicleMakerModelMap.keySet().size()]));
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
 
         spinner2 = (Spinner) findViewById(R.id.model);
-        adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.car_model, android.R.layout.simple_spinner_item);
+        adapter2 =  new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.car_model));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
 
@@ -71,20 +72,8 @@ public class AddAVehicle extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
                 String carModel = parentView.getItemAtPosition(position).toString();
-                switch (carModel) {
-                    case "Honda":
-                        adapter2 = ArrayAdapter.createFromResource(AddAVehicle.this,
-                                R.array.honda_model, android.R.layout.simple_spinner_item);
-                        break;
-                    case "Toyota":
-                        adapter2 = ArrayAdapter.createFromResource(AddAVehicle.this,
-                                R.array.toyota_model, android.R.layout.simple_spinner_item);
-                        break;
-                    default:
-                        adapter2 = ArrayAdapter.createFromResource(AddAVehicle.this,
-                                R.array.car_model, android.R.layout.simple_spinner_item);
-                        break;
-                }
+                adapter2 =  new ArrayAdapter<>(selectedItemView.getContext(), android.R.layout.simple_spinner_item,
+                        vehicleMakerModelMap.get(carModel) );
 
                 spinner2.setAdapter(adapter2);
             }
@@ -92,71 +81,9 @@ public class AddAVehicle extends AppCompatActivity  {
             public void onNothingSelected(AdapterView<?> arg0) {// do nothing
             }
         });
-        Vin = (EditText) findViewById(R.id.vin);
 
-        Vin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Choose way of data entry: take a photo or enter manually");
-                builder.setCancelable(true);
 
-                builder.setPositiveButton(
-                        "Take a photo of VIN",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
-                                    @Override
-                                    protected void onPreExecute() {
-                                        pd = new ProgressDialog(AddAVehicle.this);
-                                        pd.setTitle("Processing OCR...");
-                                        pd.setMessage("Please wait.");
-                                        pd.setCancelable(false);
-                                        pd.setIndeterminate(true);
-                                        pd.show();
-                                        getOCRPhoto();
-                                    }
-
-                                    @Override
-                                    protected Void doInBackground(Void... arg0) {
-                                        int tried = 0;
-                                        try {
-                                            while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
-                                                Thread.sleep(2000);
-                                            }
-                                            Thread.sleep(2000);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        return null;
-                                    }
-
-                                    @Override
-                                    protected void onPostExecute(Void result) {
-                                        if (pd != null) {
-                                            pd.dismiss();
-                                            getOCRButton.setEnabled(true);
-                                        }
-                                    }
-
-                                };
-                                task.execute((Void[]) null);
-                            }
-                        });
-
-                builder.setNegativeButton(
-                        "Enter manually",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert1 = builder.create();
-                alert1.show();
-            }
-        });
         getOCRButton = (Button) findViewById(R.id.getOCRAddV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override

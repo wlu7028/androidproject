@@ -24,6 +24,7 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -32,7 +33,7 @@ public class EditVehicle extends AppCompatActivity {
     ImageButton carPicButton;
     EditText editVin;
     Bitmap changeVehicleIcon= null;
-    ArrayAdapter<CharSequence> adapter1,adapter2;
+    ArrayAdapter<String> adapter1,adapter2;
     int rowPosition;
     private ProgressDialog pd;
     private  Button getOCRButton;
@@ -46,6 +47,8 @@ public class EditVehicle extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(AppConstant.AppEnum.APPTITLE.getText());
         setSupportActionBar(toolbar);
+        final Map<String, List<String>> vehicleMakerModelMap = Utilities.parseVehicleMakersModels(getResources().openRawResource(R.raw.vehicle_makers_models));
+
         rowPosition = getIntent().getExtras().getInt("rowPosition");
 
         carPicButton = (ImageButton) findViewById(R.id.editVehicleIconButton);
@@ -56,15 +59,15 @@ public class EditVehicle extends AppCompatActivity {
                     ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarPicFileLocation() ));
         }
         spinner1 = (Spinner) findViewById(R.id.editmaker);
-        adapter1 = ArrayAdapter.createFromResource(this,
-                R.array.car_maker, android.R.layout.simple_spinner_item);
+        adapter1 = adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                vehicleMakerModelMap.keySet().toArray(new String[vehicleMakerModelMap.keySet().size()]));
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter1);
         spinner1.setSelection(getIndex(spinner1, ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarMaker()));
 
         spinner2 = (Spinner) findViewById(R.id.editmodel);
-        adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.car_model, android.R.layout.simple_spinner_item);
+        adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                getResources().getStringArray(R.array.car_model));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter2);
         spinner2.setSelection(getIndex(spinner2, ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarModel()));
@@ -73,20 +76,8 @@ public class EditVehicle extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView,
                                        View selectedItemView, int position, long id) {
                 String carModel = parentView.getItemAtPosition(position).toString();
-                switch (carModel) {
-                    case "Honda":
-                        adapter2 = ArrayAdapter.createFromResource(EditVehicle.this,
-                                R.array.honda_model, android.R.layout.simple_spinner_item);
-                        break;
-                    case "Toyota":
-                        adapter2 = ArrayAdapter.createFromResource(EditVehicle.this,
-                                R.array.toyota_model, android.R.layout.simple_spinner_item);
-                        break;
-                    default:
-                        adapter2 = ArrayAdapter.createFromResource(EditVehicle.this,
-                                R.array.car_model, android.R.layout.simple_spinner_item);
-                        break;
-                }
+                adapter2 =  new ArrayAdapter<>(selectedItemView.getContext(), android.R.layout.simple_spinner_item,
+                        vehicleMakerModelMap.get(carModel) );
 
                 spinner2.setAdapter(adapter2);
             }

@@ -1,0 +1,692 @@
+Acura
+ILX
+MDX
+NSX
+RDX
+RLX
+RLX Hybrid
+TLX
+
+Alfa Romeo
+4C Coupe
+4C Convertible
+
+Aston Martin
+DB9
+DB9 Coupe
+DB9 Convertible
+DB9 GT Coupe
+DB9 GT Convertible
+Rapide Seden
+V12 Vantage S Coupe
+V12 Vantage S Convertible
+V8 Vantage Coupe
+V8 Vantage Convertible
+Vanquish Coupe
+Vanquish Convertible
+
+Audi
+A3 Seden
+A3 Convertible
+A3 e-tron
+A3 Diesel
+A4
+A4 allroad
+A5 Coupe
+A5 Convertible
+A6
+A6 Diesel
+A7
+A7 diesel
+A8
+A8 diesel
+allroad
+Q3
+Q5
+Q5 Hybrid
+Q5 Diesel
+A5
+Q7
+A7 Diesel
+R8
+RS 5
+RS 7
+S3
+S4
+S5
+S6
+S7
+S8
+SQ5
+TT
+TTS
+
+Bentley
+Bentayga
+Continental GT V8S
+Continental GT Speed
+Continental GT Coupe
+Continental GT Convertible
+Continental GT3-R Coupe
+Flying Spur Sedan
+Mulsanne Speed
+Mulsanne Sedan
+
+BMW
+2 Series Convertible
+2 Series Coupe
+228
+230
+3 Series Sedan
+3 Series Hybrid
+3 Series Diesel
+3 Series eDrive Sedan
+3 Series Gran Turismo
+320
+328
+328 Gran Turismo
+328d
+330
+330 Gran Turismo
+330e
+335
+335 Gran Turismo
+M3
+4 Series
+4 Series Convertible
+4 Series Coupe
+4 Series Gran Turismo
+428
+428 Gran Coupe
+430
+430 Gran Coupe
+440
+440 Gran Coupe
+M4
+5 Series
+5 Series Sedan
+5 Series Diesel
+5 Series Gran Turismo
+528
+535
+535 Gran Turismo
+535d
+550
+550 Gran Turismo
+M5
+6 Series
+6 Series Coupe
+6 Series Convertible
+6 Series Gran Turismo
+640
+650
+650 Gran Turismo
+M6
+7 Series
+7 Series Sedan
+7 Diesel
+740
+740e
+750
+760
+Alpina B7
+ActiveHybrid 3
+ActiveHybrid 5
+ActiveHybrid 7
+ALPINA B6 Gran Coupe
+ALPINA B7 Sedan
+i3
+i8
+M-Series
+M2
+M235
+M240
+M3
+M4
+M5
+M6
+M6 Convertible
+M6 Gran Coupe
+X-Series
+X1
+X3
+X4
+X5
+X5 Diesel
+X5 eDrive
+X5 M
+X6
+X6 M
+Z4 Convertible
+
+Buick
+Cascada
+Enclave
+Encore
+Envision
+LaCrosse
+LaCrosse Hybrid
+Regal
+Verano
+
+Cadillac
+ATS Sedan
+ATS Coupe
+ATS-V Sedan
+ATS-V Coupe
+CT6
+CTS
+CTS-V
+ELR
+Escalade
+Escalade ESV
+SRX
+XT5 SUV
+XTS Sedan
+
+Chevrolet
+Bolt
+Camaro
+City Express
+Colorado
+Corvette
+Cruze
+Cruze Limited
+Equinox
+Express Vans
+Express 1500
+Express 2500
+Express 3500
+Impala
+Malibu
+Malibu Hybrid
+Malibu Limited
+Silverado
+SS
+Sonic
+Spark
+Suburban
+Tahoe
+Traverse
+Trax
+Volt
+
+Chrysler
+200
+300
+300C
+Pacifica
+Town and Country
+
+Dodge
+Challenger
+Charger
+Dart
+Durango
+Grand Caravan
+Journey
+SRT Viper
+Viper Coupe
+
+Ferrari
+458 Italia
+458 Speciale
+458 Spider
+458 GTB
+California
+F1 Berlinetta
+FF Coupe
+
+FIAT
+124 Spider
+500
+500 Convertible
+500 Hatchback
+500 C Abarth
+500 Wagon
+500e
+500L Wagon
+500X SUV
+
+Ford
+C-Max Energi
+C-Max Hybrid
+Edge
+Escape
+Expedition
+Expedition EL
+Explorer
+F - Series
+F-150
+F-150 SuperCrew
+F-150 SuperCab
+F-150 Regular
+F-250
+F-350
+F-450
+Fiesta
+Flex
+Focus
+Focus Electric
+Focus RS
+Focus ST
+Fusion
+Fusion Energi
+Fusion Hybrid
+GT Coupe
+Mustang
+Shelby GT350
+Shelby GT500
+Taurus
+Transit Connecct
+Transit-150
+Transit-250
+Transit-350
+
+GMC
+Acadia
+Acadia Limited
+Canyon
+Savana Vans
+Savana Cargo Diesel
+Savana Cargo
+Sierra Trucks
+Sierra 1500
+Sierra 2500
+Sierra 3500
+Terrain
+Yukon
+Yukon XL
+
+Honda
+Accord Seden
+Accord Coupe
+Accord Hybrid
+Civic
+Civic Seden
+Civic Hatchback
+Civic Coupe
+Civic Hybrid
+Civic Natual Gas
+Civic Si
+Civic Si with Summer Tires
+Clarity Sedan
+CR-V
+CR-Z
+Crosstour
+Fit
+HR-V
+Odyssey
+Pilot
+Ridgeline
+
+Hyundai
+Accent
+Azera
+Elantra
+Elantra GT
+Equus
+Genesis Sedan
+Genesis Coupe
+Santa Fe
+Santa Fe Sport
+Sonata
+Sonata Hybrid
+Sonata Plug-In Hybrid
+Tucson
+Veloster
+
+Infiniti
+Q40
+Q50
+Q50 Hybrid
+Q60 Convertible
+Q60 IPL
+Q60 Coupe
+Q70 Sedan
+Q70 Hybrid
+Q70L
+QX
+QX30
+QX50
+QX60
+QX60 Hybrid
+QX70
+QX80
+
+Jaguar
+F-PACE
+F-PACE Diesel
+F-TYPE Coupe
+F-TYPE Convertible
+F-TYPE SVR
+F-TYPE R
+F-TYPE Project 7
+XE Sedan
+XE Diesel
+XF Diesel
+XF Sedan
+XF XFR
+XF XFR-S
+XJ
+XJ Sedan
+XJ XJR LWB
+XJ XJR
+XK
+XK Covertible
+XK Coupe
+XK XKR-S
+XK XKR
+
+Jeep
+Cherokee
+Compass
+Grand Cherokee
+Grand Cherokee Diesel
+Grand Cherokee SRT
+Patriot
+Renegade
+Wrangler
+Wrangler Unlimited
+
+Kia
+Cadenza
+Forte Sedan
+Forte Coup
+Forte Hashback
+K900
+Niro
+Optima
+Optima Hybrid
+Rio Sedan
+Rio Hatchback
+Sedona
+Sorento
+Soul
+Soul EV
+Sportage
+
+Lamborghini
+Aventador Coupe
+Aventador Convertible
+Huracan Coupe
+Huracan Convertible
+
+Land Rover
+Discovery Sport
+LR2
+LR4
+Range Rover Diesel
+Range Rover
+Range Rover SV Autobiography LWB
+Range Rover Evoque
+Range Rover Sport
+Range Rover Sport Diesel
+
+Lexus
+CT 200h
+ES
+ES 300h
+ES 350
+GS
+GS 200t
+GS 350
+GS 450h
+GS F
+GX 460
+IS
+IS 200t
+IS 250
+IS 250C
+IS 300
+IS 350
+IS 350C
+LS
+LC 500
+LS 460
+LS 600h L
+LX 570
+NX 200t
+NX 300h
+RC 200t
+RC 300
+RC 350
+RC F
+RX
+RX 350
+RX 450h
+
+Lincoln
+MKC SUV
+MKS Sedan
+MKT Wagon
+MKX
+MKZ Sedan
+MKZ Hybrid
+Navigator
+Navigator L
+
+Maserati
+Ghibli
+GranTurismo
+GranTurismo Coupe
+GranTurismo MC Centennial
+GranTurismo Coupe
+GranTurismo MC
+GranTurismo Convertible
+GranTurismo Convertible MC
+Levante SUV
+Quattroporte GTS GranSport
+Quattroporte GTS GranLusso
+Quattroporte GTS
+Quattroporte Sedan
+
+Mazda
+CX-3
+CX-5
+CX-9
+Mazda 3
+Mazda 5
+Mazda 6
+MX-5 Miata
+
+Mercedes-Benz
+AMG C
+AMG CLA
+AMG CLS
+AMG E
+AMG G
+AMG GL
+AMG GLA
+AMG GLE
+AMG GLS
+AMG GT
+AMG S
+AMG SL
+AMG SLC
+AMG SLK
+B-Class
+B-Class Electric Drive
+C-Class
+CLA
+CLS
+E-Class
+G-Class
+GL-Class
+GLA
+GLC
+GLE
+GLK
+GLS
+Maybach S
+Metris
+S-Class
+SLC
+SLK
+SLS AMG
+Sprinter
+
+MINI
+Clubman
+Convertible
+Countryman
+Coupe
+Hardtop
+Paceman
+Roadster
+
+Mitsubishi
+i-MiEV
+Lancer
+Lancer Evolution
+Mirage
+Mirage G4
+Outlander
+Outlander Sport
+
+Nissan
+370Z
+Altima
+Armada
+Frontier
+GT-R
+Juke
+Leaf
+Maxima
+Murano
+Murano Hybrid
+NV Vans
+NV Cargo NV1500
+NV Cargo NV2500
+NV Cargo NV3500
+NV Passenger NV3500 HD
+NV200
+Pathfinder
+Quest
+Rogue
+Rogue Hybrid
+Sentra
+Titan
+Titan XD
+ Versa
+Versa Note
+Xterra
+
+Porsche
+718 Boxster
+911
+918 Spyder
+Boxster
+Cayenne
+Cayenne E-Hybrid
+Cayman
+Macan
+Panamera
+Panamera e-Hybrid
+
+Rolls-Royce
+Dawn
+Ghost
+Phantom
+Phantom COupe
+Phantom Drophead Coupe
+Wraith
+
+Ram
+1500
+2500
+3500
+CV Tradesman
+Promaster
+
+Scion
+FR-S
+iA
+iM
+iQ
+tC
+xB
+
+Smart
+ForTwo
+ForTwo Electric Drive
+
+Subaru
+BRZ
+Crosstrek
+Corsstrek Hybrid
+Forester
+Impreza
+Legacy
+Outback
+WRX
+WRX STI
+XV Crosstrek
+XV Crosstrek Hybrid
+
+Tesla
+Model 3
+Model S
+Model X
+
+Toyota
+4Runner
+86 Coupe
+Avalon
+Avalon Hybrid
+C-HR
+Camry
+Camry Hybrid
+Corolla
+Corolla iM
+Highlander
+Highlander Hybrid
+Land Curiser
+Mirai
+Prius
+Prius c
+Prius Plug-in
+Prius v
+RAV4
+RAV4 Hybrid
+Sequoia
+Sienna
+Tocama
+Tundra
+Venza
+Yaris
+Yaris iA
+
+Volkswagen
+Beetle
+CC Sedan
+CrossBlue SUV
+e-Golf
+Eos
+Golf
+Golf Diesel
+Golf GTI
+Golf R
+Golf SportWagen
+Jetta
+Jetta Hybrid
+Passat
+Tiguan
+Touareg
+Touareg Diesel
+Touareg Hybrid
+
+Volvo
+S60
+S60 T6 Polestar
+S60 T6 R-Design
+S60 Cross Country
+S60 Inscription
+S80
+S90
+V60
+V60 Polestar
+XC60
+XC70
+XC90
+XC90 Hybrid

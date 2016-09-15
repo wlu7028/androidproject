@@ -60,72 +60,192 @@
             android:foregroundGravity="right" />
 
     </android.support.v7.widget.Toolbar>
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Vehicle"
-        android:id="@+id/viewServiceVehicleName"
-        android:layout_below="@+id/servicelogviewtoolbar"
-        android:layout_centerHorizontal="true"
-        style="@style/CustomEditTextStyle" />
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Vehicle:"
+        android:id="@+id/viewServiceLogVehicleNameLabel"
+        android:layout_alignStart="@+id/viewServiceVehicleName"
+        android:layout_below="@+id/servicelogviewtoolbar" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="Vehicle"
+        android:id="@+id/viewServiceVehicleName"
+        android:layout_below="@+id/viewServiceLogVehicleNameLabel"
+        android:layout_centerHorizontal="true"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+         />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewServiceVehicleName"
+        android:layout_alignStart="@+id/viewServiceVehicleName"
+        android:layout_below="@+id/viewServiceVehicleName"
+        android:layout_alignRight="@+id/viewServiceVehicleName"
+        android:layout_alignEnd="@+id/viewServiceVehicleName"
+        android:id="@+id/viewServiceLogVehicleNameDivider" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Date:"
+        android:id="@+id/viewServiceLogDateLabel"
+        android:layout_alignStart="@+id/viewServiceLogVehicleNameDivider"
+        android:layout_below="@+id/viewServiceLogVehicleNameDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:id="@+id/viewServiceDatePicker"
         android:text="datepicker"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/viewServiceVehicleName"
-        android:layout_alignLeft="@id/viewServiceVehicleName"
-        android:layout_alignStart="@id/viewServiceVehicleName"
-        style="@style/CustomEditTextStyle"/>
+        android:layout_below="@id/viewServiceLogDateLabel"
+        android:layout_alignLeft="@id/viewServiceLogDateLabel"
+        android:layout_alignStart="@id/viewServiceLogDateLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"/>
 
 
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewServiceDatePicker"
+        android:layout_alignStart="@+id/viewServiceDatePicker"
+        android:layout_below="@+id/viewServiceDatePicker"
+        android:layout_alignRight="@+id/viewServiceDatePicker"
+        android:layout_alignEnd="@+id/viewServiceDatePicker"
+        android:id="@+id/viewServiceLogDateDivider" />
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Date:"
+        android:id="@+id/viewServiceLogCostLabel"
+        android:layout_alignStart="@+id/viewServiceLogDateDivider"
+        android:layout_below="@+id/viewServiceLogDateDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:id="@+id/viewServiceCost"
         android:text="Service cost"
         android:inputType="numberDecimal"
-        android:layout_below="@id/viewServiceDatePicker"
-        android:layout_alignLeft="@id/viewServiceDatePicker"
-        android:layout_alignStart="@id/viewServiceDatePicker"
-        style="@style/CustomEditTextStyle"/>
+        android:layout_below="@id/viewServiceLogCostLabel"
+        android:layout_alignLeft="@id/viewServiceLogCostLabel"
+        android:layout_alignStart="@id/viewServiceLogCostLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"/>
 
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:id="@+id/viewServiceCategories"
-        android:text="Categories"
-        android:layout_centerVertical="true"
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
         android:layout_alignLeft="@+id/viewServiceCost"
         android:layout_alignStart="@+id/viewServiceCost"
-        style="@style/CustomEditTextStyle"/>
-
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:id="@+id/viewServiceOdometer"
-            android:text="Odometer reading"
-            android:inputType="numberDecimal"
-            android:layout_below="@id/viewServiceCategories"
-            android:layout_alignLeft="@id/viewServiceCategories"
-            android:layout_alignStart="@id/viewServiceCategories"
-            style="@style/CustomEditTextStyle"/>
-
+        android:layout_below="@+id/viewServiceCost"
+        android:layout_alignRight="@+id/viewServiceCost"
+        android:layout_alignEnd="@+id/viewServiceCost"
+        android:id="@+id/viewServiceLogCostDivider" />
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Categories:"
+        android:id="@+id/viewServiceLogCategoriesLabel"
+        android:layout_alignStart="@+id/viewServiceLogCostDivider"
+        android:layout_below="@+id/viewServiceLogCostDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:id="@+id/viewServiceCategories"
+        android:text="Categories"
+        android:layout_below="@id/viewServiceLogCategoriesLabel"
+        android:layout_alignLeft="@+id/viewServiceLogCategoriesLabel"
+        android:layout_alignStart="@+id/viewServiceLogCategoriesLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"/>
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewServiceCategories"
+        android:layout_alignStart="@+id/viewServiceCategories"
+        android:layout_below="@+id/viewServiceCategories"
+        android:layout_alignRight="@+id/viewServiceCategories"
+        android:layout_alignEnd="@+id/viewServiceCategories"
+        android:id="@+id/viewServiceLogCategoriesDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Odometer:"
+        android:id="@+id/viewServiceLogOdometerLabel"
+        android:layout_alignStart="@+id/viewServiceLogCategoriesDivider"
+        android:layout_below="@+id/viewServiceLogCategoriesDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:id="@+id/viewServiceOdometer"
+        android:text="Odometer reading"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/viewServiceLogOdometerLabel"
+        android:layout_alignLeft="@id/viewServiceLogOdometerLabel"
+        android:layout_alignStart="@id/viewServiceLogOdometerLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"/>
+
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewServiceOdometer"
+        android:layout_alignStart="@+id/viewServiceOdometer"
+        android:layout_below="@+id/viewServiceOdometer"
+        android:layout_alignRight="@+id/viewServiceOdometer"
+        android:layout_alignEnd="@+id/viewServiceOdometer"
+        android:id="@+id/viewServiceLogOdometerDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Odometer:"
+        android:id="@+id/viewServiceLogTagLabel"
+        android:layout_alignStart="@+id/viewServiceLogOdometerDivider"
+        android:layout_below="@+id/viewServiceLogOdometerDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:id="@+id/viewServiceTag"
         android:text="Tag"
-        android:layout_below="@id/viewServiceOdometer"
-        android:layout_alignLeft="@id/viewServiceOdometer"
-        android:layout_alignStart="@id/viewServiceOdometer"
-        style="@style/CustomEditTextStyle"/>
+        android:layout_below="@id/viewServiceLogTagLabel"
+        android:layout_alignLeft="@id/viewServiceLogTagLabel"
+        android:layout_alignStart="@id/viewServiceLogTagLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"/>
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewServiceTag"
+        android:layout_alignStart="@+id/viewServiceTag"
+        android:layout_below="@+id/viewServiceTag"
+        android:layout_alignRight="@+id/viewServiceTag"
+        android:layout_alignEnd="@+id/viewServiceTag"
+        android:id="@+id/viewServiceLogTagDivider" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcyList"
@@ -133,8 +253,9 @@
         android:layout_height="70dp"
         android:scrollbars="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/viewServiceTag"
-        android:layout_alignStart="@+id/viewServiceTag" />
+        android:layout_below="@+id/viewServiceLogTagDivider"
+        android:layout_alignLeft="@+id/viewServiceLogTagDivider"
+        android:layout_alignStart="@+id/viewServiceLogTagDivider" />
 
 
 

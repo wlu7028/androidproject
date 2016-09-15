@@ -93,7 +93,7 @@
             android:layout_below="@id/editServiceVehicleName"
             android:layout_centerHorizontal="true"
             android:onClick="showDatePickerDialog"
-            android:background="@drawable/edittextstyle"
+            
             android:gravity="center_vertical"/>
 
 
@@ -111,7 +111,7 @@
             android:id="@+id/editServiceCost"
             android:hint="Service cost"
             android:inputType="numberDecimal"
-            android:background="@drawable/edittextstyle"
+            
             android:gravity="center_vertical"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -130,8 +130,7 @@
             android:id="@+id/editServiceCategories"
             android:hint="Categories"
             android:layout_centerVertical="true"
-            android:onClick="showServiceCategoriesSelection"
-            android:background="@drawable/edittextstyle"
+            
             android:gravity="center_vertical"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -155,7 +154,7 @@
             android:layout_below="@id/editServiceCategories"
             android:layout_alignLeft="@id/editServiceCategories"
             android:layout_alignStart="@id/editServiceCategories"
-            android:background="@drawable/edittextstyle"
+            
             android:gravity="center_vertical"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -174,7 +173,7 @@
             android:layout_height="50dp"
             android:id="@+id/editServiceTag"
             android:hint="Tag"
-            android:background="@drawable/edittextstyle"
+            
             android:gravity="center_vertical"/>
 
     </android.support.design.widget.TextInputLayout>

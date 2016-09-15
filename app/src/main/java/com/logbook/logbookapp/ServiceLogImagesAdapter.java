@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,24 +43,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
 
 
         CustomViewHolder viewHolder = new CustomViewHolder(view);
-    /*final Animation a = AnimationUtils.loadAnimation(mContext, R.anim.scale_up);*/
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // You can tweak with the effects here
-//                if (animatedView == null) {
-//                    animatedView = view;
-//                } else {
-//                    animatedView.setAnimation(null);
-//                    animatedView = view;
-//                }
-//                ScaleAnimation fade_in = new ScaleAnimation(1f, 1.3f, 1f, 1.3f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//                fade_in.setDuration(100);     // animation duration in milliseconds
-//                fade_in.setFillAfter(true);    // If fillAfter is true, the transformation that this animation performed will persist when it is finished.
-//                view.startAnimation(fade_in);
-//
-//            }
-//        });
+
         return viewHolder;
     }
 
@@ -100,8 +84,11 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
         }
 
         // Load the high-resolution "zoomed-in" image.
+        Log.d("ParentViewName",((View)thumbView.getParent()).getResources().getResourceEntryName(((View)thumbView.getParent()).getId()));
+        Log.d("ViewName",thumbView.getResources().getResourceEntryName(thumbView.getId()));
         final ImageView expandedImageView = (ImageView) ((View)thumbView.getParent()).findViewById(
                 R.id.service_log_expanded_attachment);
+        Log.d("ViewName",((View)thumbView.getParent()).getResources().getResourceEntryName(((View)thumbView.getParent()).getId()));
         expandedImageView.setImageBitmap(image);
 
         // Calculate the starting and ending bounds for the zoomed-in image.

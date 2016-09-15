@@ -93,49 +93,83 @@
         android:layout_toEndOf="@id/editVehicleIconButton" />
 
 
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editVehicleYearTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@+id/editmodel"
+        android:layout_alignLeft="@+id/editmodel"
+        android:layout_alignStart="@+id/editmodel">
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="@dimen/text_box_width"
-        android:layout_height="@dimen/text_box_height"
-        android:id="@+id/edityear"
-        android:hint="Year"
-        android:inputType="number"
-        android:background="@drawable/edittextstyle"
-        android:layout_below="@id/editmodel"
-        android:layout_alignLeft="@id/editmodel"
-        android:layout_alignStart="@id/editmodel" />
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="@dimen/text_box_width"
+            android:layout_height="@dimen/text_box_height"
+            android:id="@+id/edityear"
+            android:hint="Year"
+            android:inputType="number" />
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="@dimen/text_box_width"
-        android:layout_height="@dimen/text_box_height"
-        android:id="@+id/editlicenseplatenumber"
-        android:hint="License Plate Number"
-        android:background="@drawable/edittextstyle"
-        android:layout_below="@id/edityear"
-        android:layout_alignLeft="@id/edityear"
-        android:layout_alignStart="@id/edityear"
-        />
+    </android.support.design.widget.TextInputLayout>
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="@dimen/text_box_width"
-        android:layout_height="@dimen/text_box_height"
-        android:id="@+id/editvin"
-        android:hint="VIN"
-        android:background="@drawable/edittextstyle"
-        android:layout_below="@id/editlicenseplatenumber"
-        android:layout_alignLeft="@id/editlicenseplatenumber"
-        android:layout_alignStart="@id/editlicenseplatenumber" />
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editVehicleLicenseTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@id/editVehicleYearTextInputLayout"
+        android:layout_alignLeft="@id/editVehicleYearTextInputLayout"
+        android:layout_alignStart="@id/editVehicleYearTextInputLayout">
 
-    <com.logbook.logbookapp.AutoHideKeyboardEditText
-        android:layout_width="@dimen/text_box_width"
-        android:layout_height="@dimen/text_box_height"
-        android:id="@+id/editodometer"
-        android:hint="Odometer Reading"
-        android:inputType="numberDecimal"
-        android:background="@drawable/edittextstyle"
-        android:layout_below="@id/editvin"
-        android:layout_alignLeft="@id/editvin"
-        android:layout_alignStart="@id/editvin" />
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="@dimen/text_box_width"
+            android:layout_height="@dimen/text_box_height"
+            android:id="@+id/editlicenseplatenumber"
+            android:hint="License Plate Number" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editVehicleVINTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@id/editVehicleLicenseTextInputLayout"
+        android:layout_alignLeft="@id/editVehicleLicenseTextInputLayout"
+        android:layout_alignStart="@id/editVehicleLicenseTextInputLayout">
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="@dimen/text_box_width"
+            android:layout_height="@dimen/text_box_height"
+            android:id="@+id/editvin"
+            android:hint="VIN"  />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/editVehicleOdometerTextInputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/defaultHintColor"
+        android:textColor="@color/defaultHintColor"
+        android:layout_below="@id/editVehicleVINTextInputLayout"
+        android:layout_alignLeft="@id/editVehicleVINTextInputLayout"
+        android:layout_alignStart="@id/editVehicleVINTextInputLayout">
+
+        <com.logbook.logbookapp.AutoHideKeyboardEditText
+            android:layout_width="@dimen/text_box_width"
+            android:layout_height="@dimen/text_box_height"
+            android:id="@+id/editodometer"
+            android:hint="Odometer Reading"
+            android:inputType="numberDecimal"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
 
     <Button
         android:layout_width="wrap_content"
@@ -143,8 +177,8 @@
         android:text="GetVin"
         android:id="@+id/getOCREditV"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_below="@+id/editlicenseplatenumber"
-        android:layout_toRightOf="@+id/editvin"
-        android:layout_toEndOf="@+id/editvin" />
+        android:layout_below="@+id/editVehicleLicenseTextInputLayout"
+        android:layout_toRightOf="@+id/editVehicleVINTextInputLayout"
+        android:layout_toEndOf="@+id/editVehicleVINTextInputLayout" />
 
 </RelativeLayout>

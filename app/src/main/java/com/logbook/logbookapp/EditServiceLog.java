@@ -62,6 +62,14 @@ public class EditServiceLog extends AppCompatActivity {
         setDatePickerDialog();
         serviceCategories = (EditText) findViewById(R.id.editServiceCategories);
         serviceCategories.setInputType(InputType.TYPE_NULL);
+        serviceCategories.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(MotionEvent.ACTION_UP == event.getAction())
+                    showServiceCategoriesSelection();
+                return true;
+            }
+        });
         setValuesToFields();
         mRecyclerView = (RecyclerView) findViewById(R.id.editServiceLogRcyList);
         mRecyclerView.setHasFixedSize(true);
@@ -148,7 +156,7 @@ public class EditServiceLog extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-    public void showServiceCategoriesSelection(View view){
+    private void showServiceCategoriesSelection(){
         Intent startServiceCategoriesSelection = new Intent(this,ServiceCategories.class);
         startServiceCategoriesSelection.putExtra("setcheckbox", setCheckBox);
         startActivityForResult(startServiceCategoriesSelection, AppConstant.SWITCH_SERVICE_CATELOG, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());

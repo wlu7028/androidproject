@@ -74,7 +74,7 @@ public class VehiclesActivity extends AppCompatActivity {
     private void getVehicleMilesAndServiceDate( List<CarObject> carObjList,List<String> displayValues2){
         displayValues2.clear();
         for(int i=0; i< carObjList.size();i++){
-            displayValues2.add(carObjList.get(i).getCarOdometer() +"miles   Last Service Date:");
+            displayValues2.add(carObjList.get(i).getCarOdometer() +" miles   Last Service Date:");
         }
     }
     public void backButton(View view){

@@ -62,75 +62,191 @@
     </android.support.v7.widget.Toolbar>
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Vehicle:"
+        android:id="@+id/viewgaslogvehiclenameLabel"
+        android:layout_alignStart="@+id/viewgaslogvehiclename"
+        android:layout_below="@+id/gaslogviewtoolbar" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Vehicle"
         android:id="@+id/viewgaslogvehiclename"
-        android:layout_below="@id/gaslogviewtoolbar"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/edittextstyle"
-        android:gravity="center_vertical"/>
-
-    <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/viewgaslogdatepicker"
-        android:text="datepicker"
-        android:onClick="showDatePickerDialog"
-        android:layout_below="@id/viewgaslogvehiclename"
-        android:layout_alignLeft="@id/viewgaslogvehiclename"
-        android:layout_alignStart="@id/viewgaslogvehiclename"
+        style="@style/CustomTextView"
         android:gravity="center_vertical"
-        android:background="@drawable/edittextstyle"/>
+        android:layout_below="@+id/viewgaslogvehiclenameLabel"
+        android:layout_centerHorizontal="true" />
 
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgaslogvehiclename"
+        android:layout_alignStart="@+id/viewgaslogvehiclename"
+        android:layout_below="@+id/viewgaslogvehiclename"
+        android:layout_alignRight="@+id/viewgaslogvehiclename"
+        android:layout_alignEnd="@+id/viewgaslogvehiclename"
+        android:id="@+id/viewgaslogvehiclenameDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Date:"
+        android:id="@+id/viewgaslogdateLabel"
+        android:layout_alignStart="@+id/viewgaslogvehiclenameDivider"
+        android:layout_below="@+id/viewgaslogvehiclenameDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:id="@+id/viewgaslogdatepicker"
+        android:text="date"
+        android:onClick="showDatePickerDialog"
+        android:layout_below="@id/viewgaslogdateLabel"
+        android:layout_alignLeft="@id/viewgaslogdateLabel"
+        android:layout_alignStart="@id/viewgaslogdateLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+        />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgaslogdatepicker"
+        android:layout_alignStart="@+id/viewgaslogdatepicker"
+        android:layout_below="@+id/viewgaslogdatepicker"
+        android:layout_alignRight="@+id/viewgaslogdatepicker"
+        android:layout_alignEnd="@+id/viewgaslogdatepicker"
+        android:id="@+id/viewgaslogDateDivider" />
 
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Gallon:"
+        android:id="@+id/viewgaslogGallonLabel"
+        android:layout_alignStart="@+id/viewgaslogDateDivider"
+        android:layout_below="@+id/viewgaslogDateDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:id="@+id/viewgasloggallon"
         android:text="Gallon"
-        android:layout_below="@id/viewgaslogdatepicker"
-        android:layout_alignLeft="@id/viewgaslogdatepicker"
-        android:layout_alignStart="@id/viewgaslogdatepicker"
-        android:background="@drawable/edittextstyle"/>
+        android:layout_below="@id/viewgaslogGallonLabel"
+        android:layout_alignLeft="@id/viewgaslogGallonLabel"
+        android:layout_alignStart="@id/viewgaslogGallonLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+        />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgasloggallon"
+        android:layout_alignStart="@+id/viewgasloggallon"
+        android:layout_below="@+id/viewgasloggallon"
+        android:layout_alignRight="@+id/viewgasloggallon"
+        android:layout_alignEnd="@+id/viewgasloggallon"
+        android:id="@+id/viewgaslogGallonDivider" />
 
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Cost:"
+        android:id="@+id/viewgaslogCostLabel"
+        android:layout_alignStart="@+id/viewgaslogGallonDivider"
+        android:layout_below="@+id/viewgaslogGallonDivider" />
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
         android:id="@+id/viewgaslogtotalcost"
         android:text="Total cost"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@id/viewgasloggallon"
-        android:layout_alignStart="@id/viewgasloggallon"
-        android:background="@drawable/edittextstyle"/>
+        android:layout_below="@id/viewgaslogCostLabel"
+        android:layout_alignLeft="@id/viewgaslogCostLabel"
+        android:layout_alignStart="@id/viewgaslogCostLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+        />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgaslogtotalcost"
+        android:layout_alignStart="@+id/viewgaslogtotalcost"
+        android:layout_below="@+id/viewgaslogtotalcost"
+        android:layout_alignRight="@+id/viewgaslogtotalcost"
+        android:layout_alignEnd="@+id/viewgaslogtotalcost"
+        android:id="@+id/viewgaslogCostDivider" />
 
 
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/viewgaslogodometers"
-            android:text="Odometer reading"
-            android:layout_below="@+id/viewgaslogtotalcost"
-            android:layout_alignLeft="@+id/viewgaslogtotalcost"
-            android:layout_alignStart="@+id/viewgaslogtotalcost"
-            android:background="@drawable/edittextstyle"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Odometer:"
+        android:id="@+id/viewgaslogOdometerLabel"
+        android:layout_alignStart="@+id/viewgaslogCostDivider"
+        android:layout_below="@+id/viewgaslogCostDivider" />
 
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:id="@+id/viewgaslogodometers"
+        android:text="Odometer reading"
+        android:layout_below="@+id/viewgaslogOdometerLabel"
+        android:layout_alignLeft="@+id/viewgaslogOdometerLabel"
+        android:layout_alignStart="@+id/viewgaslogOdometerLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+        />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgaslogodometers"
+        android:layout_alignStart="@+id/viewgaslogodometers"
+        android:layout_below="@+id/viewgaslogodometers"
+        android:layout_alignRight="@+id/viewgaslogodometers"
+        android:layout_alignEnd="@+id/viewgaslogodometers"
+        android:id="@+id/viewgaslogOdometerDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Location:"
+        android:id="@+id/viewgaslogLocationLabel"
+        android:layout_alignStart="@+id/viewgaslogOdometerDivider"
+        android:layout_below="@+id/viewgaslogOdometerDivider" />
 
     <TextView
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/viewgasloglocation"
         android:text="location"
-        android:layout_below="@+id/viewgaslogodometers"
-        android:layout_alignLeft="@+id/viewgaslogodometers"
-        android:layout_alignStart="@+id/viewgaslogodometers"
-        android:background="@drawable/edittextstyle"/>
+        android:layout_below="@+id/viewgaslogLocationLabel"
+        android:layout_alignLeft="@+id/viewgaslogLocationLabel"
+        android:layout_alignStart="@+id/viewgaslogLocationLabel"
+        style="@style/CustomTextView"
+        android:gravity="center_vertical"
+        />
+
+    <View android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="@color/tab_text"
+        android:layout_alignLeft="@+id/viewgasloglocation"
+        android:layout_alignStart="@+id/viewgasloglocation"
+        android:layout_below="@+id/viewgasloglocation"
+        android:layout_alignRight="@+id/viewgasloglocation"
+        android:layout_alignEnd="@+id/viewgasloglocation"
+        android:id="@+id/viewgaslogLocationDivider" />
 
 </RelativeLayout>

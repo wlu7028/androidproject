@@ -72,6 +72,11 @@ public class ServiceCategories extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed(){
+        //super.onBackPressed();
+        backToSelectCategories(getCurrentFocus());
+    }
 
 
 }

@@ -86,7 +86,7 @@
             android:layout_alignLeft="@id/editgaslogvehiclename"
             android:layout_alignStart="@id/editgaslogvehiclename"
             android:gravity="center_vertical"
-            android:background="@drawable/edittextstyle"/>
+            />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/editgasloggallonTextInputLayout"
@@ -104,7 +104,7 @@
             android:id="@+id/editgasloggallon"
             android:hint="Gallon"
             android:inputType="numberDecimal"
-            android:background="@drawable/edittextstyle"/>
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -126,7 +126,7 @@
             android:hint="Total cost"
             android:inputType="numberDecimal"
             android:layout_centerVertical="true"
-            android:background="@drawable/edittextstyle"/>
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -146,7 +146,7 @@
             android:hint="Odometer reading"
             android:inputType="numberDecimal"
 
-            android:background="@drawable/edittextstyle"/>
+            />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -164,7 +164,7 @@
             android:layout_height="50dp"
             android:id="@+id/editgasloglocation"
             android:hint="location"
-            android:background="@drawable/edittextstyle"/>
+            />
 
     </android.support.design.widget.TextInputLayout>
 
