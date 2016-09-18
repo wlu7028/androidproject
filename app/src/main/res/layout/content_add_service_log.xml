@@ -176,6 +176,8 @@
         android:text="Take Screenshot of Service Receipt"
         android:src="@drawable/camera_icon"
         android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:background="#00000000"
         android:id="@+id/AddScreenShotReceipt"
         android:onClick="TakeScreenShotReceipt"
         android:layout_below="@+id/saveServicetagTextInputLayout"

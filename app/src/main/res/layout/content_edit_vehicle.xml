@@ -171,12 +171,15 @@
 
 
 
-    <Button
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:layout_width="80dp"
         android:layout_height="@dimen/text_box_height"
         android:text="GetVin"
+        android:src="@drawable/camera_icon"
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
         android:id="@+id/getOCREditV"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_below="@+id/editVehicleLicenseTextInputLayout"
         android:layout_toRightOf="@+id/editVehicleVINTextInputLayout"
         android:layout_toEndOf="@+id/editVehicleVINTextInputLayout" />

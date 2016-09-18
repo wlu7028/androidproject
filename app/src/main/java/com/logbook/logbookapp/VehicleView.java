@@ -67,15 +67,31 @@ public class VehicleView extends AppCompatActivity {
     }
 
     public void startServiceLogActivity(){
-        Intent intent = new Intent(this,ServiceLog.class);
-        intent.putExtra("rowPosition",rowPosition);
-        startActivity(intent);
+        ReadSaveDataUtility.loadVehicleObjectsFromSharedPreference(this);
+        if(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getServiceLogObjects().size() > 0){
+            Intent intent = new Intent(this,ServiceLog.class);
+            intent.putExtra("rowPosition",rowPosition);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this,AddServiceLog.class);
+            intent.putExtra("rowPosition",rowPosition);
+            startActivity(intent);
+        }
+
     }
 
     public void startGasLogActivity(){
-        Intent intent = new Intent(this,GasLog.class);
-        intent.putExtra("rowPosition",rowPosition);
-        startActivity(intent);
+        ReadSaveDataUtility.loadVehicleObjectsFromSharedPreference(this);
+        if(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getGasLogObjects().size() > 0){
+            Intent intent = new Intent(this,GasLog.class);
+            intent.putExtra("rowPosition",rowPosition);
+            startActivity(intent);
+        }else{
+            Intent intent = new Intent(this, AddGasLog.class);
+            intent.putExtra("rowPosition", rowPosition);
+            startActivity(intent);
+        }
+
     }
 
     public void backToVehicleLists(View view){
