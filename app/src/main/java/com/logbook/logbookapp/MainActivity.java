@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText(AppConstant.VEHICLE_TAB),false);
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_SHOP_TAB));
-        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.OTHER_TAB));
+        //tabLayout.addTab(tabLayout.newTab().setText(AppConstant.SERVICE_SHOP_TAB));
+        tabLayout.addTab(tabLayout.newTab().setText(AppConstant.ABOUT_TAB));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

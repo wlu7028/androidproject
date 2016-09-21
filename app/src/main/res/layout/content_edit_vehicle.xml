@@ -71,7 +71,7 @@
         android:layout_below="@+id/vehicletoolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/add_icon"
+        android:src="@drawable/camera_icon"
         android:onClick="changePhoto"
         android:contentDescription="Add an Icon"
         android:layout_marginTop="50dp" />

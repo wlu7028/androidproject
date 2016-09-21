@@ -221,7 +221,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Odometer:"
+        android:text="Tag:"
         android:id="@+id/viewServiceLogTagLabel"
         android:layout_alignStart="@+id/viewServiceLogOdometerDivider"
         android:layout_below="@+id/viewServiceLogOdometerDivider" />

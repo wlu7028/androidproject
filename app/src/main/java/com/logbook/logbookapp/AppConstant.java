@@ -8,6 +8,7 @@ public interface  AppConstant{
     String VEHICLE_TAB = "Vehicles";
     String SERVICE_SHOP_TAB = "Service Shop";
     String OTHER_TAB = "Other";
+    String ABOUT_TAB = "About";
     String SERVICE_LOG_TAB = "Service Log";
     String GAS_LOG_TAB = "Gas Log";
     int REQUEST_IMAGE_CAPTURE = 101;

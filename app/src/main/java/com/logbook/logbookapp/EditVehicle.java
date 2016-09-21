@@ -36,7 +36,7 @@ public class EditVehicle extends AppCompatActivity {
     ArrayAdapter<String> adapter1,adapter2;
     int rowPosition;
     private ProgressDialog pd;
-    private  Button getOCRButton;
+    private  ImageButton getOCRButton;
     private boolean ocrPhotoCompleted = false;
     private String ocrResult,ocrTempFileLocation;
 
@@ -156,7 +156,7 @@ public class EditVehicle extends AppCompatActivity {
             }
         });
 
-        getOCRButton = (Button) findViewById(R.id.getOCREditV);
+        getOCRButton = (ImageButton) findViewById(R.id.getOCREditV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

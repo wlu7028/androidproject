@@ -41,7 +41,7 @@ public class AddAVehicle extends AppCompatActivity  {
     Bitmap changeVehicleIcon= null;
     private boolean ocrPhotoCompleted = false;
     private ProgressDialog pd;
-    private Button getOCRButton;
+    private ImageButton getOCRButton;
     private String ocrResult,ocrTempFileLocation;
     ArrayAdapter<String> adapter1,adapter2;
     @Override
@@ -84,7 +84,7 @@ public class AddAVehicle extends AppCompatActivity  {
 
 
 
-        getOCRButton = (Button) findViewById(R.id.getOCRAddV);
+        getOCRButton = (ImageButton) findViewById(R.id.getOCRAddV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
