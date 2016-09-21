@@ -41,7 +41,7 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:id="@+id/deletevehicle"
-        android:src="@drawable/delete_icon1"
+        android:src="@drawable/delete_icon"
         android:foregroundGravity="right"
         android:layout_alignBottom="@+id/carthumbnail"
         android:layout_alignParentRight="true"
