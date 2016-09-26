@@ -26,6 +26,8 @@ import java.util.TreeMap;
  */
 public class Utilities {
 
+    public static Map<String,List<String>> vehicleMakerModelMap = new TreeMap<>();
+
     public static int getSpinnerIndex(Spinner spinner, String myString)
     {
         int index = 0;
@@ -78,27 +80,36 @@ public class Utilities {
     }
 
     public static Map<String, List<String>> parseVehicleMakersModels(InputStream is) {
-        Map<String,List<String>> vehicleMakerModelMap = new TreeMap<>();
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-            List<String> models = new LinkedList<>();
-            while ((line = reader.readLine()) != null) {
-                if(line.length() > 0 )
-                    models.add(line);
-                else{
-                    vehicleMakerModelMap.put(models.remove(0),models) ;
-                    models = new LinkedList<>();
-                }
-            }
-            vehicleMakerModelMap.put(models.remove(0),models) ;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally{
+        Map<Integer, String> vehicleMakerIdMap = new TreeMap<>();
+        if(vehicleMakerModelMap.isEmpty()){
+            int makerId = 10;
             try {
-                is.close();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line;
+                List<String> models = new LinkedList<>();
+                while ((line = reader.readLine()) != null) {
+                    if(line.length() > 0 ) {
+                        models.add(line);
+                    }
+                    else{
+                        String makerName = models.remove(0);
+                        vehicleMakerIdMap.put(makerId,makerName);
+                        vehicleMakerModelMap.put(makerName,models) ;
+                        models = new LinkedList<>();
+                    }
+                    makerId += 10;
+                }
+                String makerName = models.remove(0);
+                vehicleMakerIdMap.put(makerId,makerName);
+                vehicleMakerModelMap.put(makerName,models) ;
             } catch (IOException e) {
                 e.printStackTrace();
+            }finally{
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return vehicleMakerModelMap;

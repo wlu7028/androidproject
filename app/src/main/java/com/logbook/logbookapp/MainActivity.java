@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
                     case AppConstant.VEHICLE_TAB:
                         startVehiclesActivity();
                         break;
-                    case AppConstant.SERVICE_SHOP_TAB:
+                    case AppConstant.ABOUT_TAB:
+                        showAbount();
                         break;
                     case AppConstant.OTHER_TAB:
                         break;
@@ -46,7 +49,17 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                switch(tab.getText().toString()) {
+                    case AppConstant.VEHICLE_TAB:
+                        break;
+                    case AppConstant.ABOUT_TAB:
+                        hideAbount();
+                        break;
+                    case AppConstant.OTHER_TAB:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             @Override
@@ -55,6 +68,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void showAbount(){
+        TextView aboutText = (TextView) findViewById(R.id.mainTextView);
+        aboutText.setVisibility(View.VISIBLE);
+    }
+
+    public void hideAbount(){
+        TextView aboutText = (TextView) findViewById(R.id.mainTextView);
+        aboutText.setVisibility(View.INVISIBLE);
     }
 
     public void startVehiclesActivity(){
