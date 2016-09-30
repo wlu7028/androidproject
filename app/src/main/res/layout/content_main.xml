@@ -27,11 +27,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/mainTextView"
         android:visibility="invisible"
-        android:text="
-                    V 1.0
-                    Copyright by
-                    For more information,
-                    please visit www.evsdb.com"
+        android:textAlignment="center"
+        android:text="@string/about_text"
         android:layout_below="@+id/tab_layout"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"

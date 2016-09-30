@@ -4,33 +4,13 @@
     <string name="title_activity_vehicles">VehiclesActivity</string>
     <string name="title_activity_add_avehicle">AddAVehicle</string>
 
-    <string-array name="car_maker">
-        <item>Maker</item>
-        <item>Honda</item>
-        <item>Toyota</item>
-        <item>Nissan</item>
-        <item>BMW</item>
-        <item>Mercedes Benz</item>
-        <item>Lexus</item>
-        <item>Acura</item>
-        <item>Audi</item>
-        <item>Volvo</item>
-    </string-array>
 
 
     <string-array name="car_model">
         <item>Model</item>
     </string-array>
 
-    <string-array name="toyota_model">
-        <item>Camry</item>
-        <item>Corolla</item>
-    </string-array>
 
-    <string-array name="honda_model">
-        <item>Accord</item>
-        <item>Civic</item>
-    </string-array>
     <string name="title_activity_vehicle_view">VehicleView</string>
     <string name="title_activity_service_log">ServiceLog</string>
     <string name="title_activity_gas_log">GasLog</string>
@@ -43,4 +23,14 @@
     <string name="title_activity_edit_service_log">EditServiceLog</string>
     <string name="title_activity_edit_gas_log">EditGasLog</string>
 
+    <string name="about_text">
+        \n
+        \n
+        \n
+        \n
+        V 1.0\n
+        Copyright by\n
+        For more information,\n
+        please visit www.evsdb.com
+    </string>
 </resources>
