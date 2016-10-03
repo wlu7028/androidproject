@@ -1,6 +1,12 @@
 package com.logbook.logbookapp;
 
+import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextRecognizer;
+import com.logbook.logbookapp.OCRVINResource.OcrDetectorProcessor;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,6 +25,26 @@ public class RestServiceUtility {
     private static final String ocrAPIKey = "XL8FySLPSG";
     private static final String vinLookupUrl = "http://ws.vinquery.com/restxml.aspx?accesscode=9c141b23-9ef9-4549-8b4b-5e1dc67d04cf&reportType=3&vin=";
 
+
+
+    public static void googleMobileVisionOCRProcess(Context context,String filePath){
+        TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
+        textRecognizer.setProcessor(new OcrDetectorProcessor());
+        Frame imageFrame = new Frame.Builder()
+                .setBitmap( BitmapFactory.decodeFile(filePath))
+                .build();
+        textRecognizer.receiveFrame(imageFrame);
+        /*
+        SparseArray<TextBlock> textBlocks = textRecognizer.detect(imageFrame);
+
+        for (int i = 0; i < textBlocks.size(); i++) {
+            TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
+
+            Log.i(LOG_TAG, textBlock.getValue());
+            // Do something with value
+        }
+        */
+    }
 
 
     public static String processOCR(String filePath){

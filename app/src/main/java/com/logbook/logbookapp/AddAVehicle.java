@@ -199,6 +199,8 @@ public class AddAVehicle extends AppCompatActivity  {
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
                         ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
+                        // test google ocr
+                        RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
                         ((EditText) findViewById(R.id.vin)).setText(ocrResult);
                         Map<String,String> vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
                         //update UI
@@ -219,6 +221,7 @@ public class AddAVehicle extends AppCompatActivity  {
         }else{
             // result is not ok
             carPicFileName = "";
+            ocrPhotoCompleted = true;
             Log.d("cancel", "return code is not ok");
         }
     }
