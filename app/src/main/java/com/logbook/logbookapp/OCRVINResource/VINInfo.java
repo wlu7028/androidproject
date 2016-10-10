@@ -1,4 +1,6 @@
-package com.logbook.logbookapp;
+package com.logbook.logbookapp.OCRVINResource;
+
+import com.logbook.logbookapp.VehicleVinInfo;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;

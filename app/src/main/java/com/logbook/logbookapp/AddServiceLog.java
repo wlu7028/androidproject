@@ -80,7 +80,7 @@ public class AddServiceLog extends AppCompatActivity {
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(AppConstant.VERTICAL_ITEM_SPACE));
-        mAdapter = new ServiceLogImagesAdapter(getBaseContext(),screenShotsToSave);
+        mAdapter = new ServiceLogImagesAdapter(this,screenShotsToSave);
         mRecyclerView.setAdapter(mAdapter);
     }
 

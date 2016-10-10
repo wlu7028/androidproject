@@ -28,6 +28,7 @@ import android.widget.Spinner;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,7 +91,7 @@ public class AddAVehicle extends AppCompatActivity  {
             public void onClick(View v) {
                 v.setEnabled(false);
                 AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-
+                Map<String,String> vinqueryInfo = new HashMap<String, String>();
                     @Override
                     protected void onPreExecute() {
                         pd = new ProgressDialog(AddAVehicle.this);
@@ -107,10 +108,17 @@ public class AddAVehicle extends AppCompatActivity  {
                         int tried = 0;
                         try {
                             while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
-                                Log.d("ocradd", "in while, tried=" + tried);
+                                Log.d("ocrworker", "in while, tried=" + tried);
+                                //ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
+                                // test google ocr
+                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
+                                if(!ocrResult.isEmpty())
+                                    vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                                else
+                                    Log.d("ocrworker", "vin number is empty from ocr detection");
+                                ocrPhotoCompleted = true;
                                 Thread.sleep(2000);
                             }
-                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -119,6 +127,13 @@ public class AddAVehicle extends AppCompatActivity  {
 
                     @Override
                     protected void onPostExecute(Void result) {
+                        //update UI
+                        ((EditText) findViewById(R.id.vin)).setText(ocrResult);
+                        if(!vinqueryInfo.isEmpty()){
+                            spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
+                            spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
+                            ((EditText) findViewById(R.id.year)).setText(vinqueryInfo.get("Year"));
+                        }
                         if (pd != null) {
                             pd.dismiss();
                             getOCRButton.setEnabled(true);
@@ -198,18 +213,6 @@ public class AddAVehicle extends AppCompatActivity  {
                         File photoFile = Utilities.createTempOCRFile(this);
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
-                        ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
-                        // test google ocr
-                        RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
-                        ((EditText) findViewById(R.id.vin)).setText(ocrResult);
-                        Map<String,String> vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
-                        //update UI
-                        if(!vinqueryInfo.isEmpty()){
-                            spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
-                            spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
-                            ((EditText) findViewById(R.id.year)).setText(vinqueryInfo.get("Year"));
-                        }
-                        ocrPhotoCompleted = true;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

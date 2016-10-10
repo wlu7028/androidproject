@@ -3,17 +3,17 @@ package com.logbook.logbookapp;
 import android.content.Context;
 import android.widget.Spinner;
 
+import com.logbook.logbookapp.OCRVINResource.VINquery;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -76,6 +76,9 @@ public class Utilities {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
+
+//        File image  = new File(storageDir, imageFileName+timeStamp+".jpg");
+//        image.createNewFile();
         return image;
     }
 

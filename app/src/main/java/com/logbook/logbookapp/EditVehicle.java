@@ -24,6 +24,7 @@ import android.widget.Spinner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,77 +93,16 @@ public class EditVehicle extends AppCompatActivity {
         editVin.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarVIN());
         EditText editOdometer = (EditText) findViewById(R.id.editodometer);
         editOdometer.setText(ReadSaveDataUtility.vehicleObjects.get(rowPosition).getCarOdometer());
-        editVin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Choose way of data entry: take a photo or enter manually");
-                builder.setCancelable(true);
 
-                builder.setPositiveButton(
-                        "Take a photo of VIN",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-
-                                    @Override
-                                    protected void onPreExecute() {
-                                        pd = new ProgressDialog(EditVehicle.this);
-                                        pd.setTitle("Processing OCR...");
-                                        pd.setMessage("Please wait.");
-                                        pd.setCancelable(false);
-                                        pd.setIndeterminate(true);
-                                        pd.show();
-                                        getOCRPhoto();
-                                    }
-
-                                    @Override
-                                    protected Void doInBackground(Void... arg0) {
-                                        int tried = 0;
-                                        try {
-                                            while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
-                                                Thread.sleep(2000);
-                                            }
-                                            Thread.sleep(2000);
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                        return null;
-                                    }
-
-                                    @Override
-                                    protected void onPostExecute(Void result) {
-                                        if (pd != null) {
-                                            pd.dismiss();
-                                            getOCRButton.setEnabled(true);
-                                        }
-                                    }
-
-                                };
-                                task.execute((Void[]) null);
-                            }
-                        });
-
-                builder.setNegativeButton(
-                        "Enter manually",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-                AlertDialog alert1 = builder.create();
-                alert1.show();
-            }
-        });
 
         getOCRButton = (ImageButton) findViewById(R.id.getOCREditV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.setEnabled(false);
-                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 
+                AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+                    Map<String,String> vinqueryInfo = new HashMap<String, String>();
                     @Override
                     protected void onPreExecute() {
                         pd = new ProgressDialog(EditVehicle.this);
@@ -179,10 +119,16 @@ public class EditVehicle extends AppCompatActivity {
                         int tried = 0;
                         try {
                             while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
+                                Log.d("ocrworker", "in while, tried=" + tried);
+                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
+                                if(!ocrResult.isEmpty())
+                                    vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                                else
+                                    Log.d("ocrworker", "vin number is empty from ocr detection");
+                                ocrPhotoCompleted = true;
                                 Thread.sleep(2000);
                             }
                             ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
-                            Thread.sleep(2000);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -192,6 +138,13 @@ public class EditVehicle extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Void result) {
+                        //update UI
+                        ((EditText) findViewById(R.id.editvin)).setText(ocrResult);
+                        if(!vinqueryInfo.isEmpty()){
+                            spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
+                            spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
+                            ((EditText) findViewById(R.id.edityear)).setText(vinqueryInfo.get("Year"));
+                        }
                         if (pd != null) {
                             pd.dismiss();
                             getOCRButton.setEnabled(true);
@@ -279,16 +232,7 @@ public class EditVehicle extends AppCompatActivity {
                         File photoFile = Utilities.createTempOCRFile(this);
                         ocrTempFileLocation = photoFile.getAbsolutePath();
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
-                        ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
-                        ((EditText) findViewById(R.id.editvin)).setText(ocrResult);
-                        Map<String,String> vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
-                        //update UI
-                        if(!vinqueryInfo.isEmpty()){
-                            spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
-                            spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
-                            ((EditText) findViewById(R.id.edityear)).setText(vinqueryInfo.get("Year"));
-                        }
-                        ocrPhotoCompleted = true;
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -298,6 +242,7 @@ public class EditVehicle extends AppCompatActivity {
             }
         }else{
             // result is not ok
+            ocrPhotoCompleted = true;
             Log.d("cancel", "return code is not ok");
         }
     }

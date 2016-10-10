@@ -78,7 +78,7 @@ public class EditServiceLog extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(AppConstant.VERTICAL_ITEM_SPACE));
         populateImagesToShow();
-        mAdapter = new ServiceLogImagesAdapter(getBaseContext(),imagesToShow);
+        mAdapter = new ServiceLogImagesAdapter(this,imagesToShow);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -87,6 +87,7 @@ public class EditServiceLog extends AppCompatActivity {
         imagesToShow.clear();
         if(tempServiceLogObj == null && previousImages.isEmpty()){
             tempServiceLogObj = ReadSaveDataUtility.vehicleObjects.get(rowPosition).getServiceLogObjects().get(serviceLogPosition);
+            //TODO get images
         }else if(previousImages.isEmpty()){
             for(String tempFile : tempServiceLogObj.getAttachmentLocation()){
                 previousImages.add(ReadSaveDataUtility.loadBitmapFromInternalStorage(getBaseContext(),tempFile));
@@ -130,7 +131,6 @@ public class EditServiceLog extends AppCompatActivity {
     }
 
     private void saveAllScreenShots(List<String> fileNames){
-        //if(fileNames.size() == screenShotsToSave.size())
         for(int i=0;i< screenShotsToSave.size();i++){
             tempServiceLogObj.getAttachmentLocation().add(fileNames.get(i));
             ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(),screenShotsToSave.get(i),fileNames.get(i));

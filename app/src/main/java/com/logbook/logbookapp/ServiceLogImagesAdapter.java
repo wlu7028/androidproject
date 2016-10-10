@@ -4,10 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +30,6 @@ import java.util.List;
  * Created on 4/10/2016.
  */
 public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogImagesAdapter.CustomViewHolder>{
-    private View animatedView = null;
     private Context context;
     private List<Bitmap> imagesToShow = new ArrayList<>();
     private Animator mCurrentAnimator;
@@ -51,13 +54,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         //set image here
         holder.imageView.setImageBitmap(imagesToShow.get(position));
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                zoomImageFromThumb(holder.expandedView, imagesToShow.get(position));
-            }
-        });
+        holder.imageView.setTag(position);
     }
 
 
@@ -74,9 +71,55 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
             super(view);
             this.imageView = (ImageView) view.findViewById(R.id.ServiceLogThumbNails);
             this.expandedView = (ImageView) view.findViewById(R.id.service_log_expanded_attachment);
+            this.imageView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("View image or delete image");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton(
+                            "View Image",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //zoom view image
+                                    //zoomImageFromThumb(expandedView, imagesToShow.get((int)imageView.getTag()));
+                                    testZoom(expandedView, imagesToShow.get((int)imageView.getTag()));
+                                }
+                            });
+
+                    builder.setNegativeButton(
+                            "Delete Image",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //remove image
+                                    removeAt((int)imageView.getTag());
+                                }
+                            });
+
+                    AlertDialog alert1 = builder.create();
+                    alert1.show();
+
+
+                }
+            });
+
+        }
+
+        private void removeAt(int position) {
+            imagesToShow.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, imagesToShow.size());
         }
     }
 
+    private void testZoom(final View thumbView, Bitmap image){
+        final ImageView expandedImageView = (ImageView) thumbView;
+        expandedImageView.setImageBitmap(image);
+        expandedImageView.setVisibility(View.VISIBLE);
+    }
 
     private void zoomImageFromThumb(final View thumbView, Bitmap image) {
         // If there's an animation in progress, cancel it
@@ -86,11 +129,6 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
         }
 
         // Load the high-resolution "zoomed-in" image.
-//        Log.d("ParentViewName",((View)thumbView.getParent()).getResources().getResourceEntryName(((View)thumbView.getParent()).getId()));
-//        Log.d("ViewName",thumbView.getResources().getResourceEntryName(thumbView.getId()));
-//        final ImageView expandedImageView = (ImageView) ((View)thumbView.getParent()).findViewById(
-//                R.id.service_log_expanded_attachment);
-//        Log.d("ViewName",((View)thumbView.getParent()).getResources().getResourceEntryName(((View)thumbView.getParent()).getId()));
         final ImageView expandedImageView = (ImageView) thumbView;
         expandedImageView.setImageBitmap(image);
 
@@ -106,8 +144,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
         // bounds, since that's the origin for the positioning animation
         // properties (X, Y).
         thumbView.getGlobalVisibleRect(startBounds);
-        thumbView.findViewById(R.id.service_log_image_adapter)
-                .getGlobalVisibleRect(finalBounds, globalOffset);
+        thumbView.getGlobalVisibleRect(finalBounds, globalOffset);
         startBounds.offset(-globalOffset.x, -globalOffset.y);
         finalBounds.offset(-globalOffset.x, -globalOffset.y);
 

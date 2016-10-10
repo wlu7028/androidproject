@@ -19,8 +19,9 @@ import java.util.List;
 /**
  * Created  on 2/21/2016.
  */
-public class ReadSaveDataUtility {
+public final class ReadSaveDataUtility {
     public static  List<CarObject> vehicleObjects = new ArrayList<>();
+    private ReadSaveDataUtility(){}
 
     public static void loadVehicleObjectsFromSharedPreference(Activity thisActivity){
         vehicleObjects.clear();

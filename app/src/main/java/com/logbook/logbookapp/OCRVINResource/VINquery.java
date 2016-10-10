@@ -1,4 +1,4 @@
-package com.logbook.logbookapp;
+package com.logbook.logbookapp.OCRVINResource;
 
 import android.util.Log;
 

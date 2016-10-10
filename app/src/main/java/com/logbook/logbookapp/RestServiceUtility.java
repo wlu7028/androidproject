@@ -3,8 +3,10 @@ package com.logbook.logbookapp;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 import com.logbook.logbookapp.OCRVINResource.OcrDetectorProcessor;
 
@@ -27,23 +29,24 @@ public class RestServiceUtility {
 
 
 
-    public static void googleMobileVisionOCRProcess(Context context,String filePath){
+    public static String googleMobileVisionOCRProcess(Context context,String filePath){
+        String vinNumberFromPic = "";
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor());
+        //textRecognizer.setProcessor(new OcrDetectorProcessor());
         Frame imageFrame = new Frame.Builder()
                 .setBitmap( BitmapFactory.decodeFile(filePath))
                 .build();
         textRecognizer.receiveFrame(imageFrame);
-        /*
         SparseArray<TextBlock> textBlocks = textRecognizer.detect(imageFrame);
-
         for (int i = 0; i < textBlocks.size(); i++) {
-            TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
-
-            Log.i(LOG_TAG, textBlock.getValue());
+            TextBlock textBlock = textBlocks.valueAt(i); //textBlocks.get(textBlocks.keyAt(i));
+            if(textBlock != null && textBlock.getValue() != null){
+                vinNumberFromPic = textBlock.getValue();
+                Log.d("OcrDetectorProcessor", "Text detected! " + vinNumberFromPic);
+            }
             // Do something with value
         }
-        */
+        return vinNumberFromPic;
     }
 
 

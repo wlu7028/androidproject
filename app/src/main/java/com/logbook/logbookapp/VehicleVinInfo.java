@@ -2,6 +2,8 @@ package com.logbook.logbookapp;
 
 
 
+import com.logbook.logbookapp.OCRVINResource.VinItem;
+
 import org.simpleframework.xml.Element;
 
 import java.util.HashMap;
