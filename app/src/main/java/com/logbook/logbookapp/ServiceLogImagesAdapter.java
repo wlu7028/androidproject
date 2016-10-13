@@ -85,8 +85,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     //zoom view image
-                                    //zoomImageFromThumb(expandedView, imagesToShow.get((int)imageView.getTag()));
-                                    testZoom(expandedView, imagesToShow.get((int)imageView.getTag()));
+                                    zoomImageFromThumb(expandedView, imagesToShow.get((int)imageView.getTag()));
                                 }
                             });
 
@@ -115,11 +114,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
         }
     }
 
-    private void testZoom(final View thumbView, Bitmap image){
-        final ImageView expandedImageView = (ImageView) thumbView;
-        expandedImageView.setImageBitmap(image);
-        expandedImageView.setVisibility(View.VISIBLE);
-    }
+
 
     private void zoomImageFromThumb(final View thumbView, Bitmap image) {
         // If there's an animation in progress, cancel it

@@ -99,8 +99,8 @@ public class EditVehicle extends AppCompatActivity {
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getOCRPhoto();
                 v.setEnabled(false);
-
                 AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
                     Map<String,String> vinqueryInfo = new HashMap<String, String>();
                     @Override
@@ -111,7 +111,7 @@ public class EditVehicle extends AppCompatActivity {
                         pd.setCancelable(false);
                         pd.setIndeterminate(true);
                         pd.show();
-                        getOCRPhoto();
+
                     }
 
                     @Override
@@ -120,14 +120,15 @@ public class EditVehicle extends AppCompatActivity {
                         try {
                             while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
                                 Log.d("ocrworker", "in while, tried=" + tried);
-                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
-                                if(!ocrResult.isEmpty())
-                                    vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
-                                else
-                                    Log.d("ocrworker", "vin number is empty from ocr detection");
-                                ocrPhotoCompleted = true;
                                 Thread.sleep(2000);
                             }
+                            if(ocrPhotoCompleted && ocrTempFileLocation != null)
+                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
+                            if(!ocrResult.isEmpty())
+                                vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                            else
+                                Log.d("ocrworker", "vin number is empty from ocr detection");
+                            ocrPhotoCompleted = true;
                             ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block

@@ -14,7 +14,7 @@ public interface  AppConstant{
     int REQUEST_IMAGE_CAPTURE = 101;
     int GET_OCR_File = 103;
     int SWITCH_SERVICE_CATELOG = 102;
-    int OCR_TIMEOUT = 15;
+    int OCR_TIMEOUT = 30;
     int CONNECTION_TIME_OUT = 10000;
     int VERTICAL_ITEM_SPACE = 5;
 

@@ -89,9 +89,10 @@ public class AddAVehicle extends AppCompatActivity  {
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getOCRPhoto();
                 v.setEnabled(false);
                 AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-                Map<String,String> vinqueryInfo = new HashMap<String, String>();
+                Map<String,String> vinqueryInfo = new HashMap<>();
                     @Override
                     protected void onPreExecute() {
                         pd = new ProgressDialog(AddAVehicle.this);
@@ -100,7 +101,7 @@ public class AddAVehicle extends AppCompatActivity  {
                         pd.setCancelable(false);
                         pd.setIndeterminate(true);
                         pd.show();
-                        getOCRPhoto();
+
                     }
 
                     @Override
@@ -109,16 +110,16 @@ public class AddAVehicle extends AppCompatActivity  {
                         try {
                             while (!ocrPhotoCompleted && ++tried < AppConstant.OCR_TIMEOUT) {
                                 Log.d("ocrworker", "in while, tried=" + tried);
-                                //ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
-                                // test google ocr
-                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
-                                if(!ocrResult.isEmpty())
-                                    vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
-                                else
-                                    Log.d("ocrworker", "vin number is empty from ocr detection");
-                                ocrPhotoCompleted = true;
                                 Thread.sleep(2000);
                             }
+                            // test google ocr
+                            if(ocrPhotoCompleted && ocrTempFileLocation != null)
+                                ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
+                            if(!ocrResult.isEmpty())
+                                vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
+                            else
+                                Log.d("ocrworker", "vin number is empty from ocr detection");
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -215,6 +216,8 @@ public class AddAVehicle extends AppCompatActivity  {
                         ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }finally{
+                        ocrPhotoCompleted = true;
                     }
                     break;
                 default:
