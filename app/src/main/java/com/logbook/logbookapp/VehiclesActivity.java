@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class VehiclesActivity extends AppCompatActivity {
@@ -74,7 +75,10 @@ public class VehiclesActivity extends AppCompatActivity {
     private void getVehicleMilesAndServiceDate( List<CarObject> carObjList,List<String> displayValues2){
         displayValues2.clear();
         for(int i=0; i< carObjList.size();i++){
-            displayValues2.add(carObjList.get(i).getCarOdometer() +" miles   Last Service Date:");
+            Collections.sort(carObjList.get(i).getServiceLogObjects());
+            displayValues2.add(carObjList.get(i).getCarOdometer() +" miles   Last Service Date: "
+                    + carObjList.get(i).getServiceLogObjects().get(0)
+                     );
         }
     }
     public void backButton(View view){

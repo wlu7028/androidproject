@@ -115,7 +115,9 @@ public class AddAVehicle extends AppCompatActivity  {
                             // test google ocr
                             if(ocrPhotoCompleted && ocrTempFileLocation != null)
                                 ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
-                            if(!ocrResult.isEmpty())
+                            else
+                                Log.d("ocrworker", "no picture is taken for VIN lookup");
+                            if(ocrResult !=null && !ocrResult.isEmpty())
                                 vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
                             else
                                 Log.d("ocrworker", "vin number is empty from ocr detection");

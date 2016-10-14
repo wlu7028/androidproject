@@ -69,6 +69,6 @@
         android:id="@+id/gasloglistview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100sp" />
+        android:layout_marginTop="110dp" />
 
 </RelativeLayout>

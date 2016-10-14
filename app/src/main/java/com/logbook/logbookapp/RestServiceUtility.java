@@ -32,7 +32,7 @@ public class RestServiceUtility {
     public static String googleMobileVisionOCRProcess(Context context,String filePath){
         String vinNumberFromPic = "";
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        //textRecognizer.setProcessor(new OcrDetectorProcessor());
+        textRecognizer.setProcessor(new OcrDetectorProcessor());
         Frame imageFrame = new Frame.Builder()
                 .setBitmap( BitmapFactory.decodeFile(filePath))
                 .build();

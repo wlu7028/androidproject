@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created on 3/5/2016.
  */
-public class ServiceLogObject {
+public class ServiceLogObject implements Comparable<ServiceLogObject>{
     private String cost;
     private String vehicle;
     private String tag;
@@ -109,5 +109,10 @@ public class ServiceLogObject {
             e.printStackTrace();
         }
         return returnJsonString;
+    }
+
+    @Override
+    public int compareTo(ServiceLogObject another) {
+        return (int) (this.getModifiedDateTime() - another.getModifiedDateTime());
     }
 }
