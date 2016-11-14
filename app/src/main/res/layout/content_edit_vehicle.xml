@@ -147,6 +147,9 @@
         <com.logbook.logbookapp.AutoHideKeyboardEditText
             android:layout_width="@dimen/text_box_width"
             android:layout_height="@dimen/text_box_height"
+            android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:maxLines="3"
             android:id="@+id/editvin"
             android:hint="VIN"  />
 

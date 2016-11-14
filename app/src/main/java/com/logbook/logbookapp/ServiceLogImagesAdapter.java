@@ -54,6 +54,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         //set image here
         holder.imageView.setImageBitmap(imagesToShow.get(position));
+        holder.expandedView.setImageBitmap(imagesToShow.get(position));
         holder.imageView.setTag(position);
     }
 
@@ -78,14 +79,16 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
 
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setMessage("View image or delete image");
+                    //builder.setMessage("View image or delete image");
+                    builder.setTitle("View image or delete image");
                     builder.setCancelable(true);
                     builder.setPositiveButton(
-                            "View Image",
+                            "Cancel",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     //zoom view image
-                                    zoomImageFromThumb(expandedView, imagesToShow.get((int)imageView.getTag()));
+                                    //zoomImageFromThumb(expandedView, imagesToShow.get((int)imageView.getTag()));
+                                    dialog.dismiss();
                                 }
                             });
 
@@ -95,11 +98,14 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
                                 public void onClick(DialogInterface dialog, int id) {
                                     //remove image
                                     removeAt((int)imageView.getTag());
+                                    dialog.dismiss();
                                 }
                             });
+                    builder.setView(v);
 
-                    AlertDialog alert1 = builder.create();
-                    alert1.show();
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.getWindow().setLayout(700, 500);
+                    alertDialog.show();
 
 
                 }

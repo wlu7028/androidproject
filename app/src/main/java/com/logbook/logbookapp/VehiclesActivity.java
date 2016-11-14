@@ -76,8 +76,9 @@ public class VehiclesActivity extends AppCompatActivity {
         displayValues2.clear();
         for(int i=0; i< carObjList.size();i++){
             Collections.sort(carObjList.get(i).getServiceLogObjects());
+
             displayValues2.add(carObjList.get(i).getCarOdometer() +" miles   Last Service Date: "
-                    + carObjList.get(i).getServiceLogObjects().get(0)
+                   + ((carObjList.get(i).getServiceLogObjects() != null && carObjList.get(i).getServiceLogObjects().size() > 0) ? carObjList.get(i).getServiceLogObjects().get(0).getServiceDate() : "")
                      );
         }
     }

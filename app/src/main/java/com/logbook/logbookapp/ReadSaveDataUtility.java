@@ -86,7 +86,7 @@ public final class ReadSaveDataUtility {
         FileOutputStream fos;
         try {
             fos = context.openFileOutput(picName, Context.MODE_PRIVATE);
-            b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            b.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();

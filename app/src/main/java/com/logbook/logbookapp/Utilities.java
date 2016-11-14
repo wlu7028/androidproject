@@ -1,8 +1,12 @@
 package com.logbook.logbookapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Spinner;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.logbook.logbookapp.OCRVINResource.VINquery;
 
 import org.simpleframework.xml.Serializer;
@@ -118,5 +122,16 @@ public class Utilities {
         return vehicleMakerModelMap;
     }
 
-
+    public static boolean checkPlayServices(Activity activity) {
+        int resultCode = GoogleApiAvailability.getInstance()
+                .isGooglePlayServicesAvailable(activity);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            GoogleApiAvailability.getInstance().getErrorDialog(activity,resultCode,105).show();
+            Log.d("ocrcheck", "play service is missing");
+            return false;
+        }else{
+            Log.d("ocrcheck", "play service is fine");
+            return true;
+        }
+    }
 }

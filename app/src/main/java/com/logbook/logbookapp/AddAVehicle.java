@@ -1,15 +1,16 @@
 package com.logbook.logbookapp;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -18,12 +19,12 @@ import android.view.View;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
 
+import com.logbook.logbookapp.OCRVINResource.RestServiceUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -89,6 +90,7 @@ public class AddAVehicle extends AppCompatActivity  {
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utilities.checkPlayServices((Activity) v.getContext());
                 getOCRPhoto();
                 v.setEnabled(false);
                 AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
@@ -198,7 +200,22 @@ public class AddAVehicle extends AppCompatActivity  {
     public void getOCRPhoto(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, AppConstant.GET_OCR_File);
+            File photoFile = null;
+            try {
+                photoFile = Utilities.createTempOCRFile(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ocrTempFileLocation = photoFile.getAbsolutePath();
+            Log.d("ocrFile", ocrTempFileLocation);
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.logbook.logbookapp.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, AppConstant.GET_OCR_File);
+            }
+
         }
     }
 
@@ -212,15 +229,16 @@ public class AddAVehicle extends AppCompatActivity  {
                     carPicButton.setImageBitmap(changeVehicleIcon);
                     break;
                 case AppConstant.GET_OCR_File:
-                    try {
-                        File photoFile = Utilities.createTempOCRFile(this);
-                        ocrTempFileLocation = photoFile.getAbsolutePath();
-                        ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }finally{
-                        ocrPhotoCompleted = true;
-                    }
+//                    try {
+//                        File photoFile = Utilities.createTempOCRFile(this);
+//                        ocrTempFileLocation = photoFile.getAbsolutePath();
+//                        ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }finally{
+//                        ocrPhotoCompleted = true;
+//                    }
+                    ocrPhotoCompleted = true;
                     break;
                 default:
                     carPicFileName = "";
@@ -233,6 +251,7 @@ public class AddAVehicle extends AppCompatActivity  {
             Log.d("cancel", "return code is not ok");
         }
     }
+
 
 
 

@@ -19,9 +19,8 @@
          -->
     <ImageView
         android:id="@+id/service_log_expanded_attachment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:contentDescription="zoom view of attachment" />
 
 </RelativeLayout>

@@ -1,9 +1,8 @@
 package com.logbook.logbookapp;
 
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
@@ -17,10 +16,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+
+import com.logbook.logbookapp.OCRVINResource.RestServiceUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,6 +99,7 @@ public class EditVehicle extends AppCompatActivity {
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utilities.checkPlayServices((Activity) v.getContext());
                 getOCRPhoto();
                 v.setEnabled(false);
                 AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
@@ -124,12 +125,15 @@ public class EditVehicle extends AppCompatActivity {
                             }
                             if(ocrPhotoCompleted && ocrTempFileLocation != null)
                                 ocrResult = RestServiceUtility.googleMobileVisionOCRProcess(getBaseContext(),ocrTempFileLocation);
+                            else
+                                Log.d("ocrworker", "no picture");
                             if(!ocrResult.isEmpty())
                                 vinqueryInfo = Utilities.processXmlResult(RestServiceUtility.processVIN(ocrResult));
-                            else
+                            else {
+
                                 Log.d("ocrworker", "vin number is empty from ocr detection");
+                            }
                             ocrPhotoCompleted = true;
-                            ocrResult = RestServiceUtility.processOCR(ocrTempFileLocation);
                         } catch (InterruptedException e) {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
@@ -142,6 +146,7 @@ public class EditVehicle extends AppCompatActivity {
                         //update UI
                         ((EditText) findViewById(R.id.editvin)).setText(ocrResult);
                         if(!vinqueryInfo.isEmpty()){
+                            Log.d("ocrSet","set spinner");
                             spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
                             spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
                             ((EditText) findViewById(R.id.edityear)).setText(vinqueryInfo.get("Year"));
@@ -236,6 +241,8 @@ public class EditVehicle extends AppCompatActivity {
 
                     } catch (IOException e) {
                         e.printStackTrace();
+                    }finally{
+                        ocrPhotoCompleted = true;
                     }
                     break;
                 default:
