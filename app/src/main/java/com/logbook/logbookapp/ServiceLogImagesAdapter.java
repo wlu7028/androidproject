@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
@@ -101,10 +102,12 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
                                     dialog.dismiss();
                                 }
                             });
+                    ImageView showAttachedImage = new ImageView(context);
+                    showAttachedImage.setImageDrawable(((ImageView)v).getDrawable());
                     builder.setView(v);
 
                     AlertDialog alertDialog = builder.create();
-                    alertDialog.getWindow().setLayout(700, 500);
+                    alertDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
                     alertDialog.show();
 
 
