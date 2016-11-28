@@ -55,7 +55,6 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
     public void onBindViewHolder(final CustomViewHolder holder, final int position) {
         //set image here
         holder.imageView.setImageBitmap(imagesToShow.get(position));
-        holder.expandedView.setImageBitmap(imagesToShow.get(position));
         holder.imageView.setTag(position);
     }
 
@@ -67,12 +66,10 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         protected ImageView imageView;
-        protected ImageView expandedView;
 
         public CustomViewHolder(View view) {
             super(view);
             this.imageView = (ImageView) view.findViewById(R.id.ServiceLogThumbNails);
-            this.expandedView = (ImageView) view.findViewById(R.id.service_log_expanded_attachment);
             this.imageView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -104,11 +101,13 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
                             });
                     ImageView showAttachedImage = new ImageView(context);
                     showAttachedImage.setImageDrawable(((ImageView)v).getDrawable());
-                    builder.setView(v);
+                    showAttachedImage.setMinimumHeight(500);
+                    showAttachedImage.setMinimumWidth(500);
+                    builder.setView(showAttachedImage);
 
                     AlertDialog alertDialog = builder.create();
-                    alertDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
                     alertDialog.show();
+                    alertDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
 
 
                 }

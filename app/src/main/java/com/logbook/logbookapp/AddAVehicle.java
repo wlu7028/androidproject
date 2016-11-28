@@ -1,7 +1,9 @@
 package com.logbook.logbookapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -89,7 +91,7 @@ public class AddAVehicle extends AppCompatActivity  {
         getOCRButton = (ImageButton) findViewById(R.id.getOCRAddV);
         getOCRButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Utilities.checkPlayServices((Activity) v.getContext());
                 getOCRPhoto();
                 v.setEnabled(false);
@@ -133,8 +135,24 @@ public class AddAVehicle extends AppCompatActivity  {
                     @Override
                     protected void onPostExecute(Void result) {
                         //update UI
-                        ((EditText) findViewById(R.id.vin)).setText(ocrResult);
+                        if(ocrResult == null || ocrResult.isEmpty()){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                            //builder.setMessage("View image or delete image");
+                            builder.setTitle("Unable to detect VIN Number");
+                            builder.setCancelable(true);
+                            builder.setPositiveButton(
+                                    "Cancel",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+                        }else
+                            ((EditText) findViewById(R.id.vin)).setText(ocrResult);
                         if(!vinqueryInfo.isEmpty()){
+                            Log.d("ocrSet","set spinner");
                             spinner1.setSelection(Utilities.getSpinnerIndex(spinner1, vinqueryInfo.get("Make")));
                             spinner2.setSelection(Utilities.getSpinnerIndex(spinner2, vinqueryInfo.get("Model")));
                             ((EditText) findViewById(R.id.year)).setText(vinqueryInfo.get("Year"));

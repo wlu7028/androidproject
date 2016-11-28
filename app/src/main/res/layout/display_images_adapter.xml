@@ -11,17 +11,7 @@
         android:scaleType="centerCrop"
          />
 
-    <!-- This initially-hidden ImageView will hold the expanded/zoomed version of
-         the images above. Without transformations applied, it takes up the entire
-         screen. To achieve the "zoom" animation, this view's bounds are animated
-         from the bounds of the thumbnail button above, to its final laid-out
-         bounds.
-         -->
-    <ImageView
-        android:id="@+id/service_log_expanded_attachment"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:visibility="invisible"
-        android:contentDescription="zoom view of attachment" />
+
+
 
 </RelativeLayout>
