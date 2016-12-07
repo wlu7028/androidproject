@@ -240,22 +240,13 @@ public class AddAVehicle extends AppCompatActivity  {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
             switch (requestCode) {
                 case AppConstant.REQUEST_IMAGE_CAPTURE:
+                    Bundle extras = data.getExtras();
                     changeVehicleIcon = (Bitmap) extras.get("data");
                     carPicButton.setImageBitmap(changeVehicleIcon);
                     break;
                 case AppConstant.GET_OCR_File:
-//                    try {
-//                        File photoFile = Utilities.createTempOCRFile(this);
-//                        ocrTempFileLocation = photoFile.getAbsolutePath();
-//                        ReadSaveDataUtility.saveBitmapToInternalStorage(getBaseContext(), (Bitmap) extras.get("data"), photoFile.getName());
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }finally{
-//                        ocrPhotoCompleted = true;
-//                    }
                     ocrPhotoCompleted = true;
                     break;
                 default:

@@ -78,7 +78,7 @@ public class EditServiceLog extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.addItemDecoration(new VerticalSpaceItemDecoration(AppConstant.VERTICAL_ITEM_SPACE));
         populateImagesToShow();
-        mAdapter = new ServiceLogImagesAdapter(this,imagesToShow);
+        mAdapter = new ServiceLogImagesAdapter(this,imagesToShow,receiptFileLocations);
         mRecyclerView.setAdapter(mAdapter);
 
     }

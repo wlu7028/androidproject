@@ -22,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,12 +34,14 @@ import java.util.List;
 public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogImagesAdapter.CustomViewHolder>{
     private Context context;
     private List<Bitmap> imagesToShow = new ArrayList<>();
+    private List<String> receiptFileLocations = new ArrayList<>();
     private Animator mCurrentAnimator;
     private int  mShortAnimationDuration = 200;
 
-    public ServiceLogImagesAdapter(Context context,List<Bitmap> imagesToShow) {
+    public ServiceLogImagesAdapter(Context context,List<Bitmap> imagesToShow,List<String> receiptFileLocations) {
         this.imagesToShow = imagesToShow;
         this.context = context;
+        this.receiptFileLocations = receiptFileLocations;
     }
 
     @Override
@@ -101,8 +104,10 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
                             });
                     ImageView showAttachedImage = new ImageView(context);
                     showAttachedImage.setImageDrawable(((ImageView)v).getDrawable());
-                    showAttachedImage.setMinimumHeight(500);
-                    showAttachedImage.setMinimumWidth(500);
+                    Log.d("LayoutWidth", String.valueOf(context.getResources().getDisplayMetrics().widthPixels));
+                    Log.d("LayoutHeight", String.valueOf(context.getResources().getDisplayMetrics().heightPixels));
+                    showAttachedImage.setMinimumHeight(context.getResources().getDisplayMetrics().widthPixels);
+                    showAttachedImage.setMinimumWidth(context.getResources().getDisplayMetrics().heightPixels);
                     builder.setView(showAttachedImage);
 
                     AlertDialog alertDialog = builder.create();
@@ -117,6 +122,7 @@ public class ServiceLogImagesAdapter extends  RecyclerView.Adapter<ServiceLogIma
 
         private void removeAt(int position) {
             imagesToShow.remove(position);
+            receiptFileLocations.remove(position);
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, imagesToShow.size());
         }
